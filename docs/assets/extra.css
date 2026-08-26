@@ -11,6 +11,11 @@
   --moonin-shadow: 0 18px 48px rgba(14, 165, 233, 0.1);
 }
 
+[data-md-color-scheme="default"] {
+  --md-default-bg-color: #f8fafc;
+  --md-typeset-a-color: #0284c7;
+}
+
 .md-header__button.md-logo img,
 .md-header__button.md-logo svg {
   height: 2.65rem;
@@ -20,6 +25,36 @@
 .md-header,
 .md-tabs {
   background: #0b1118;
+}
+
+.md-sidebar--primary,
+.md-sidebar--primary .md-sidebar__scrollwrap,
+.md-sidebar--primary .md-nav {
+  background: #0b1118;
+}
+
+.md-sidebar--primary {
+  border-right: 1px solid #24303d;
+}
+
+.md-sidebar--primary .md-nav__title {
+  background: #0e1722;
+  box-shadow: 0 1px 0 #24303d;
+  color: #eaf0f6;
+}
+
+.md-sidebar--primary .md-nav__link {
+  color: #a7b4c2;
+}
+
+.md-sidebar--primary .md-nav__link:hover,
+.md-sidebar--primary .md-nav__link:focus,
+.md-sidebar--primary .md-nav__link--active {
+  color: #67e8f9;
+}
+
+.md-sidebar--primary .md-nav__item--nested > .md-nav__link {
+  color: #eaf0f6;
 }
 
 .md-nav__link--active,
