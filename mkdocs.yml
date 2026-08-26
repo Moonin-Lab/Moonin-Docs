@@ -1,0 +1,184 @@
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json
+site_name: Moonin Documentation
+site_description: Kubernetes change intelligence, cluster inventory and operational automation platform
+site_author: Moonin Labs
+site_url: https://docs.moonin.app
+repo_name: Moonin-Labs/Moonin-Docs
+repo_url: https://github.com/Moonin-Labs/Moonin-Docs
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - toc.follow
+    - toc.integrate
+  icon:
+    repo: fontawesome/brands/github
+  logo: assets/logo.png
+  favicon: assets/favicon.svg
+
+plugins:
+  - search:
+      lang:
+        - en
+        - es
+  - tags
+  - minify:
+      minify_html: true
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 4
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Moonin-Labs
+  version:
+    provider: mike
+
+extra_css:
+  - assets/extra.css
+
+copyright: Copyright &copy; 2026 Moonin Labs
+
+nav:
+  - Home: index.md
+  - English:
+      - Start Here:
+          - getting-started/index.md
+          - Product Overview: getting-started/overview.md
+          - Installation: getting-started/installation.md
+          - Quickstart: getting-started/quickstart.md
+          - Architecture: getting-started/architecture.md
+      - Agent:
+          - agent/index.md
+          - Discovery Agent Overview: agent/overview.md
+          - Data Collection: agent/data-collection.md
+          - Node Agent: agent/node-agent.md
+          - Communication Protocols: agent/protocols.md
+          - Required Permissions: agent/permissions.md
+          - Security Model: agent/security.md
+          - Limitations & Scope: agent/limitations.md
+      - Deployments & Images:
+          - deployments/index.md
+      - Clusters & Nodes:
+          - clusters/index.md
+      - Workloads, Services & CronJobs:
+          - workloads/index.md
+      - Revisions:
+          - revisions/index.md
+      - Errors & Incidents:
+          - incidents/index.md
+      - Root Cause Analysis:
+          - rca/index.md
+      - Notifications:
+          - notifications/index.md
+      - Policies & Governance:
+          - policies/index.md
+      - Integrations:
+          - integrations/index.md
+          - GitHub: integrations/github.md
+          - ArgoCD: integrations/argocd.md
+          - Google Authentication: integrations/google-auth.md
+          - Azure AD: integrations/azure-ad.md
+      - Administration:
+          - administration/index.md
+      - FAQ:
+          - faq/index.md
+      - Glossary: glossary.md
+  - Espanol:
+      - Empezar aqui:
+          - es/index.md
+          - Inicio: es/getting-started/index.md
+          - Resumen del producto: es/getting-started/overview.md
+          - Instalacion: es/getting-started/installation.md
+          - Primer recorrido: es/getting-started/quickstart.md
+          - Arquitectura: es/getting-started/architecture.md
+      - Agente:
+          - es/agent/index.md
+          - Resumen del Discovery Agent: es/agent/overview.md
+          - Recoleccion de datos: es/agent/data-collection.md
+          - Node Agent: es/agent/node-agent.md
+          - Protocolos de comunicacion: es/agent/protocols.md
+          - Permisos requeridos: es/agent/permissions.md
+          - Modelo de seguridad: es/agent/security.md
+          - Limites y alcance: es/agent/limitations.md
+      - Deployments e imagenes:
+          - es/deployments/index.md
+      - Clusters y nodos:
+          - es/clusters/index.md
+      - Workloads, servicios y CronJobs:
+          - es/workloads/index.md
+      - Revisiones:
+          - es/revisions/index.md
+      - Errores e incidentes:
+          - es/incidents/index.md
+      - Analisis de causa raiz:
+          - es/rca/index.md
+      - Notificaciones:
+          - es/notifications/index.md
+      - Politicas y gobernanza:
+          - es/policies/index.md
+      - Integraciones:
+          - es/integrations/index.md
+          - GitHub: es/integrations/github.md
+          - ArgoCD: es/integrations/argocd.md
+          - Autenticacion con Google: es/integrations/google-auth.md
+          - Azure AD: es/integrations/azure-ad.md
+      - Administracion:
+          - es/administration/index.md
+      - FAQ:
+          - es/faq/index.md
+      - Glosario: es/glossary.md
