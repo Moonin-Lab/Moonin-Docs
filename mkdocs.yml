@@ -3,9 +3,6 @@ site_name: Moonin Documentation
 site_description: Kubernetes change intelligence, cluster inventory and operational automation platform
 site_author: Moonin Labs
 site_url: https://docs.moonin.app
-repo_name: Moonin-Labs/Moonin-Docs
-repo_url: https://github.com/Moonin-Labs/Moonin-Docs
-edit_uri: edit/main/docs/
 
 theme:
   name: material
@@ -36,8 +33,6 @@ theme:
     - content.tabs.link
     - toc.follow
     - toc.integrate
-  icon:
-    repo: fontawesome/brands/github
   logo: assets/logo.png
   favicon: assets/favicon.svg
 
@@ -82,9 +77,6 @@ markdown_extensions:
       toc_depth: 4
 
 extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/Moonin-Labs
   version:
     provider: mike
 
