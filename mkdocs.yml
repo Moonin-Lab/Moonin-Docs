@@ -33,7 +33,7 @@ theme:
     - content.tabs.link
     - toc.follow
     - toc.integrate
-  logo: assets/logo.png
+  logo: assets/moonin-symbol-cyan.svg
   favicon: assets/favicon.svg
 
 plugins:
