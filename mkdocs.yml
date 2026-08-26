@@ -81,7 +81,7 @@ extra:
     provider: mike
 
 extra_css:
-  - assets/extra.css
+  - assets/portal.css
 
 copyright: Copyright &copy; 2026 Moonin Labs
 
