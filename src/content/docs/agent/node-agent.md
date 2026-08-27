@@ -75,6 +75,6 @@ The chart includes a privileged init container that can set `kernel.perf_event_p
 
 ## Related documentation
 
-- [Data Collection](data-collection.md) describes the inventory collected by Discovery Agent.
-- [Required Permissions](permissions.md) summarizes the Kubernetes RBAC used by each agent.
-- [Security Model](security.md) describes credentials and agent trust boundaries.
+- [Data Collection](data-collection/) describes the inventory collected by Discovery Agent.
+- [Required Permissions](permissions/) summarizes the Kubernetes RBAC used by each agent.
+- [Security Model](security/) describes credentials and agent trust boundaries.

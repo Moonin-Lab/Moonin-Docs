@@ -64,10 +64,10 @@ graph TD
 
 | Pagina | Que cubre |
 |---|---|
-| [Resumen de agentes](overview.md) | Ciclo de vida y modelo de decision de Discovery Agent y Scaling Rules Agent |
-| [Recoleccion de datos](data-collection.md) | Que sale del cluster, como se deriva y que evidencia de ejecucion se guarda |
-| [Node Agent](node-agent.md) | Captura de telemetria runtime, requisitos de host y como explorarla en `app.moonin.app` |
-| [Protocolos de comunicacion](protocols.md) | Credenciales, flujos API, polling y patrones de request |
-| [Permisos requeridos](permissions.md) | Alcance RBAC necesario por agente |
-| [Modelo de seguridad](security.md) | Manejo de secretos, sanitizacion, ownership y seguridad del rollback |
-| [Limites y alcance](limitations.md) | Limites intencionales, comportamiento best effort y lo que el bundle no hace |
+| [Resumen de agentes](overview/) | Ciclo de vida y modelo de decision de Discovery Agent y Scaling Rules Agent |
+| [Recoleccion de datos](data-collection/) | Que sale del cluster, como se deriva y que evidencia de ejecucion se guarda |
+| [Node Agent](node-agent/) | Captura de telemetria runtime, requisitos de host y como explorarla en `app.moonin.app` |
+| [Protocolos de comunicacion](protocols/) | Credenciales, flujos API, polling y patrones de request |
+| [Permisos requeridos](permissions/) | Alcance RBAC necesario por agente |
+| [Modelo de seguridad](security/) | Manejo de secretos, sanitizacion, ownership y seguridad del rollback |
+| [Limites y alcance](limitations/) | Limites intencionales, comportamiento best effort y lo que el bundle no hace |

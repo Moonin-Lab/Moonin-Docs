@@ -64,10 +64,10 @@ graph TD
 
 | Page | What it covers |
 |---|---|
-| [Agent Overview](overview.md) | Runtime lifecycle and decision model for Discovery Agent and Scaling Rules Agent |
-| [Data Collection](data-collection.md) | What leaves the cluster, how it is derived and what is stored as execution evidence |
-| [Node Agent](node-agent.md) | Runtime telemetry capture, host requirements and how to explore it in `app.moonin.app` |
-| [Communication Protocols](protocols.md) | Credentials, API flows, polling cadence and request patterns |
-| [Required Permissions](permissions.md) | RBAC scope required by each agent |
-| [Security Model](security.md) | Secret handling, sanitization, ownership boundaries and rollback safety |
-| [Limitations & Scope](limitations.md) | Intended limits, best-effort behavior and what the bundle does not do |
+| [Agent Overview](overview/) | Runtime lifecycle and decision model for Discovery Agent and Scaling Rules Agent |
+| [Data Collection](data-collection/) | What leaves the cluster, how it is derived and what is stored as execution evidence |
+| [Node Agent](node-agent/) | Runtime telemetry capture, host requirements and how to explore it in `app.moonin.app` |
+| [Communication Protocols](protocols/) | Credentials, API flows, polling cadence and request patterns |
+| [Required Permissions](permissions/) | RBAC scope required by each agent |
+| [Security Model](security/) | Secret handling, sanitization, ownership boundaries and rollback safety |
+| [Limitations & Scope](limitations/) | Intended limits, best-effort behavior and what the bundle does not do |

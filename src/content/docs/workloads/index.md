@@ -8,7 +8,7 @@ This page documents the runtime-centric views that operators use after cluster o
 - `https://app.moonin.app/images`
 - `https://app.moonin.app/cronjobs`
 
-It complements the rollout-centric view documented in [Deployments & Images](../deployments/index.md).
+It complements the rollout-centric view documented in [Deployments & Images](../deployments/index/).
 
 ## Workload navigation model
 

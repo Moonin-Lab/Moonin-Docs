@@ -9,7 +9,7 @@ This page documents the behavior behind:
 - `https://app.moonin.app/deployments`
 - `https://app.moonin.app/images`
 
-For release history and revision detail, continue with [Revision History](../revisions/index.md).
+For release history and revision detail, continue with [Revision History](../revisions/index/).
 
 ## Deployment model
 
@@ -92,7 +92,7 @@ For the latest revision of a deployment, Moonin can surface:
 - captured HPA metrics and behavior context when available
 - capture timestamps for the HPA snapshot
 
-This makes the deployment page the natural entry point before using [Scaling Rules](../policies/index.md).
+This makes the deployment page the natural entry point before using [Scaling Rules](../policies/index/).
 
 ## What the `Images` page is for
 
@@ -145,4 +145,4 @@ Deployments and services are related but not identical in Moonin:
 - the deployment page is rollout-centered
 - the service page is traffic and observability centered
 
-If your main question is "what changed", start with deployments. If your main question is "how this service behaves in traffic, logs and dependencies", continue with [Workloads, Services & CronJobs](../workloads/index.md).
+If your main question is "what changed", start with deployments. If your main question is "how this service behaves in traffic, logs and dependencies", continue with [Workloads, Services & CronJobs](../workloads/index/).

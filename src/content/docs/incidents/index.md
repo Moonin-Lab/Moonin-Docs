@@ -140,7 +140,7 @@ Alert policies evaluate runtime errors using:
 - enabled state
 - active notification channel windows
 
-See [Policies & Governance](../policies/index.md) and [Notifications](../notifications/index.md) for the exact notification behavior.
+See [Policies & Governance](../policies/index/) and [Notifications](../notifications/index/) for the exact notification behavior.
 
 ## Recommended incident workflow
 

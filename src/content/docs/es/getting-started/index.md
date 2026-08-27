@@ -6,10 +6,10 @@ Esta seccion es la ruta mas rapida para dejar Moonin utilizable. Cubre onboardin
 
 ## Orden recomendado
 
-1. [Resumen del producto](overview.md)
-2. [Instalacion](installation.md)
-3. [Primer recorrido](quickstart.md)
-4. [Arquitectura](architecture.md)
+1. [Resumen del producto](overview/)
+2. [Instalacion](installation/)
+3. [Primer recorrido](quickstart/)
+4. [Arquitectura](architecture/)
 
 ## Que quedara listo al final
 

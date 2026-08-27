@@ -9,7 +9,7 @@ Esta pagina documenta el comportamiento detras de:
 - `https://app.moonin.app/deployments`
 - `https://app.moonin.app/images`
 
-Para historial de releases y detalle de revisiones, continua con [Revisiones](../revisions/index.md).
+Para historial de releases y detalle de revisiones, continua con [Revisiones](../revisions/index/).
 
 ## Modelo de deployment
 
@@ -92,7 +92,7 @@ Para la ultima revision de un deployment, Moonin puede mostrar:
 - metricas y contexto del HPA cuando estan disponibles
 - timestamps de captura del snapshot HPA
 
-Por eso la pagina de deployments es una buena entrada antes de trabajar con [Scaling Rules](../policies/index.md).
+Por eso la pagina de deployments es una buena entrada antes de trabajar con [Scaling Rules](../policies/index/).
 
 ## Para que sirve la pagina `Images`
 
@@ -145,4 +145,4 @@ Deployments y services estan relacionados pero no son lo mismo en Moonin:
 - la pagina de deployments esta orientada a cambios y rollouts
 - la pagina de services esta orientada a trafico y observabilidad
 
-Si tu pregunta principal es "que cambio", parte por deployments. Si tu pregunta es "como se comporta este servicio en logs, eventos, metricas y dependencias", continua con [Workloads, servicios y CronJobs](../workloads/index.md).
+Si tu pregunta principal es "que cambio", parte por deployments. Si tu pregunta es "como se comporta este servicio en logs, eventos, metricas y dependencias", continua con [Workloads, servicios y CronJobs](../workloads/index/).

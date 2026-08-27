@@ -140,7 +140,7 @@ Las alert policies evalúan errores runtime usando:
 - estado enabled
 - ventanas horarias UTC de los canales
 
-Consulta [Politicas y gobernanza](../policies/index.md) y [Notificaciones](../notifications/index.md) para el comportamiento de entrega.
+Consulta [Politicas y gobernanza](../policies/index/) y [Notificaciones](../notifications/index/) para el comportamiento de entrega.
 
 ## Flujo recomendado de incidentes
 

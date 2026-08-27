@@ -6,10 +6,10 @@ This section is the fastest path to a usable Moonin workspace. It covers cluster
 
 ## Recommended reading order
 
-1. [Product Overview](overview.md)
-2. [Installation](installation.md)
-3. [Quickstart](quickstart.md)
-4. [Architecture](architecture.md)
+1. [Product Overview](overview/)
+2. [Installation](installation/)
+3. [Quickstart](quickstart/)
+4. [Architecture](architecture/)
 
 ## What you will have after setup
 
@@ -32,4 +32,4 @@ This section is the fastest path to a usable Moonin workspace. It covers cluster
 
 ## Need Spanish?
 
-The complete Spanish mirror is available under [Espanol](../es/index.md).
+The complete Spanish mirror is available under [Espanol](../es/index/).

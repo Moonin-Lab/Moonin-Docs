@@ -47,7 +47,7 @@ Node Agent reads Kubernetes context to associate host-observed runtime telemetry
 - `jobs`
 - `replicasets`
 
-Node Agent also requires privileged host access for its eBPF-based collection. See [Node Agent](node-agent.md) for the full host-access requirements.
+Node Agent also requires privileged host access for its eBPF-based collection. See [Node Agent](node-agent/) for the full host-access requirements.
 
 ## Permission boundaries
 

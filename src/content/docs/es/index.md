@@ -122,18 +122,18 @@ Moonin combina membresia base con roles finos:
 - Los roles heredados por grupo permiten compartir acceso sin editar usuario por usuario.
 - Algunas pantallas ademas exigen permisos puntuales como ver revisiones, revisar RCA, editar politicas o administrar clusters.
 
-El modelo completo esta documentado en [Administracion](administration/index.md) y [Azure AD](integrations/azure-ad.md).
+El modelo completo esta documentado en [Administracion](administration/) y [Azure AD](integrations/azure-ad/).
 
 ## Mapa de documentacion
 
 | Necesidad | Pagina |
 |---|---|
-| Entender releases, revisiones y contexto de rollout | [Revisiones](revisions/index.md) |
-| Operar deployments e inventario de imagenes | [Deployments e imagenes](deployments/index.md) |
-| Operar clusters y nodos | [Clusters y nodos](clusters/index.md) |
-| Entender servicios, CronJobs e historial de ejecuciones | [Workloads, servicios y CronJobs](workloads/index.md) |
-| Investigar fallas activas e historicas | [Errores e incidentes](incidents/index.md) |
-| Configurar canales y entender la entrega | [Notificaciones](notifications/index.md) |
-| Configurar alertas, eventos y automatizacion de scaling | [Politicas y gobernanza](policies/index.md) |
-| Gestionar organizaciones, proyectos, usuarios, grupos y clusters | [Administracion](administration/index.md) |
-| Configurar Microsoft Entra ID por organizacion | [Azure AD](integrations/azure-ad.md) |
+| Entender releases, revisiones y contexto de rollout | [Revisiones](revisions/) |
+| Operar deployments e inventario de imagenes | [Deployments e imagenes](deployments/) |
+| Operar clusters y nodos | [Clusters y nodos](clusters/) |
+| Entender servicios, CronJobs e historial de ejecuciones | [Workloads, servicios y CronJobs](workloads/) |
+| Investigar fallas activas e historicas | [Errores e incidentes](incidents/) |
+| Configurar canales y entender la entrega | [Notificaciones](notifications/) |
+| Configurar alertas, eventos y automatizacion de scaling | [Politicas y gobernanza](policies/) |
+| Gestionar organizaciones, proyectos, usuarios, grupos y clusters | [Administracion](administration/) |
+| Configurar Microsoft Entra ID por organizacion | [Azure AD](integrations/azure-ad/) |

@@ -75,6 +75,6 @@ El chart incluye un init container privilegiado que puede configurar `kernel.per
 
 ## Documentacion relacionada
 
-- [Recoleccion de datos](data-collection.md) describe el inventario que recolecta Discovery Agent.
-- [Permisos requeridos](permissions.md) resume el RBAC de Kubernetes que usa cada agente.
-- [Modelo de seguridad](security.md) describe las credenciales y limites de confianza de los agentes.
+- [Recoleccion de datos](data-collection/) describe el inventario que recolecta Discovery Agent.
+- [Permisos requeridos](permissions/) resume el RBAC de Kubernetes que usa cada agente.
+- [Modelo de seguridad](security/) describe las credenciales y limites de confianza de los agentes.

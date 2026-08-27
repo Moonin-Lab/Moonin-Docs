@@ -134,18 +134,18 @@ Moonin combines baseline membership with fine-grained roles:
 - Group roles let teams inherit the same permissions without editing users one by one.
 - Some screens also enforce feature permissions such as revision viewing, error RCA, policy editing or cluster administration.
 
-The full operating model is described in [Administration](administration/index.md) and [Azure AD](integrations/azure-ad.md).
+The full operating model is described in [Administration](administration/) and [Azure AD](integrations/azure-ad/).
 
 ## Documentation map
 
 | Need | Page |
 |---|---|
-| Understand releases, revisions and rollout context | [Revision History](revisions/index.md) |
-| Work with deployments and image inventory | [Deployments & Images](deployments/index.md) |
-| Operate clusters and inspect node inventory | [Clusters & Nodes](clusters/index.md) |
-| Understand services, CronJobs and execution history | [Workloads, Services & CronJobs](workloads/index.md) |
-| Investigate active and historical failures | [Incidents & Errors](incidents/index.md) |
-| Configure channels and understand delivery logic | [Notifications](notifications/index.md) |
-| Configure alerting, event routing and scaling automation | [Policies & Governance](policies/index.md) |
-| Manage organizations, projects, users, groups and clusters | [Administration](administration/index.md) |
-| Set up Microsoft Entra ID per organization | [Azure AD](integrations/azure-ad.md) |
+| Understand releases, revisions and rollout context | [Revision History](revisions/) |
+| Work with deployments and image inventory | [Deployments & Images](deployments/) |
+| Operate clusters and inspect node inventory | [Clusters & Nodes](clusters/) |
+| Understand services, CronJobs and execution history | [Workloads, Services & CronJobs](workloads/) |
+| Investigate active and historical failures | [Incidents & Errors](incidents/) |
+| Configure channels and understand delivery logic | [Notifications](notifications/) |
+| Configure alerting, event routing and scaling automation | [Policies & Governance](policies/) |
+| Manage organizations, projects, users, groups and clusters | [Administration](administration/) |
+| Set up Microsoft Entra ID per organization | [Azure AD](integrations/azure-ad/) |

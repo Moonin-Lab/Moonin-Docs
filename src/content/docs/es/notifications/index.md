@@ -12,7 +12,7 @@ Esta pagina documenta el comportamiento detras de:
 - `https://app.moonin.app/event-notification-policies`
 - la gestion de canales en `https://app-admin.moonin.app/admin/organizations/<organization-id>/notification-channels`
 
-El matching especifico de alertas se describe en [Politicas y gobernanza](../policies/index.md).
+El matching especifico de alertas se describe en [Politicas y gobernanza](../policies/index/).
 
 ## Tipos de canal soportados
 
