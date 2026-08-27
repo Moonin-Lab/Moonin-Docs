@@ -55,6 +55,11 @@ export default defineConfig({
               }));
             }
             document.addEventListener("astro:page-load", () => void renderMermaid());
+            if (document.readyState === "loading") {
+              document.addEventListener("DOMContentLoaded", () => void renderMermaid(), { once: true });
+            } else {
+              void renderMermaid();
+            }
           `,
         },
       ],

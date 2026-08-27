@@ -1,5 +1,6 @@
 :root,
-:root[data-theme="light"] {
+:root[data-theme="light"],
+:root[data-theme="dark"] {
   --sl-color-accent-low: #e0f2fe;
   --sl-color-accent: #0284c7;
   --sl-color-accent-high: #0c4a6e;
@@ -17,6 +18,7 @@
   --sl-content-width: 52rem;
   --sl-sidebar-width: 18rem;
   --sl-text-5xl: 3rem;
+  color-scheme: light;
 }
 
 html {
@@ -55,6 +57,10 @@ header.header {
   color: #67e8f9;
 }
 
+starlight-theme-select {
+  display: none;
+}
+
 .sidebar {
   background: #0b1118;
   border-right: 1px solid #24303d;
@@ -65,7 +71,36 @@ header.header {
 }
 
 .sidebar-content {
-  padding: 1.15rem 0.7rem 2rem;
+  padding: 1rem 0.75rem 2rem;
+}
+
+.sidebar .top-level > li + li {
+  margin-top: 0.35rem;
+}
+
+.sidebar .top-level > li > details > summary {
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 0.75rem;
+  color: #e2e8f0;
+  display: flex;
+  font-size: 0.8rem;
+  font-weight: 700;
+  justify-content: space-between;
+  letter-spacing: -0.01em;
+  padding: 0.62rem 0.7rem;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.sidebar .top-level > li > details > summary:hover {
+  background: #132131;
+  border-color: #243b52;
+}
+
+.sidebar .top-level > li > details > ul {
+  border-left: 1px solid #24303d;
+  margin: 0.35rem 0 0.45rem 0.92rem;
+  padding-left: 0.45rem;
 }
 
 .sidebar a {
@@ -73,8 +108,8 @@ header.header {
   color: #a7b4c2;
   font-size: 0.78rem;
   line-height: 1.35;
-  margin: 0.08rem 0;
-  padding: 0.48rem 0.7rem;
+  margin: 0.08rem 0.15rem;
+  padding: 0.45rem 0.58rem;
   transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
@@ -89,22 +124,6 @@ header.header {
   box-shadow: inset 3px 0 0 #67e8f9;
   color: #e0f2fe;
   font-weight: 700;
-}
-
-.sidebar summary {
-  color: #eaf0f6;
-  font-size: 0.7rem;
-  font-weight: 750;
-  letter-spacing: 0.06em;
-  margin-top: 1rem;
-  padding: 0.45rem 0.7rem;
-  text-transform: uppercase;
-}
-
-.sidebar details > ul {
-  border-left: 1px solid #24303d;
-  margin-left: 0.8rem;
-  padding-left: 0.45rem;
 }
 
 .main-frame {
@@ -145,15 +164,23 @@ header.header {
 }
 
 .sl-markdown-content table {
+  border-collapse: separate;
+  border-spacing: 0;
   border: 1px solid #e2e8f0;
   border-radius: 0.9rem;
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
   overflow: hidden;
+  width: 100%;
 }
 
 .sl-markdown-content th {
   background: #f0f9ff;
   color: #0f172a;
+}
+
+.sl-markdown-content th,
+.sl-markdown-content td {
+  padding: 0.8rem 1rem;
 }
 
 .sl-markdown-content :not(pre) > code {
