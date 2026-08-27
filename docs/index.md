@@ -1,4 +1,14 @@
-# Moonin Documentation
+<section class="moonin-docs-hero">
+  <div class="moonin-eyebrow">Moonin Documentation</div>
+  <h1>Operate Kubernetes with context, not guesswork.</h1>
+  <p>Learn how Moonin connects cluster inventory, deployments, revisions, incidents and notifications into one operational workspace.</p>
+  <div class="moonin-hero-actions">
+    <a href="getting-started/">Get started</a>
+    <a href="es/">Ver documentación en español</a>
+  </div>
+</section>
+
+## What Moonin connects
 
 Moonin is a Kubernetes operations platform centered on five connected jobs:
 
