@@ -14,7 +14,7 @@ The current public chart bundles both in-cluster components:
 
 Public resources:
 
-- [Moonin Agent chart repository](https://github.com/Moonin-Labs/Moonin-Agent-Chart)
+- [Moonin Agent chart repository](https://github.com/Moonin-Lab/Moonin-Agent-Chart)
 - [Public Helm repository](https://Moonin-Lab.github.io/Moonin-Agent-Chart)
 
 ## 1. Register the cluster

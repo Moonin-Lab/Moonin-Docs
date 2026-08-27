@@ -10,7 +10,7 @@ The Moonin agent bundle is the supported in-cluster package used to connect a Ku
 
 Public resources:
 
-- [Moonin Agent chart repository](https://github.com/Moonin-Labs/Moonin-Agent-Chart)
+- [Moonin Agent chart repository](https://github.com/Moonin-Lab/Moonin-Agent-Chart)
 - [Public Helm repository](https://Moonin-Lab.github.io/Moonin-Agent-Chart)
 
 ## Current agents at a glance

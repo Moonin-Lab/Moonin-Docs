@@ -10,7 +10,7 @@ El bundle de agentes de Moonin es el paquete in-cluster soportado para conectar 
 
 Recursos publicos:
 
-- [Repositorio del chart Moonin Agent](https://github.com/Moonin-Labs/Moonin-Agent-Chart)
+- [Repositorio del chart Moonin Agent](https://github.com/Moonin-Lab/Moonin-Agent-Chart)
 - [Repositorio Helm publico](https://Moonin-Lab.github.io/Moonin-Agent-Chart)
 
 ## Agentes actuales de un vistazo

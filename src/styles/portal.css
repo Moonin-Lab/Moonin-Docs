@@ -61,6 +61,56 @@ starlight-theme-select {
   display: none;
 }
 
+.header starlight-lang-select {
+  position: relative;
+}
+
+.header starlight-lang-select label {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(186, 230, 253, 0.28);
+  border-radius: 0.65rem;
+  color: #e0f2fe;
+  cursor: pointer;
+  padding: 0.32rem 0.62rem 0.32rem 0.85rem;
+  transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.header starlight-lang-select label:hover,
+.header starlight-lang-select:focus-within {
+  background: rgba(34, 211, 238, 0.1);
+  border-color: rgba(103, 232, 249, 0.55);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.14);
+}
+
+.header starlight-lang-select label .label-icon {
+  color: #67e8f9;
+  inset-inline-start: 0.28rem;
+}
+
+.header starlight-lang-select select {
+  color: #f0f4f8;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding-block: 0.25rem;
+}
+
+.header starlight-lang-select label .caret {
+  color: #9fb3cc;
+}
+
+.header starlight-lang-select option {
+  background-color: #0f172a;
+  color: #dbe6f3;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 0.35rem 0.6rem;
+}
+
+.header starlight-lang-select option:checked {
+  background: #0ea5e9;
+  color: #ffffff;
+}
+
 .sidebar {
   background: #0b1118;
   border-right: 1px solid #24303d;
@@ -82,7 +132,7 @@ starlight-theme-select {
   align-items: center;
   border: 1px solid transparent;
   border-radius: 0.75rem;
-  color: #e2e8f0;
+  color: #e2e8f0 !important;
   display: flex;
   font-size: 0.8rem;
   font-weight: 700;
@@ -90,6 +140,13 @@ starlight-theme-select {
   letter-spacing: -0.01em;
   padding: 0.62rem 0.7rem;
   transition: background-color 160ms ease, border-color 160ms ease;
+}
+
+.sidebar details > summary,
+.sidebar details > summary .group-label,
+.sidebar details > summary .large,
+.sidebar > sl-sidebar-state-persist > .top-level > li > a.large {
+  color: #e2e8f0 !important;
 }
 
 .sidebar .top-level > li > details > summary:hover {
@@ -105,12 +162,16 @@ starlight-theme-select {
 
 .sidebar a {
   border-radius: 0.7rem;
-  color: #a7b4c2;
+  color: #a7b4c2 !important;
   font-size: 0.78rem;
   line-height: 1.35;
   margin: 0.08rem 0.15rem;
   padding: 0.45rem 0.58rem;
   transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.sidebar a span {
+  color: inherit !important;
 }
 
 .sidebar a:hover {
@@ -120,9 +181,9 @@ starlight-theme-select {
 }
 
 .sidebar a[aria-current="page"] {
-  background: linear-gradient(90deg, rgba(14, 165, 233, 0.24), rgba(14, 165, 233, 0.06));
-  box-shadow: inset 3px 0 0 #67e8f9;
-  color: #e0f2fe;
+  background: rgba(14, 165, 233, 0.22);
+  box-shadow: none;
+  color: #ffffff;
   font-weight: 700;
 }
 
@@ -139,66 +200,296 @@ starlight-theme-select {
   padding: 2.25rem 2.5rem;
 }
 
+.sl-markdown-content {
+  color: #334155;
+  font-size: 1.025rem;
+  line-height: 1.75;
+}
+
+.sl-markdown-content > :first-child:where(.sl-heading-wrapper) {
+  margin-top: 0.25rem;
+}
+
+.sl-markdown-content p {
+  color: inherit;
+}
+
 .sl-markdown-content h1,
 .sl-markdown-content h2,
-.sl-markdown-content h3 {
-  color: #0f172a;
-  font-weight: 750;
-  letter-spacing: -0.026em;
+.sl-markdown-content h3,
+.sl-markdown-content h4 {
+  color: #0b1118;
+  font-weight: 800;
+  letter-spacing: -0.028em;
 }
 
 .sl-markdown-content h1 {
-  font-size: clamp(2.25rem, 5vw, 3.4rem);
-  line-height: 1.05;
+  font-size: clamp(2.3rem, 5vw, 3.5rem);
+  line-height: 1.04;
+  position: relative;
+}
+
+.sl-markdown-content h1::after {
+  background: linear-gradient(90deg, #22d3ee, #0ea5e9 40%, #38bdf8);
+  border-radius: 99px;
+  content: "";
+  display: block;
+  height: 3px;
+  margin-top: 1rem;
+  max-width: 9rem;
 }
 
 .sl-markdown-content h2 {
   border-top: 1px solid #e2e8f0;
-  margin-top: 2.5rem;
-  padding-top: 1.55rem;
+  margin-top: 2.75rem;
+  padding-top: 1.7rem;
+  position: relative;
+}
+
+.sl-markdown-content h2::before {
+  background: #0ea5e9;
+  border-radius: 99px;
+  content: "";
+  display: block;
+  height: 4px;
+  left: 0;
+  position: absolute;
+  top: -2px;
+  width: 2.6rem;
+}
+
+.sl-markdown-content h3 {
+  margin-top: 1.9rem;
+}
+
+.sl-markdown-content h4 {
+  color: #0c4a6e;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
 }
 
 .sl-markdown-content a {
   color: #0284c7;
   font-weight: 600;
+  text-decoration-color: rgba(2, 132, 199, 0.35);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 140ms ease, text-decoration-color 140ms ease;
 }
 
-.sl-markdown-content table {
+.sl-markdown-content a:hover {
+  color: #0369a1;
+  text-decoration-color: #0369a1;
+}
+
+.sl-markdown-content strong {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.sl-markdown-content :not(a, strong, em, del) code:not(.sl-code-button):where(
+      p,
+      li,
+      td,
+      th,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6
+    ) {
+  background: linear-gradient(180deg, #eff6ff, #e0f2fe);
+  border: 1px solid #dbeafe;
+  border-radius: 0.4rem;
+  color: #075985;
+  font-size: 0.86em;
+  padding: 0.15rem 0.4rem;
+}
+
+.sl-markdown-content ul:not(.isMobile) {
+  padding-left: 1.4rem;
+}
+
+.sl-markdown-content ul:not(.isMobile) li::marker {
+  color: #0ea5e9;
+}
+
+.sl-markdown-content ol:not(.isMobile) {
+  padding-left: 1.4rem;
+}
+
+.sl-markdown-content li::marker {
+  color: #0ea5e9;
+  font-weight: 700;
+}
+
+.sl-markdown-content hr {
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  margin: 2rem 0;
+}
+
+.sl-markdown-content blockquote {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #7dd3fc;
+  border-radius: 0.75rem;
+  color: #475569;
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+}
+
+.sl-markdown-content blockquote p {
+  margin-block: 0;
+}
+
+.sl-markdown-content table:not([class]) {
   border-collapse: separate;
   border-spacing: 0;
   border: 1px solid #e2e8f0;
   border-radius: 0.9rem;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
   overflow: hidden;
-  width: 100%;
+  table-layout: fixed;
+  width: 100% !important;
 }
 
-.sl-markdown-content th {
-  background: #f0f9ff;
-  color: #0f172a;
+.sl-markdown-content table:not([class]) thead {
+  background: linear-gradient(180deg, #f0f9ff, #e7f5ff);
+}
+
+.sl-markdown-content thead th {
+  background: transparent;
+  border-bottom: 1px solid #e2e8f0;
+  color: #0c4a6e;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .sl-markdown-content th,
 .sl-markdown-content td {
-  padding: 0.8rem 1rem;
+  padding: 0.85rem 1.1rem;
 }
 
-.sl-markdown-content :not(pre) > code {
-  background: #eff6ff;
-  color: #0369a1;
+.sl-markdown-content tbody tr {
+  transition: background-color 120ms ease;
 }
 
-.sl-markdown-content pre {
-  background: #0f172a;
-  border: 1px solid #1e293b;
+.sl-markdown-content tbody tr:hover {
+  background: #f8fdff;
+}
+
+.sl-markdown-content tbody tr + tr td {
+  border-top: 1px solid #f1f5f9;
+}
+
+.sl-markdown-content pre code {
+  color: inherit;
+}
+
+.sl-markdown-content .expressive-code {
+  border: 1px solid #22375a;
   border-radius: 0.9rem;
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.12);
+  margin: 1.5rem 0;
+  overflow: hidden;
+}
+
+.sl-markdown-content .expressive-code pre {
+  background: #0e1d33 !important;
+  margin: 0;
+  overscroll-behavior-x: contain;
+}
+
+.sl-markdown-content .expressive-code .code {
+  color: #e5e7eb !important;
+}
+
+.sl-markdown-content .expressive-code figcaption.header,
+.sl-markdown-content .expressive-code .copy {
+  display: none !important;
+}
+
+.sl-markdown-content .expressive-code .moonin-codebar {
+  align-items: center;
+  background: #12213a;
+  border-bottom: 1px solid #22375a;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.55rem 0.9rem;
+}
+
+.sl-markdown-content .expressive-code .moonin-codebar-title {
+  color: #9fb3cc;
+  font-family: var(--sl-font-mono, ui-monospace, monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.sl-markdown-content .expressive-code .moonin-codebar-copy {
+  background: #1b2a44;
+  border: 1px solid #3b4f6e;
+  border-radius: 0.5rem;
+  color: #e6eefb;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0.42rem 0.7rem;
+  transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease;
+}
+
+.sl-markdown-content .expressive-code .moonin-codebar-copy:hover {
+  background: #1f3251;
+  border-color: #4d6890;
+  color: #ffffff;
+}
+
+.sl-markdown-content .starlight-aside {
+  border: 1px solid #e2e8f0;
+  border-radius: 0.9rem;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+  margin: 1.5rem 0;
+  overflow: hidden;
+}
+
+.sl-markdown-content .starlight-aside__title {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sl-markdown-content .starlight-aside--note {
+  background: #f8fdff;
+  border-left: 4px solid #38bdf8;
+}
+
+.sl-markdown-content .starlight-aside--tip {
+  background: #f0fdf4;
+  border-left: 4px solid #34d399;
+}
+
+.sl-markdown-content .starlight-aside--caution,
+.sl-markdown-content .starlight-aside--warning {
+  background: #fffbeb;
+  border-left: 4px solid #fbbf24;
+}
+
+.sl-markdown-content .starlight-aside--danger {
+  background: #fff1f2;
+  border-left: 4px solid #fb7185;
 }
 
 .moonin-mermaid {
-  background: linear-gradient(145deg, #f8fdff, #eef9ff);
-  border: 1px solid #dbeafe;
-  border-radius: 1rem;
-  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fcff 100%);
+  border: 1px solid #e0f2fe;
+  border-radius: 0.9rem;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
   margin: 1.5rem 0;
   overflow-x: auto;
   padding: 1.25rem;
@@ -206,9 +497,34 @@ starlight-theme-select {
 
 .moonin-mermaid svg {
   display: block;
+  height: auto;
   margin: 0 auto;
-  min-width: 36rem;
-  max-width: none;
+  max-width: 100%;
+  width: max-content;
+}
+
+.moonin-mermaid svg text,
+.moonin-mermaid svg tspan {
+  font-size: 17px !important;
+}
+
+.moonin-mermaid svg .node rect,
+.moonin-mermaid svg .node circle,
+.moonin-mermaid svg .node polygon,
+.moonin-mermaid svg .node path.elipse,
+.moonin-mermaid svg .clusters rect,
+.moonin-mermaid svg .cluster rect {
+  filter: drop-shadow(0 2px 3px rgba(15, 23, 42, 0.08));
+}
+
+.moonin-mermaid svg .edgePath .path {
+  stroke-width: 1.6px;
+}
+
+.moonin-mermaid svg .edgeLabel {
+  background: #ffffff;
+  border-radius: 0.4rem;
+  padding: 0.2rem 0.45rem;
 }
 
 .right-sidebar {
