@@ -62,13 +62,22 @@ body[data-md-color-scheme="default"] .md-sidebar--primary .md-nav__title {
   box-shadow: none;
   color: #0f172a;
   font-weight: 750;
+  margin: 0.55rem 0.5rem 0.9rem;
+  padding: 0.35rem 0.15rem;
+}
+
+body[data-md-color-scheme="default"] .md-sidebar--primary .md-sidebar__scrollwrap {
+  padding: 0.35rem 0.35rem 1.5rem;
 }
 
 body[data-md-color-scheme="default"] .md-sidebar--primary .md-nav__link {
   border-radius: 0.65rem;
   color: #475569 !important;
+  font-size: 0.75rem;
+  line-height: 1.35;
   margin: 0.1rem 0.45rem;
   padding: 0.42rem 0.6rem;
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
 body[data-md-color-scheme="default"] .md-sidebar--primary .md-nav__item--nested > .md-nav__link {
@@ -76,14 +85,47 @@ body[data-md-color-scheme="default"] .md-sidebar--primary .md-nav__item--nested 
   font-weight: 650;
 }
 
+body[data-md-color-scheme="default"] .md-sidebar--primary .md-nav__item--section > .md-nav__link {
+  color: #64748b !important;
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  margin: 1.05rem 0.45rem 0.35rem;
+  padding: 0.35rem 0.6rem;
+  text-transform: uppercase;
+}
+
+body[data-md-color-scheme="default"] .md-sidebar--primary .md-nav[data-md-level="1"] {
+  border-left: 1px solid #e2e8f0;
+  margin: 0.15rem 0.8rem 0.35rem 1.1rem;
+  padding-left: 0.15rem;
+}
+
+body[data-md-color-scheme="default"] .md-sidebar--primary .md-nav[data-md-level="1"] .md-nav__link {
+  margin-left: 0.3rem;
+}
+
+body[data-md-color-scheme="default"] .md-sidebar--primary .md-nav--secondary {
+  border-left: 1px solid #dbeafe;
+  margin: 0.2rem 0.75rem 0.55rem 1.2rem;
+  padding-left: 0.15rem;
+}
+
+body[data-md-color-scheme="default"] .md-sidebar--primary .md-nav--secondary .md-nav__link {
+  color: #64748b !important;
+  font-size: 0.7rem;
+}
+
 body[data-md-color-scheme="default"] .md-sidebar--primary .md-nav__link:hover,
 body[data-md-color-scheme="default"] .md-sidebar--primary .md-nav__link:focus {
-  background: #f0f9ff;
+  background: rgba(224, 242, 254, 0.72);
   color: #0369a1 !important;
+  transform: translateX(2px);
 }
 
 body[data-md-color-scheme="default"] .md-sidebar--primary .md-nav__link--active {
-  background: linear-gradient(90deg, #e0f2fe, #f0f9ff);
+  background: linear-gradient(90deg, #dff6ff, #f4fbff);
+  box-shadow: inset 3px 0 0 #0ea5e9;
   color: #0369a1 !important;
   font-weight: 700;
 }
