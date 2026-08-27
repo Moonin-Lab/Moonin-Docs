@@ -167,6 +167,23 @@ header.header {
   border-radius: 0.9rem;
 }
 
+.moonin-mermaid {
+  background: linear-gradient(145deg, #f8fdff, #eef9ff);
+  border: 1px solid #dbeafe;
+  border-radius: 1rem;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.06);
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  padding: 1.25rem;
+}
+
+.moonin-mermaid svg {
+  display: block;
+  margin: 0 auto;
+  min-width: 36rem;
+  max-width: none;
+}
+
 .right-sidebar {
   color: #64748b;
 }
@@ -266,5 +283,10 @@ header.header {
     border-radius: 1rem;
     margin: 0 0 1.6rem;
     padding: 1.6rem;
+  }
+
+  .moonin-mermaid {
+    margin-inline: -0.25rem;
+    padding: 0.8rem;
   }
 }
