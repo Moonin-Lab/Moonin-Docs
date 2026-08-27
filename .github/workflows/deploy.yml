@@ -8,8 +8,10 @@ on:
     branches:
       - main
     paths:
-      - "docs/**"
-      - "mkdocs.yml"
+      - "src/**"
+      - "astro.config.mjs"
+      - "package.json"
+      - "package-lock.json"
       - ".github/workflows/deploy.yml"
   workflow_dispatch:
 
@@ -31,25 +33,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          python-version: "3.12"
-
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          key: ${{ github.ref }}
-          path: .cache
-          restore-keys: |
-            mkdocs-material-
+          node-version: "22"
+          cache: npm
 
       - name: Install dependencies
-        run: |
-          pip install mkdocs-material mkdocs-minify-plugin
+        run: npm ci
 
       - name: Build site
-        run: mkdocs build --strict
+        run: npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -57,7 +51,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: dist
 
   deploy:
     environment:

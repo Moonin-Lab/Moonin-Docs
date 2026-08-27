@@ -1,0 +1,29 @@
+{
+  "name": "moonin-docs",
+  "version": "1.0.0",
+  "description": "Moonin product documentation",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Moonin-Lab/Moonin-Docs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Moonin-Lab/Moonin-Docs/issues"
+  },
+  "homepage": "https://github.com/Moonin-Lab/Moonin-Docs#readme",
+  "dependencies": {
+    "@astrojs/starlight": "^0.41.9",
+    "astro": "^7.2.8"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^6.0.3"
+  }
+}
