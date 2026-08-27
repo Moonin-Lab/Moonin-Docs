@@ -104,7 +104,7 @@ Los errores no se guardan aislados. Cuando Moonin captura una falla runtime para
 - que fraccion de pods fue afectada
 - si una politica deberia haber notificado
 
-Consulta [Errores e incidentes](../incidents/index/) para el modelo detallado de fallas.
+Consulta [Errores e incidentes](../incidents/) para el modelo detallado de fallas.
 
 ## Flujos tipicos de operacion
 

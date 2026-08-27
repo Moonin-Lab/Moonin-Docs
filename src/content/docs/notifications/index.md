@@ -12,7 +12,7 @@ This page documents the behavior behind:
 - `https://app.moonin.app/event-notification-policies`
 - channel management in `https://app-admin.moonin.app/admin/organizations/<organization-id>/notification-channels`
 
-Alert-specific matching is described in [Policies & Governance](../policies/index/).
+Alert-specific matching is described in [Policies & Governance](../policies/).
 
 ## Supported channel types
 

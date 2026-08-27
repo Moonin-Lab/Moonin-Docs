@@ -32,4 +32,4 @@ This section is the fastest path to a usable Moonin workspace. It covers cluster
 
 ## Need Spanish?
 
-The complete Spanish mirror is available under [Espanol](../es/index/).
+The complete Spanish mirror is available under [Espanol](../es/).

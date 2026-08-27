@@ -104,7 +104,7 @@ Errors are not stored in isolation. When a runtime issue is captured for a deplo
 - what fraction of pods were affected
 - whether a policy should have notified the team
 
-See [Incidents & Errors](../incidents/index/) for the detailed failure model.
+See [Incidents & Errors](../incidents/) for the detailed failure model.
 
 ## Common operator workflows
 

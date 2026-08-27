@@ -8,7 +8,7 @@ Esta pagina documenta las vistas runtime que mas se usan despues del onboarding 
 - `https://app.moonin.app/images`
 - `https://app.moonin.app/cronjobs`
 
-Complementa la vista orientada a cambios documentada en [Deployments e imagenes](../deployments/index/).
+Complementa la vista orientada a cambios documentada en [Deployments e imagenes](../deployments/).
 
 ## Modelo de navegacion de workloads
 
