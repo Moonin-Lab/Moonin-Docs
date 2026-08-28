@@ -87,6 +87,96 @@ const configMermaid = {
 
 let index = 0;
 
+function openZoom(svgSource: SVGElement) {
+  const es = document.documentElement.lang?.startsWith("es");
+  const overlay = document.createElement("div");
+  overlay.className = "moonin-zoom-overlay";
+  overlay.setAttribute("role", "dialog");
+  overlay.setAttribute("aria-modal", "true");
+  overlay.setAttribute("aria-label", es ? "Zoom del diagrama" : "Diagram zoom");
+
+  const bar = document.createElement("div");
+  bar.className = "moonin-zoom-bar";
+  const title = document.createElement("span");
+  title.className = "moonin-zoom-title";
+  title.textContent = es ? "Diagrama" : "Diagram";
+
+  const controls = document.createElement("div");
+  controls.className = "moonin-zoom-controls";
+
+  const makeBtn = (label: string, action: () => void) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "moonin-zoom-btn";
+    b.textContent = label;
+    b.addEventListener("click", action);
+    return b;
+  };
+
+  const viewport = document.createElement("div");
+  viewport.className = "moonin-zoom-viewport";
+  const svg = svgSource.cloneNode(true) as SVGElement;
+  let scale = 1;
+  const update = () => {
+    svg.style.transform = `scale(${scale})`;
+    svg.style.transformOrigin = "0 0";
+  };
+
+  controls.append(
+    makeBtn("+", () => {
+      scale = Math.min(scale + 0.25, 4);
+      update();
+    }),
+    makeBtn("−", () => {
+      scale = Math.max(scale - 0.25, 0.5);
+      update();
+    }),
+    makeBtn("↺", () => {
+      scale = 1;
+      update();
+    }),
+    makeBtn("×", () => overlay.remove()),
+  );
+
+  bar.append(title, controls);
+  overlay.append(bar, viewport);
+  viewport.append(svg);
+  document.body.append(overlay);
+  update();
+
+  const onKey = (e: KeyboardEvent) => {
+    if (e.key === "Escape") overlay.remove();
+  };
+  overlay.addEventListener("click", (e) => {
+    if (e.target === viewport) overlay.remove();
+  });
+  document.addEventListener("keydown", onKey, { once: true });
+  overlay.addEventListener(
+    "transitionend",
+    () => {
+      document.removeEventListener("keydown", onKey);
+    },
+    { once: true },
+  );
+}
+
+function decorateDiagram(container: HTMLElement) {
+  const svg = container.querySelector("svg");
+  if (!svg) return;
+  container.classList.add("moonin-mermaid--zoomable");
+  const btn = document.createElement("button");
+  btn.type = "button";
+  btn.className = "moonin-zoom-open";
+  btn.setAttribute("aria-label", "Zoom");
+  btn.textContent = "⤢";
+  btn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    openZoom(svg);
+  });
+  container.addEventListener("click", () => openZoom(svg));
+  container.appendChild(btn);
+}
+
 async function renderDiagrams() {
   const blocks = Array.from(
     document.querySelectorAll("pre[data-language='mermaid']:not([data-moonin-rendered])"),
@@ -112,6 +202,7 @@ async function renderDiagrams() {
       container.innerHTML = svg;
       const host = block.closest(".expressive-code") || block;
       host.replaceWith(container);
+      decorateDiagram(container);
     } catch (error) {
       console.error("Unable to render Mermaid diagram", error);
       block.removeAttribute("data-moonin-rendered");
