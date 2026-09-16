@@ -286,59 +286,15 @@ header.header {
   color: var(--p-bar-accent);
 }
 
-starlight-theme-select {
-  display: none;
-}
 
-.header starlight-lang-select {
-  position: relative;
-}
 
-.header starlight-lang-select label {
-  background: var(--p-veil);
-  border: 1px solid var(--p-accent-line-soft);
-  border-radius: 0.65rem;
-  color: var(--p-bar-text);
-  cursor: pointer;
-  padding: 0.32rem 0.62rem 0.32rem 0.85rem;
-  transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
-}
 
-.header starlight-lang-select label:hover,
-.header starlight-lang-select:focus-within {
-  background: var(--p-bar-accent-wash);
-  border-color: var(--p-bar-accent-strong);
-  box-shadow: 0 0 0 3px var(--p-bar-accent-wash-2);
-}
 
-.header starlight-lang-select label .label-icon {
-  color: var(--p-bar-accent);
-  inset-inline-start: 0.28rem;
-}
 
-.header starlight-lang-select select {
-  color: var(--p-bar-text);
-  font-size: 0.82rem;
-  font-weight: 600;
-  padding-block: 0.25rem;
-}
 
-.header starlight-lang-select label .caret {
-  color: var(--p-bar-text-2);
-}
 
-.header starlight-lang-select option {
-  background-color: var(--p-bar);
-  color: var(--p-bar-text);
-  font-size: 0.82rem;
-  font-weight: 500;
-  padding: 0.35rem 0.6rem;
-}
 
-.header starlight-lang-select option:checked {
-  background: var(--p-accent);
-  color: var(--p-on-accent);
-}
+
 
 .sidebar {
   background: var(--p-bar);
@@ -899,5 +855,94 @@ starlight-theme-select {
   .dg { padding: 0.875rem 0.5rem; }
 }
 
+/* ═══════════ los dos controles del encabezado ═══════════
+   El conmutador de tema estaba oculto con display:none, herencia de cuando la
+   documentacion era solo clara y forceCodeTheme() forzaba el tema por JS. Al
+   destaparlo hay que darle forma, y la forma correcta es la del sitio: dos
+   pastillas de 38px identicas, con el filete y el radio del resto de la interfaz,
+   que toman el acento al pasar el cursor.
 
+   Valores tomados de front/src/App.css (.toggle y .lang) para que los dos soportes
+   se vean del mismo sistema y no parecidos.
+   ═══════════════════════════════════════════════════════ */
+.header starlight-theme-select,
+.header starlight-lang-select {
+  display: inline-flex;
+  align-items: center;
+}
 
+.header starlight-theme-select label,
+.header starlight-lang-select label {
+  align-items: center;
+  background: var(--p-surface-2);
+  border: 1px solid var(--p-line);
+  border-radius: 8px;
+  color: var(--p-bar-text-2);
+  cursor: pointer;
+  display: inline-flex;
+  height: 38px;
+  /* Starlight reserva el hueco del icono y del caret con el padding del <select>,
+     a partir de estas tres medidas. Hay que ajustarlas, no anular el padding: en
+     el primer intento puse padding:0 en el select y el icono quedó encima del
+     texto. */
+  --sl-label-icon-size: 0.95rem;
+  --sl-caret-size: 1.05rem;
+  --sl-inline-padding: 0.55rem;
+  padding: 0 0.55rem;
+  position: relative;
+  transition: color 180ms ease, border-color 180ms ease, background-color 180ms ease;
+}
+
+.header starlight-theme-select label:hover,
+.header starlight-lang-select label:hover,
+.header starlight-theme-select label:focus-within,
+.header starlight-lang-select label:focus-within {
+  border-color: var(--p-accent-line);
+  color: var(--p-accent);
+}
+
+/* El icono con el mismo trazo que los del sitio: 17px y sin relleno. */
+.header starlight-theme-select .label-icon,
+.header starlight-lang-select .label-icon {
+  color: currentColor;
+  font-size: 17px;
+}
+
+.header starlight-theme-select select,
+.header starlight-lang-select select {
+  background: transparent;
+  border: 0;
+  color: currentColor;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding-block: 0;
+  /* Starlight fija el ancho con --sl-select-width en el atributo style del label.
+     Con el relleno del icono, ese ancho truncaba el texto a «Auto…» y «Españ…», así
+     que el control se ajusta a su contenido. */
+  width: auto;
+}
+
+.header starlight-theme-select .caret,
+.header starlight-lang-select .caret {
+  color: currentColor;
+  opacity: 0.7;
+}
+
+/* Las opciones nativas se pintan con el fondo del sistema si no se les dice otra
+   cosa, y en tema oscuro eso da texto oscuro sobre lista oscura. */
+.header starlight-theme-select option,
+.header starlight-lang-select option {
+  background-color: var(--p-bar);
+  color: var(--p-bar-text);
+}
+
+@media (max-width: 50rem) {
+  .header starlight-theme-select label,
+  .header starlight-lang-select label {
+    height: 34px;
+    padding: 0 0.45rem;
+  }
+}
