@@ -24,6 +24,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 import a_d2
 import trazador
+import trazador_secuencia
 
 SALIDA = Path('src/assets/diagramas')
 
@@ -144,10 +145,15 @@ def main() -> int:
         svg = None
 
         if d['tipo'] == 'sequenceDiagram':
-            fuente = secuencia_a_d2(d['codigo'])
-            if fuente and a_d2.dibujar(fuente, '/tmp/g.svg', pad=10):
-                svg = Path('/tmp/g.svg').read_text(encoding='utf8')
-                cuenta['secuencia_d2'] += 1
+            # trazador propio: d2 los dibujaba con texto pequeño y uno desbordaba
+            svg = trazador_secuencia.trazar_secuencia_propia(d['codigo'])
+            if svg:
+                cuenta['secuencia_propia_sq'] = cuenta.get('secuencia_propia_sq', 0) + 1
+            else:
+                fuente = secuencia_a_d2(d['codigo'])
+                if fuente and a_d2.dibujar(fuente, '/tmp/g.svg', pad=10):
+                    svg = Path('/tmp/g.svg').read_text(encoding='utf8')
+                    cuenta['secuencia_d2'] += 1
         else:
             etq, aristas = trazador.leer_grafo(d['codigo'])
             if aristas and trazador.es_cadena(aristas):

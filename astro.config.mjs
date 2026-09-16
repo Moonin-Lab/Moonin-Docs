@@ -24,6 +24,38 @@ export default defineConfig({
       /* Geist, con los mismos preconnect y la misma hoja que moonin.app: si la
          documentacion carga otra fuente, el cambio de soporte se nota al saltar. */
       head: [
+        /* Deteccion de idioma. Solo redirige desde la RAIZ y solo la primera vez:
+           las URLs profundas quedan intactas porque Google recomienda no redirigir
+           por idioma detectado, y la indexabilidad es justo lo que acabamos de
+           arreglar. El sitemap ya declara los 120 alternates hreflang, que es la
+           senal correcta para un rastreador. ?nolang lo desactiva.
+
+           Tambien recuerda la eleccion explicita del selector de idioma, para que
+           la deteccion no vuelva a pelear con lo que el usuario eligio. */
+        {
+          tag: "script",
+          content: `(function(){try{
+  var K='moonin-docs-lang', p=location.pathname;
+  var raiz = (p==='/' || p==='/index.html');
+  var guardado = localStorage.getItem(K);
+  if (raiz && !guardado && location.search.indexOf('nolang')<0) {
+    var tags = (navigator.languages && navigator.languages.length)
+      ? navigator.languages : [navigator.language || 'en'];
+    for (var i=0;i<tags.length;i++) {
+      var base = String(tags[i]).toLowerCase().split('-')[0];
+      if (base==='es') { localStorage.setItem(K,'es'); location.replace('/es/'); return; }
+      if (base==='en') { break; }
+    }
+    localStorage.setItem(K,'en');
+  }
+  document.addEventListener('change', function(e){
+    var el = e.target;
+    if (el && el.closest && el.closest('starlight-lang-select')) {
+      try { localStorage.setItem(K, String(el.value||'').indexOf('es')>=0 ? 'es' : 'en'); } catch(_) {}
+    }
+  }, true);
+}catch(e){}})();`,
+        },
         { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.googleapis.com" } },
         { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true } },
         {

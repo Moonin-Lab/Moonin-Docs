@@ -17,9 +17,12 @@
      la tripleta de Tailwind que aparece en la mitad de la web. Estos valores son
      los mismos tokens del sitio, así que las dos superficies se ven de la misma
      familia en vez de parecidas. */
-  --sl-color-gray-3: #b9cbd1;
-  --sl-color-gray-4: #dbe7eb;
-  --sl-color-gray-5: #e9f2f4;
+  /* gray-2 y gray-3 son TEXTO atenuado en Starlight, no filetes. Tenían valores
+     de filete (#b9cbd1 daba 1,59:1 sobre blanco en el índice lateral). gray-4 en
+     adelante sí son superficies. */
+  --sl-color-gray-3: #556577;
+  --sl-color-gray-4: #b9cbd1;
+  --sl-color-gray-5: #dbe7eb;
   --sl-color-gray-6: #f3fafb;
   --sl-color-black: #ffffff;
   --sl-color-bg: #f3fafb;
@@ -65,6 +68,10 @@
 
 /* ── claro ── */
 :root, :root[data-theme="light"] {
+  /* Sobre fondo oscuro (el hero lo es en los dos temas) y sobre el acento. */
+  --p-on-dark-2: #cfe0e6;
+  --p-on-accent: #ffffff;
+  --p-on-accent-strong: #06222c;
   /* El bloque de código es oscuro en los DOS temas, igual que en el sitio,
      así que estos no cambian con el tema. */
   --p-code-bg: #0f172a;
@@ -136,6 +143,11 @@
 
 /* ── oscuro ── */
 :root[data-theme="dark"] {
+  /* Sobre fondo oscuro y sobre el acento. En oscuro el acento es cian
+     brillante, así que lo que va encima tiene que ser oscuro. */
+  --p-on-dark-2: #a9b9d1;
+  --p-on-accent: #06222c;
+  --p-on-accent-strong: #06222c;
   /* El bloque de código es oscuro en los DOS temas, igual que en el sitio,
      así que estos no cambian con el tema. */
   --p-code-bg: #13203a;
@@ -255,7 +267,7 @@ header.header {
 }
 
 .site-title {
-  color: var(--p-line);
+  color: var(--p-bar-text);
   font-weight: 700;
 }
 
@@ -266,7 +278,7 @@ header.header {
 
 .header a,
 .header button {
-  color: var(--p-line-strong);
+  color: var(--p-bar-text-2);
 }
 
 .header a:hover,
@@ -286,7 +298,7 @@ starlight-theme-select {
   background: var(--p-veil);
   border: 1px solid var(--p-accent-line-soft);
   border-radius: 0.65rem;
-  color: var(--p-accent-wash);
+  color: var(--p-bar-text);
   cursor: pointer;
   padding: 0.32rem 0.62rem 0.32rem 0.85rem;
   transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
@@ -305,7 +317,7 @@ starlight-theme-select {
 }
 
 .header starlight-lang-select select {
-  color: var(--p-surface-2);
+  color: var(--p-bar-text);
   font-size: 0.82rem;
   font-weight: 600;
   padding-block: 0.25rem;
@@ -316,8 +328,8 @@ starlight-theme-select {
 }
 
 .header starlight-lang-select option {
-  background-color: var(--p-text);
-  color: var(--p-line);
+  background-color: var(--p-bar);
+  color: var(--p-bar-text);
   font-size: 0.82rem;
   font-weight: 500;
   padding: 0.35rem 0.6rem;
@@ -325,7 +337,7 @@ starlight-theme-select {
 
 .header starlight-lang-select option:checked {
   background: var(--p-accent);
-  color: var(--p-surface);
+  color: var(--p-on-accent);
 }
 
 .sidebar {
@@ -763,7 +775,7 @@ starlight-theme-select {
   border: 1px solid var(--p-bar-accent-faint);
   border-radius: 1.25rem;
   box-shadow: 0 24px 56px var(--p-shadow-xl);
-  color: var(--p-line);
+  color: var(--p-on-dark-2);
   margin: -0.55rem -0.4rem 2.25rem;
   overflow: hidden;
   padding: 2.75rem;
@@ -778,7 +790,7 @@ starlight-theme-select {
 }
 
 .moonin-docs-hero p {
-  color: var(--p-line-strong);
+  color: var(--p-on-dark-2);
   font-size: 1.05rem;
   margin: 0;
   max-width: 43rem;
@@ -819,12 +831,12 @@ starlight-theme-select {
 
 .moonin-hero-actions a:first-child {
   background: linear-gradient(90deg, var(--p-bar-accent), var(--p-accent));
-  color: var(--p-accent-deep);
+  color: var(--p-on-accent-strong);
 }
 
 .moonin-hero-actions a:last-child {
   border: 1px solid var(--p-accent-line-soft);
-  color: var(--p-accent-wash);
+  color: var(--p-on-dark);
 }
 
 @media (max-width: 72rem) {
@@ -888,39 +900,4 @@ starlight-theme-select {
 }
 
 
-/* ═══════════════ que el tema gobierne de verdad ═══════════════
-   Dos colores seguían llegando con los valores de la paleta clara al pasar a
-   oscuro —los enlaces de la barra lateral y los del contenido— y no logré
-   determinar qué regla los fijaba: los tokens sí conmutaban al leerlos en el
-   elemento, pero el color computado no. Se resuelve con selectores de tema
-   explícitos, que ganan por especificidad sin depender de la indirección.
 
-   Medido antes de esto, en oscuro: «Glossary» a 1,78:1 y los enlaces del
-   contenido a 2,93:1. Ambos por debajo del 4,5:1 que pide WCAG AA.
-   ════════════════════════════════════════════════════════════ */
-:root[data-theme="dark"] .sidebar a,
-:root[data-theme="dark"] .sidebar a span,
-:root[data-theme="dark"] .sidebar a.large,
-:root[data-theme="dark"] .sidebar details > summary,
-:root[data-theme="dark"] .sidebar details > summary span,
-:root[data-theme="dark"] .sidebar .group-label,
-:root[data-theme="dark"] .sidebar .large {
-  color: #c8d4ea !important;
-}
-
-:root[data-theme="dark"] .sidebar a[aria-current="page"] {
-  /* Fondo sólido: con el velo translúcido del tema claro, el texto oscuro
-     quedaba a 1,05:1 sobre una superficie oscura. */
-  background: #22d3ee !important;
-}
-:root[data-theme="dark"] .sidebar a[aria-current="page"],
-:root[data-theme="dark"] .sidebar a[aria-current="page"] span {
-  color: #06222c !important;
-}
-
-:root[data-theme="dark"] .sl-markdown-content a,
-:root[data-theme="dark"] .sl-markdown-content li > a,
-:root[data-theme="dark"] .sl-markdown-content p > a,
-:root[data-theme="dark"] .content-panel a:not(.sidebar a) {
-  color: #67e8f9 !important;
-}
