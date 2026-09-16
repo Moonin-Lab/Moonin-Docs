@@ -1,16 +1,16 @@
 ---
-title: "Integracion con GitHub"
+title: "Integración con GitHub"
 ---
 
-La integracion con GitHub ayuda a conectar actividad de repositorio con contexto de despliegue.
+La integración con GitHub ayuda a conectar actividad de repositorio con contexto de despliegue.
 
 ## Resultados comunes
 
 - mejor trazabilidad de revisiones
-- mas contexto para auditoria de cambios
-- correlacion entre flujos de entrega y rollouts
+- más contexto para auditoria de cambios
+- correlación entre flujos de entrega y rollouts
 
-## Buenas practicas
+## Buenas prácticas
 
-- usar una convencion de nombres de repositorio consistente entre equipos
+- usar una convención de nombres de repositorio consistente entre equipos
 - alinear los nombres de deployment con los nombres de proyecto cuando sea posible

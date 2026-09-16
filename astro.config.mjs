@@ -66,6 +66,13 @@ export default defineConfig({
           },
         },
       ],
+      /* Los dos conmutadores se reemplazan por los botones del sitio: un cuadrado
+         de 38px con sol o luna, y una pastilla con el idioma destino. Los
+         desplegables de Starlight no se parecian a nada del resto. */
+      components: {
+        ThemeSelect: "./src/components/ThemeSelect.astro",
+        LanguageSelect: "./src/components/LanguageSelect.astro",
+      },
       customCss: ["./src/styles/portal.css"],
       sidebar: [
           {

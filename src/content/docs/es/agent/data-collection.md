@@ -1,8 +1,8 @@
 ---
-title: "Recoleccion de datos"
+title: "Recolección de datos"
 ---
 
-Esta pagina explica que leen del cluster los agentes actuales de Moonin, que envian a la plataforma y que estado de ejecucion mantienen solo el tiempo necesario para completar una reconciliacion.
+Esta página explica que leen del cluster los agentes actuales de Moonin, que envian a la plataforma y que estado de ejecución mantienen solo el tiempo necesario para completar una reconciliación.
 
 ## Datos del Discovery Agent
 
@@ -15,20 +15,20 @@ Para cada Deployment seguido, Moonin puede recolectar:
 - estrategia de rollout
 - labels y annotations
 - imagenes de contenedor y tags
-- relacion con services
-- numero y tipo de revision
+- relación con services
+- número y tipo de revisión
 - timestamps asociados al cambio detectado
 
-Cuando el workload esta gestionado por Helm, el agente tambien deriva:
+Cuando el workload está gestionado por Helm, el agente también deriva:
 
 - nombre del release
-- nombre y version del chart cuando estan disponibles
-- numero de revision Helm
-- contexto sanitizado derivado del manifest para revisar la revision
+- nombre y versión del chart cuando están disponibles
+- número de revisión Helm
+- contexto sanitizado derivado del manifest para revisar la revisión
 
-### Ciclo de vida de pods y senales de error
+### Ciclo de vida de pods y señales de error
 
-El Discovery Agent observa pods para reportar senales que ayudan a construir la vista de Errors y Revision, incluyendo:
+El Discovery Agent observa pods para reportar señales que ayudan a construir la vista de Errors y Revisión, incluyendo:
 
 - cambios en restart count
 - `CrashLoopBackOff`
@@ -42,13 +42,13 @@ Moonin guarda contexto del HPA asociado a los Deployments, incluyendo:
 
 - replicas minimas
 - replicas maximas
-- metricas objetivo
+- métricas objetivo
 - behavior
 - estado capturado al momento del sync
 
 ### Namespaces, services y topologia
 
-El agente tambien descubre:
+El agente también descubre:
 
 - nombres, labels y annotations de namespaces
 - nombres de services, selectors, tipos y puertos
@@ -61,28 +61,28 @@ Para cada CronJob seguido, el agente envia:
 
 - nombre del CronJob
 - namespace
-- expresion cron cruda
+- expresión cron cruda
 - timezone si existe
-- politica de concurrencia
+- política de concurrencia
 - flag de suspendido
-- ultimo schedule
-- ultimo exito
+- último schedule
+- último exito
 - cantidad de jobs activos
 
-### Historial de ejecucion de CronJobs
+### Historial de ejecución de CronJobs
 
 Para cada Job hijo de un CronJob seguido, Moonin puede guardar:
 
 - nombre y UID del Job
-- estado de ejecucion
+- estado de ejecución
 - hora de inicio
 - hora de termino
-- duracion
+- duración
 - nombre del pod asociado a la falla
 - motivo de falla
 - mensaje de falla
 - exit code
-- hasta las ultimas 200 lineas de logs para ejecuciones fallidas
+- hasta las últimas 200 líneas de logs para ejecuciones fallidas
 
 ### Metadata de nodos y del cluster
 
@@ -92,15 +92,15 @@ Los snapshots de nodos incluyen periodicamente:
 - capacidad y asignable de CPU, memoria, storage y pods
 - condiciones como `Ready`, `MemoryPressure` y `DiskPressure`
 - runtime, OS image, arquitectura e instance type
-- region y zona cuando se pueden derivar
+- región y zona cuando se pueden derivar
 
 Los heartbeats de metadata del cluster pueden incluir:
 
-- version de Kubernetes
+- versión de Kubernetes
 - cloud provider
 - nombre e identificador del cluster cuando se pueden derivar
-- region y zona
-- numero de nodos
+- región y zona
+- número de nodos
 - estado de conectividad
 
 !!! note
@@ -108,24 +108,24 @@ Los heartbeats de metadata del cluster pueden incluir:
 
 ## Estado y evidencia del Scaling Rules Agent
 
-El Scaling Rules Agent no es un colector de inventario, pero si deriva y transmite estado de ejecucion.
+El Scaling Rules Agent no es un colector de inventario, pero si deriva y transmite estado de ejecución.
 
 ### Datos que lee durante apply
 
-Para aplicar una accion, el agente lee:
+Para aplicar una acción, el agente lee:
 
-- nombre y namespace del Deployment objetivo desde la accion del template
+- nombre y namespace del Deployment objetivo desde la acción del template
 - cantidad actual de replicas del Deployment
 - HPA actual que apunta a ese Deployment, si existe
-- ventana activa del template, timezone, duracion y estado de habilitacion desde Moonin
+- ventana activa del template, timezone, duración y estado de habilitación desde Moonin
 
 ### Datos que persiste temporalmente en HPAs administrados
 
 Para que el rollback sea determinista, el agente guarda annotations en el HPA, incluyendo:
 
-- id del template e id de la accion
+- id del template e id de la acción
 - nombre del template
-- `run_until` de la ejecucion
+- `run_until` de la ejecución
 - `priority_up` y `priority_down`
 - si el HPA es provisional
 - spec original del HPA cuando el HPA existia antes de Moonin
@@ -134,29 +134,29 @@ Para que el rollback sea determinista, el agente guarda annotations en el HPA, i
 
 ### Eventos que envia de vuelta a Moonin
 
-Despues de aplicar o revertir, el agente publica evidencia de ejecucion como:
+Después de aplicar o revertir, el agente pública evidencia de ejecución como:
 
-- id de la accion
+- id de la acción
 - deployment y namespace
-- valores min y max pedidos por la accion
+- valores min y max pedidos por la acción
 - `run_until` efectivo
 - si el HPA era provisional
 - razon del revert, por ejemplo `expired` o `disabled`
 
-## Modelo de recoleccion
+## Modelo de recolección
 
 El bundle combina dos patrones:
 
-- recoleccion casi en tiempo real basada en informers para Discovery Agent
-- polling periodico y reconciliacion para Scaling Rules Agent
+- recolección casi en tiempo real basada en informers para Discovery Agent
+- polling periódico y reconciliación para Scaling Rules Agent
 
 Esto es intencional. Discovery sigue eventos del cluster, mientras scaling sigue el estado de templates definido en el control plane.
 
-## Filtros y reduccion de alcance
+## Filtros y reducción de alcance
 
-El chart expone configuracion para reducir lo que Discovery recolecta:
+El chart expone configuración para reducir lo que Discovery recolecta:
 
-| Opcion | Efecto |
+| Opción | Efecto |
 |---|---|
 | `ignore_namespaces` | Excluye namespaces completos del discovery |
 | `ignore_resources` | Excluye recursos que coincidan con globs |

@@ -1,10 +1,10 @@
 ---
-title: "Administracion"
+title: "Administración"
 ---
 
 La Consola Admin es el lugar donde Moonin define tenant, acceso y recursos compartidos antes de que la app principal los consuma.
 
-Esta pagina documenta el comportamiento detras de:
+Esta página documenta el comportamiento detras de:
 
 - `https://app-admin.moonin.app/admin/organizations`
 - `https://app-admin.moonin.app/admin/organizations/<organization-id>/users`
@@ -12,16 +12,16 @@ Esta pagina documenta el comportamiento detras de:
 - `https://app-admin.moonin.app/admin/projects`
 - `https://app-admin.moonin.app/admin/clusters`
 
-## Jerarquia administrativa
+## Jerarquía administrativa
 
 ```mermaid
 flowchart TD
-    O[Organizacion]
+    O[Organización]
     U[Usuarios]
     G[Grupos]
     P[Proyectos]
     C[Clusters]
-    NC[Canales de notificacion]
+    NC[Canales de notificación]
 
     O --> U
     O --> G
@@ -32,16 +32,16 @@ flowchart TD
 
 ## Organizaciones
 
-Una organizacion es el limite de tenant para:
+Una organizacion es el límite de tenant para:
 
 - ownership
 - memberships
 - roles directos y heredados por grupo
 - proyectos
 - clusters
-- canales de notificacion
+- canales de notificación
 - asociacion de billing
-- configuracion Azure AD
+- configuración Azure AD
 
 ### Campos de organizacion
 
@@ -61,10 +61,10 @@ La Consola Admin soporta campos como:
 
 ### Relacion con billing
 
-Las organizaciones se asocian a suscripciones de billing antes de que el crecimiento de proyectos y clusters avance de forma segura. En la practica:
+Las organizaciones se asocian a suscripciones de billing antes de que el crecimiento de proyectos y clusters avance de forma segura. En la práctica:
 
 - una suscripcion debe estar asignada a la organizacion
-- la creacion de proyectos y el onboarding de clusters dependen de esa base administrativa
+- la creación de proyectos y el onboarding de clusters dependen de esa base administrativa
 
 ## Proyectos
 
@@ -75,7 +75,7 @@ Suelen representar:
 - un equipo
 - un entorno
 - un dominio de negocio
-- un limite operacional
+- un límite operacional
 
 Cada proyecto tiene al menos:
 
@@ -99,7 +99,7 @@ La pagina administrativa de clusters controla el alta y ciclo de vida del cluste
 
 ```mermaid
 flowchart LR
-    A[Elegir organizacion]
+    A[Elegir organización]
     B[Elegir proyecto]
     C[Crear registro del cluster]
     D[Copiar cluster_id, project_id y token]
@@ -109,19 +109,19 @@ flowchart LR
     A --> B --> C --> D --> E --> F
 ```
 
-### Rotacion de token
+### Rotación de token
 
 Solo acceso organizacional elevado deberia rotar tokens porque:
 
 - el token anterior deja de ser valido
-- todos los agentes en ejecucion deben actualizarse
-- una rotacion equivocada puede interrumpir el descubrimiento del cluster
+- todos los agentes en ejecución deben actualizarse
+- una rotación equivocada puede interrumpir el descubrimiento del cluster
 
 ## Usuarios
 
-La pagina de usuarios de la organizacion muestra la composicion completa del acceso de una persona:
+La página de usuarios de la organización muestra la composición completa del acceso de una persona:
 
-- membresia base en la organizacion
+- membresia base en la organización
 - estado de owner cuando aplica
 - roles directos
 - roles heredados por grupos
@@ -135,15 +135,15 @@ Moonin soporta las siguientes membresias base:
 - `editor`
 - `admin`
 
-Estas membresias son la relacion base, no todo el modelo de autorizacion.
+Estas membresias son la relación base, no todo el modelo de autorización.
 
-### Que significa cada membresia operativamente
+### Qué significa cada membresia operativamente
 
-- `viewer` es la membresia minima
-- `viewer` sigue principio de minimo privilegio por defecto
+- `viewer` es la membresia mínima
+- `viewer` sigue principio de mínimo privilegio por defecto
 - `viewer` solo puede listar organizaciones por defecto
 - `viewer` solo gana acceso adicional cuando un admin asigna permisos directos o heredados por grupo
-- `editor` puede gestionar recursos editables de la organizacion
+- `editor` puede gestionar recursos editables de la organización
 - `admin` puede gestionar recursos organizacionales
 - `organization.owner` es separado y tiene control total
 
@@ -154,11 +154,11 @@ Los grupos son la forma escalable de otorgar acceso compartido a equipos.
 Un grupo puede tener:
 
 - nombre
-- descripcion
+- descripción
 - miembros
 - roles asignados
 
-Cualquier rol asignado al grupo se hereda automaticamente por todos sus miembros.
+Cualquier rol asignado al grupo se hereda automáticamente por todos sus miembros.
 
 Usa grupos cuando:
 
@@ -179,15 +179,15 @@ Los roles directos y heredados pueden representar permisos de funcionalidad como
 
 - ver revisiones y manifests
 - acceso a errores y RCA
-- administracion de alert policies
-- administracion de event notification policies
-- administracion de clusters y proyectos
+- administración de alert policies
+- administración de event notification policies
+- administración de clusters y proyectos
 
 En otras palabras, un usuario puede tener membresia base `viewer` y solo sumar capacidades extra por roles directos o heredados asignados por un administrador.
 
-## Canales de notificacion
+## Canales de notificación
 
-Los canales son recursos de la organizacion creados en Admin y consumidos desde la app principal.
+Los canales son recursos de la organización creados en Admin y consumidos desde la app principal.
 
 Tipos actuales:
 
@@ -195,16 +195,16 @@ Tipos actuales:
 - Microsoft Teams
 - VictorOps
 
-Los canales definen el destino webhook real. Las politicas despues deciden cuando usarlos.
+Los canales definen el destino webhook real. Las políticas después deciden cuando usarlos.
 
-## Orden recomendado de administracion
+## Orden recomendado de administración
 
-1. Crea la organizacion.
+1. Crea la organización.
 2. Asigna billing.
 3. Configura owner, admins, domains y slug.
 4. Configura Azure AD si aplica.
 5. Agrega usuarios y grupos.
 6. Crea proyectos.
 7. Registra clusters.
-8. Crea canales de notificacion.
-9. Recien entonces pasa a politicas y operacion runtime en la app principal.
+8. Crea canales de notificación.
+9. Recien entonces pasa a políticas y operación runtime en la app principal.

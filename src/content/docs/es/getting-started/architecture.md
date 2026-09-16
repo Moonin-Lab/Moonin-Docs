@@ -2,7 +2,7 @@
 title: "Arquitectura"
 ---
 
-Este documento describe la arquitectura de alto nivel de Moonin con foco en los componentes visibles hoy en el producto y en el flujo publico de despliegue.
+Este documento describe la arquitectura de alto nivel de Moonin con foco en los componentes visibles hoy en el producto y en el flujo público de despliegue.
 
 ## Resumen
 
@@ -21,8 +21,8 @@ graph TB
     subgraph "Plataforma Moonin"
         API[API de control]
         DI[API de ingesta de datos]
-        FRONT[Aplicacion web]
-        ADMIN[Consola de administracion]
+        FRONT[Aplicación web]
+        ADMIN[Consola de administración]
         MCP[Servidor MCP]
         NOTIFIER[Motor de notificaciones]
         SCALINGAPI[API de scaling rules]
@@ -70,9 +70,9 @@ graph TB
 
 ### API de control
 
-Centraliza seguimiento de deployments, clusters, CronJobs, politicas, administracion y billing.
+Centraliza seguimiento de deployments, clusters, CronJobs, políticas, administración y billing.
 
-### Aplicacion principal
+### Aplicación principal
 
 Entrega:
 
@@ -80,15 +80,15 @@ Entrega:
 - clusters, nodos y namespaces
 - deployments, revisiones e imagenes
 - CronJobs y ejecuciones
-- errores, notificaciones y politicas
+- errores, notificaciones y políticas
 
-### Consola de administracion
+### Consola de administración
 
 Administra:
 
 - organizaciones y usuarios
 - proyectos y registro de clusters
-- canales de notificacion
+- canales de notificación
 - billing
 
 ### Motor de notificaciones
@@ -106,10 +106,10 @@ sequenceDiagram
     participant Agent as Discovery Agent
     participant API as API de control
     participant DB as Almacen de datos
-    participant Front as Aplicacion web
+    participant Front as Aplicación web
 
     Agent->>API: Detecta cambio de Deployment
-    API->>DB: Guarda revision e imagenes
+    API->>DB: Guarda revisión e imagenes
     API->>API: Vincula incidentes y contexto del rollout
     Front->>API: Pide datos del deployment
     API->>Front: Devuelve revisiones y estado vinculado
@@ -122,7 +122,7 @@ sequenceDiagram
     participant Agent as Discovery Agent
     participant API as API de control
     participant DB as Almacen de datos
-    participant Front as Aplicacion web
+    participant Front as Aplicación web
 
     Agent->>API: Envia heartbeat de metadata del cluster
     Agent->>API: Actualiza snapshots de nodos
@@ -132,7 +132,7 @@ sequenceDiagram
     API->>Front: Devuelve el inventario filtrado
 ```
 
-### Ejecucion de scaling y rollback
+### Ejecución de scaling y rollback
 
 ```mermaid
 sequenceDiagram
@@ -149,9 +149,9 @@ sequenceDiagram
     Scaling->>K8S: Restaura el estado previo del HPA
 ```
 
-## Modelo de autenticacion
+## Modelo de autenticación
 
-- los usuarios se autentican con Google OAuth o con correo y contrasena
+- los usuarios se autentican con Google OAuth o con correo y contraseña
 - los agentes se autentican con un token propio del cluster
 - las aplicaciones web hacen proxy de las llamadas al backend del lado del servidor
 - el servidor MCP expone tokens de acceso de solo lectura y con alcance acotado
@@ -161,13 +161,13 @@ sequenceDiagram
 - la metadata de organizaciones, proyectos, clusters, revisiones, snapshots de nodos
   y CronJobs se guarda en una base de datos relacional
 - los extractos de log de los CronJobs que fallan se guardan junto al registro de la
-  ejecucion
-- las metricas agregadas y los resumenes se guardan aparte para que los tableros
-  respondan rapido
+  ejecución
+- las métricas agregadas y los resumenes se guardan aparte para que los tableros
+  respondan rápido
 
 ## Aspectos de seguridad
 
-- toda la comunicacion de los agentes usa HTTPS
+- toda la comunicación de los agentes usa HTTPS
 - los tokens de cluster se comparan en tiempo constante
 - el navegador nunca recibe tokens internos de la API
 - los manifiestos sanitizados conservan la identidad de los recursos, como el nombre

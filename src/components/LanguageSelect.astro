@@ -1,0 +1,41 @@
+---
+/*
+ * Conmutador de idioma con la forma exacta del sitio: un botón que muestra el
+ * idioma DESTINO —«EN» estando en español, «ES» estando en inglés— en vez del
+ * desplegable de Starlight.
+ *
+ * Reemplaza a LanguageSelect por la anulación de componentes.
+ *
+ * El destino se calcula de la ruta y no de las entrañas de Starlight: el español
+ * vive bajo /es/ y el inglés en la raíz, así que quitar o poner ese prefijo basta y
+ * funciona igual en cualquier página.
+ */
+const ruta = Astro.url.pathname;
+const enEspanol = ruta === '/es' || ruta.startsWith('/es/');
+const destino = enEspanol ? ruta.replace(/^\/es(?=\/|$)/, '') || '/' : `/es${ruta}`;
+const codigo = enEspanol ? 'EN' : 'ES';
+const etiqueta = enEspanol ? 'View documentation in English' : 'Ver documentación en español';
+---
+
+<a
+  class="moonin-lang"
+  href={destino}
+  aria-label={etiqueta}
+  title={etiqueta}
+  lang={enEspanol ? 'en' : 'es'}
+  data-moonin-idioma>{codigo}</a
+>
+
+<script is:inline>
+  (function () {
+    /* Recordar la elección explícita, para que la detección de idioma de la raíz no
+       vuelva a pelear con lo que el usuario eligió. */
+    var a = document.querySelector('[data-moonin-idioma]');
+    if (!a) return;
+    a.addEventListener('click', function () {
+      try {
+        localStorage.setItem('moonin-docs-lang', a.getAttribute('lang') === 'es' ? 'es' : 'en');
+      } catch (e) {}
+    });
+  })();
+</script>

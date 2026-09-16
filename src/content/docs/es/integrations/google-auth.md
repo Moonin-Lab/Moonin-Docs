@@ -1,11 +1,11 @@
 ---
-title: "Autenticacion con Google"
+title: "Autenticación con Google"
 ---
 
-Moonin soporta acceso mediante Google para simplificar autenticacion de usuarios.
+Moonin soporta acceso mediante Google para simplificar autenticación de usuarios.
 
 ## Que aporta
 
-- autenticacion administrada
-- onboarding mas simple en organizaciones con Google Workspace
+- autenticación administrada
+- onboarding más simple en organizaciones con Google Workspace
 - manejo centralizado de sesiones
