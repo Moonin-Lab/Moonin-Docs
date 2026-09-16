@@ -1,30 +1,57 @@
 :root,
 :root[data-theme="light"],
 :root[data-theme="dark"] {
-  --sl-color-accent-low: #e0f2fe;
-  --sl-color-accent: #0284c7;
-  --sl-color-accent-high: #0c4a6e;
+  /* El acento venía en #0284c7, que sobre el fondo #f8fafc da 3,91:1 y no pasa
+     WCAG AA. Copiar el del sitio (#0891b2) sería peor todavía, 3,52:1. #0369a1
+     da 5,67:1 y es el mismo valor que ya resolvimos en la presentación, así que
+     los tres soportes quedan con el mismo azul legible. */
+  --sl-color-accent-low: #e9f6fa;
+  --sl-color-accent: #0369a1;
+  --sl-color-accent-high: #0b3a56;
   --sl-color-white: #0f172a;
   --sl-color-gray-1: #334155;
   --sl-color-gray-2: #64748b;
-  --sl-color-gray-3: #cbd5e1;
-  --sl-color-gray-4: #e2e8f0;
-  --sl-color-gray-5: #f1f5f9;
-  --sl-color-gray-6: #f8fafc;
+  /* Neutros: el sitio usa papel con tinte cian y no el slate por defecto, que es
+     la tripleta de Tailwind que aparece en la mitad de la web. Estos valores son
+     los mismos tokens del sitio, así que las dos superficies se ven de la misma
+     familia en vez de parecidas. */
+  --sl-color-gray-3: #b9cbd1;
+  --sl-color-gray-4: #dbe7eb;
+  --sl-color-gray-5: #e9f2f4;
+  --sl-color-gray-6: #f3fafb;
   --sl-color-black: #ffffff;
-  --sl-color-bg: #f8fafc;
+  --sl-color-bg: #f3fafb;
   --sl-color-bg-nav: #ffffff;
-  --sl-color-hairline: #e2e8f0;
+  --sl-color-hairline: #dbe7eb;
   --sl-content-width: 52rem;
   --sl-sidebar-width: 18rem;
   --sl-text-5xl: 3rem;
+
+  /* Geist, la misma del sitio. La documentación no declaraba ninguna fuente para
+     el cuerpo en sus 635 líneas, así que caía al stack del sistema: era la
+     diferencia más visible entre los dos soportes. */
+  --sl-font: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --sl-font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Tokens de los diagramas. Los SVG pre-renderizados los usan con su valor
+     literal como respaldo, de modo que siguen el tema aquí y se ven correctos si
+     alguien abre el archivo suelto. */
+  --dg-fill: #ffffff;
+  --dg-surface: #f3fafb;
+  --dg-surface-2: #eef7f9;
+  --dg-hairline: #dbe7eb;
+  --dg-border: #0369a1;
+  --dg-line: #556577;
+  --dg-text: #0f172a;
+  --dg-muted: #334155;
+
   color-scheme: light;
 }
 
 html {
   background:
-    radial-gradient(circle at 82% 0%, rgba(56, 189, 248, 0.12), transparent 30rem),
-    #f8fafc;
+    radial-gradient(circle at 82% 0%, rgba(3, 105, 161, 0.09), transparent 30rem),
+    #f3fafb;
 }
 
 body {
@@ -632,4 +659,37 @@ starlight-theme-select {
     margin-inline: -0.25rem;
     padding: 0.8rem;
   }
+}
+
+/* ================= diagramas incrustados ================= */
+/* Los 52 diagramas entran como SVG en el build. Se les da el mismo lenguaje de
+   tarjeta que el resto de la documentación: superficie blanca, filete fino y
+   radio. El SVG escala con el contenedor porque el renderizador emite
+   useMaxWidth y se le quitaron los width/height fijos. */
+.dg {
+  margin: 1.75rem 0;
+  scrollbar-width: thin;
+  padding: 1.25rem 1rem;
+  background: var(--sl-color-bg-nav);
+  border: 1px solid var(--sl-color-hairline);
+  border-radius: 12px;
+  overflow-x: auto;
+}
+/* Tamano natural, no width:100%. Medido sobre los 52: encajarlos en la columna
+   de 652px deja a 31 de 47 con el texto bajo 9px, porque son flowcharts
+   horizontales de hasta 2596px. Un diagrama no se reescala: se dibuja a su
+   tamano y, si no cabe, la figura desplaza. El que si cabe se centra. */
+.dg svg {
+  display: block;
+  max-width: none;
+  height: auto;
+  margin: 0 auto;
+}
+/* Sin cursiva ni tamaño heredado del texto del cuerpo: dentro de un SVG las
+   etiquetas son datos, no prosa. */
+.dg svg text {
+  font-family: var(--sl-font);
+}
+@media (max-width: 50rem) {
+  .dg { padding: 0.875rem 0.5rem; }
 }
