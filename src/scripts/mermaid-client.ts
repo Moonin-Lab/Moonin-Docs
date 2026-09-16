@@ -2,9 +2,6 @@
    mayoria de las paginas no tiene ningun bloque mermaid, y la libreria pesa
    cerca de 500 KB. Se importa solo si queda alguno por dibujar. */
 
-function forceCodeTheme() {
-  document.documentElement.dataset.theme = "dark";
-}
 
 function labelCopyButtons() {
   const es = document.documentElement.lang?.startsWith("es");
@@ -37,7 +34,6 @@ function labelCopyButtons() {
 }
 
 function apply() {
-  forceCodeTheme();
   labelCopyButtons();
 }
 document.addEventListener("astro:page-load", () => setTimeout(apply, 0));
