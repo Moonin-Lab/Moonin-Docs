@@ -12,6 +12,20 @@ Moonin es una plataforma de operaciones para Kubernetes centrada en cinco trabaj
 
 Esta documentacion esta escrita para que un operador pueda pasar desde el onboarding hasta la operacion diaria sin depender de conocimiento oculto del producto.
 
+## Que conecta Moonin
+
+Moonin es una plataforma de operaciones para Kubernetes centrada en cinco trabajos
+conectados:
+
+- modelar la jerarquia de runtime de tu parque
+- registrar cada rollout como una revision
+- capturar las fallas de runtime con el contexto del rollout
+- enrutar las notificaciones a traves de policies reutilizables
+- mantener gobernados desde un solo lugar el acceso, los clusters y los canales
+
+Esta documentacion esta escrita para que un operador pueda ir del alta a la operacion
+diaria sin depender de conocimiento de producto que no este escrito.
+
 ## Entradas por idioma
 
 | Idioma | Punto de inicio |
