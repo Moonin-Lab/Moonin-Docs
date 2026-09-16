@@ -1,0 +1,93 @@
+---
+/*
+ * La marca del encabezado, tomada tal cual de moonin.app.
+ *
+ * Antes la documentación mostraba solo la marca de palabra en cian y el cuervo no
+ * aparecía. Esto replica el marcado y las medidas de front/src/App.jsx y App.css:
+ *
+ *   .brand            display:inline-flex, align-items:center, gap:10px
+ *   .brand img.sym    30px de alto  (el cuervo)
+ *   .brand img.word   22px de alto  (la marca de palabra)
+ *
+ * Y usa los MISMOS archivos del sitio, con sus versiones 2x, en vez de un asset
+ * propio: así el cuervo de la documentación es exactamente el del sitio.
+ *
+ * La marca de palabra viene en dos versiones porque sus letras son opacas: la
+ * normal es oscura para fondo claro y la -dark es clara para fondo oscuro. Se
+ * intercambian con el tema, igual que en el sitio.
+ */
+const inicio = Astro.currentLocale === 'es' ? '/es/' : '/';
+---
+
+<a class="moonin-marca" href={inicio} aria-label="Moonin">
+  <img
+    class="sym"
+    src="/moonin-symbol.png"
+    srcset="/moonin-symbol.png 1x, /moonin-symbol@2x.png 2x"
+    alt=""
+    width="128"
+    height="96"
+  />
+  <img
+    class="word claro"
+    src="/moonin-wordmark.png"
+    srcset="/moonin-wordmark.png 1x, /moonin-wordmark@2x.png 2x"
+    alt="Moonin"
+    width="260"
+    height="45"
+  />
+  <img
+    class="word oscuro"
+    src="/moonin-wordmark-dark.png"
+    srcset="/moonin-wordmark-dark.png 1x, /moonin-wordmark-dark@2x.png 2x"
+    alt=""
+    aria-hidden="true"
+    width="260"
+    height="45"
+  />
+</a>
+
+<style>
+  .moonin-marca {
+    align-items: center;
+    display: inline-flex;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .moonin-marca img.sym {
+    height: 30px;
+    width: auto;
+  }
+
+  .moonin-marca img.word {
+    height: 22px;
+    width: auto;
+  }
+
+  /* Una de las dos siempre está oculta. La normal tiene letras oscuras y sirve al
+     tema claro; la -dark tiene letras claras y sirve al oscuro. */
+  .moonin-marca img.word.oscuro {
+    display: none;
+  }
+
+  :global(:root[data-theme='dark']) .moonin-marca img.word.claro {
+    display: none;
+  }
+
+  :global(:root[data-theme='dark']) .moonin-marca img.word.oscuro {
+    display: inline;
+  }
+
+  @media (max-width: 50rem) {
+    .moonin-marca {
+      gap: 8px;
+    }
+    .moonin-marca img.sym {
+      height: 26px;
+    }
+    .moonin-marca img.word {
+      height: 19px;
+    }
+  }
+</style>

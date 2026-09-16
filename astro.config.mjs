@@ -13,10 +13,10 @@ export default defineConfig({
     mermaid(),
     starlight({
       title: "Moonin Documentation",
-      logo: {
-        src: "./src/assets/moonin-wordmark-cyan.svg",
-        replacesTitle: true,
-      },
+      /* La marca del encabezado la rinde SiteTitle con los MISMOS archivos del
+         sitio: el cuervo y la marca de palabra, no un asset propio. Antes iba solo
+         la marca de palabra en cian, asi que el simbolo de Moonin no aparecia. */
+      favicon: "/favicon.png",
       locales: {
         root: { label: "English", lang: "en" },
         es: { label: "Español", lang: "es" },
@@ -24,6 +24,8 @@ export default defineConfig({
       /* Geist, con los mismos preconnect y la misma hoja que moonin.app: si la
          documentacion carga otra fuente, el cambio de soporte se nota al saltar. */
       head: [
+        /* El icono de iOS, tambien el del sitio. */
+        { tag: "link", attrs: { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" } },
         /* Deteccion de idioma. Solo redirige desde la RAIZ y solo la primera vez:
            las URLs profundas quedan intactas porque Google recomienda no redirigir
            por idioma detectado, y la indexabilidad es justo lo que acabamos de
@@ -70,6 +72,7 @@ export default defineConfig({
          de 38px con sol o luna, y una pastilla con el idioma destino. Los
          desplegables de Starlight no se parecian a nada del resto. */
       components: {
+        SiteTitle: "./src/components/SiteTitle.astro",
         ThemeSelect: "./src/components/ThemeSelect.astro",
         LanguageSelect: "./src/components/LanguageSelect.astro",
       },
