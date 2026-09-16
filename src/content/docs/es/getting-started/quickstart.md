@@ -50,3 +50,13 @@ En **CronJobs** veras:
 - alcance por namespace y cluster
 - ejecuciones recientes
 - logs de falla cuando corresponde
+
+### 6. Configurar las policies de respuesta
+
+Crear o actualizar:
+
+- **Alert Policies** para las senales de error
+- **Event Notification Policies** para eventos de despliegue o de plataforma
+
+Los canales de notificacion se crean en la **Consola de administracion** y despues se
+eligen desde la aplicacion principal.

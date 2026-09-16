@@ -11,3 +11,18 @@ Moonin RCA combina historial de deployments, contexto runtime y senales de polit
 - incidentes recientes
 - contexto de nodos y workloads
 - historial de ejecuciones de CronJobs cuando aplica
+
+## Preguntas utiles para el operador
+
+- el problema empezo despues de un rollout?
+- hay un job programado que fallo y este contribuyendo al incidente?
+- el problema esta acotado a un cluster o es mas amplio?
+- una scaling rule temporal cambio la capacidad poco antes del incidente?
+
+## Flujo recomendado
+
+1. partir del error activo o del workload
+2. revisar la ultima revision y la actividad reciente de CronJobs
+3. revisar el contexto de cluster y de nodos
+4. confirmar si una policy, un silencio o una accion de scaling cambio el camino de
+   la respuesta

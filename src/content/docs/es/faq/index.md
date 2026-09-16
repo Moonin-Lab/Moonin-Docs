@@ -21,3 +21,8 @@ El Scaling Rules Agent debe hacer rollback al baseline anterior del HPA, igual q
 ## Donde se crean los notification channels?
 
 En la Consola de administracion, dentro de la organizacion.
+
+## Moonin conserva los nombres de los Secrets en los manifiestos sanitizados?
+
+Si. Los valores sensibles se ocultan, pero la identidad de los recursos —como el
+nombre de un Secret— se conserva para dar contexto al diagnostico.
