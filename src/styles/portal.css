@@ -725,20 +725,23 @@ header.header {
 }
 
 .moonin-docs-hero {
+  /* Sigue al tema, como el hero del sitio, que no fija fondo ni color propios.
+     Antes se pintaba con --p-bar/--p-bar-2/--p-bar-3 y el texto con --p-on-dark:
+     al homologar la barra a blanca en tema claro, quedaba claro sobre claro. */
   background:
-    radial-gradient(circle at 88% 12%, var(--p-bar-accent-soft), transparent 18rem),
-    linear-gradient(135deg, var(--p-bar), var(--p-bar-2) 58%, var(--p-bar-3));
-  border: 1px solid var(--p-bar-accent-faint);
+    radial-gradient(circle at 88% 12%, var(--p-accent-wash), transparent 20rem),
+    linear-gradient(135deg, var(--p-surface), var(--p-surface-2) 70%);
+  border: 1px solid var(--p-line);
   border-radius: 1.25rem;
-  box-shadow: 0 24px 56px var(--p-shadow-xl);
-  color: var(--p-on-dark-2);
+  box-shadow: 0 18px 44px var(--p-shadow-md);
+  color: var(--p-text-2);
   margin: -0.55rem -0.4rem 2.25rem;
   overflow: hidden;
   padding: 2.75rem;
 }
 
 .moonin-docs-hero h1 {
-  color: var(--p-on-dark);
+  color: var(--p-text);
   font-size: clamp(2.3rem, 5vw, 3.5rem);
   line-height: 1.04;
   margin: 0.7rem 0 1rem;
@@ -746,7 +749,7 @@ header.header {
 }
 
 .moonin-docs-hero p {
-  color: var(--p-on-dark-2);
+  color: var(--p-text-2);
   font-size: 1.05rem;
   margin: 0;
   max-width: 43rem;
@@ -754,7 +757,7 @@ header.header {
 
 .moonin-eyebrow {
   align-items: center;
-  color: var(--p-bar-accent);
+  color: var(--p-text-3);
   display: flex;
   font-size: 0.72rem;
   font-weight: 800;
@@ -786,13 +789,13 @@ header.header {
 }
 
 .moonin-hero-actions a:first-child {
-  background: linear-gradient(90deg, var(--p-bar-accent), var(--p-accent));
-  color: var(--p-on-accent-strong);
+  background: var(--p-accent);
+  color: var(--p-on-accent);
 }
 
 .moonin-hero-actions a:last-child {
-  border: 1px solid var(--p-accent-line-soft);
-  color: var(--p-on-dark);
+  border: 1px solid var(--p-line);
+  color: var(--p-accent);
 }
 
 @media (max-width: 72rem) {
@@ -855,24 +858,13 @@ header.header {
   .dg { padding: 0.875rem 0.5rem; }
 }
 
-/* ═══════════ los dos controles del encabezado ═══════════
-   El conmutador de tema estaba oculto con display:none, herencia de cuando la
-   documentacion era solo clara y forceCodeTheme() forzaba el tema por JS. Al
-   destaparlo hay que darle forma, y la forma correcta es la del sitio: dos
-   pastillas de 38px identicas, con el filete y el radio del resto de la interfaz,
-   que toman el acento al pasar el cursor.
-
-   Valores tomados de front/src/App.css (.toggle y .lang) para que los dos soportes
-   se vean del mismo sistema y no parecidos.
-   ═══════════════════════════════════════════════════════ */
-.header starlight-theme-select,
-.header starlight-lang-select {
-  display: inline-flex;
-  align-items: center;
-}
-
-.header starlight-theme-select label,
-.header starlight-lang-select label {
+/* ═══════════ los dos conmutadores, como en el sitio ═══════════
+   Valores copiados de front/src/App.css (.toggle y .lang): 38px, superficie,
+   filete de 1px, radio de 8px y acento al pasar el cursor. El de idioma muestra el
+   codigo del idioma DESTINO, igual que el del sitio.
+   ═════════════════════════════════════════════════════════════ */
+.moonin-toggle,
+.moonin-lang {
   align-items: center;
   background: var(--p-surface-2);
   border: 1px solid var(--p-line);
@@ -881,68 +873,50 @@ header.header {
   cursor: pointer;
   display: inline-flex;
   height: 38px;
-  /* Starlight reserva el hueco del icono y del caret con el padding del <select>,
-     a partir de estas tres medidas. Hay que ajustarlas, no anular el padding: en
-     el primer intento puse padding:0 en el select y el icono quedó encima del
-     texto. */
-  --sl-label-icon-size: 0.95rem;
-  --sl-caret-size: 1.05rem;
-  --sl-inline-padding: 0.55rem;
-  padding: 0 0.55rem;
-  position: relative;
+  justify-content: center;
   transition: color 180ms ease, border-color 180ms ease, background-color 180ms ease;
 }
 
-.header starlight-theme-select label:hover,
-.header starlight-lang-select label:hover,
-.header starlight-theme-select label:focus-within,
-.header starlight-lang-select label:focus-within {
+.moonin-toggle {
+  width: 38px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.moonin-lang {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  min-width: 38px;
+  padding: 0 10px;
+  text-decoration: none;
+}
+
+.moonin-toggle:hover,
+.moonin-lang:hover,
+.moonin-toggle:focus-visible,
+.moonin-lang:focus-visible {
   border-color: var(--p-accent-line);
   color: var(--p-accent);
 }
 
-/* El icono con el mismo trazo que los del sitio: 17px y sin relleno. */
-.header starlight-theme-select .label-icon,
-.header starlight-lang-select .label-icon {
-  color: currentColor;
-  font-size: 17px;
+.moonin-toggle svg {
+  fill: none;
+  height: 17px;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.7;
+  width: 17px;
 }
 
-.header starlight-theme-select select,
-.header starlight-lang-select select {
-  background: transparent;
-  border: 0;
-  color: currentColor;
-  cursor: pointer;
-  font: inherit;
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  padding-block: 0;
-  /* Starlight fija el ancho con --sl-select-width en el atributo style del label.
-     Con el relleno del icono, ese ancho truncaba el texto a «Auto…» y «Españ…», así
-     que el control se ajusta a su contenido. */
-  width: auto;
-}
-
-.header starlight-theme-select .caret,
-.header starlight-lang-select .caret {
-  color: currentColor;
-  opacity: 0.7;
-}
-
-/* Las opciones nativas se pintan con el fondo del sistema si no se les dice otra
-   cosa, y en tema oscuro eso da texto oscuro sobre lista oscura. */
-.header starlight-theme-select option,
-.header starlight-lang-select option {
-  background-color: var(--p-bar);
-  color: var(--p-bar-text);
-}
+/* El sol se ve en oscuro y la luna en claro: el icono anuncia a donde se va,
+   igual que en el sitio. */
+.moonin-toggle .icono-sol { display: none; }
+.moonin-toggle .icono-luna { display: block; }
+:root[data-theme="dark"] .moonin-toggle .icono-sol { display: block; }
+:root[data-theme="dark"] .moonin-toggle .icono-luna { display: none; }
 
 @media (max-width: 50rem) {
-  .header starlight-theme-select label,
-  .header starlight-lang-select label {
-    height: 34px;
-    padding: 0 0.45rem;
-  }
+  .moonin-toggle { height: 34px; width: 34px; }
+  .moonin-lang { height: 34px; min-width: 34px; padding: 0 8px; }
 }

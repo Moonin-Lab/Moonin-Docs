@@ -8,18 +8,18 @@ Moonin esta disenado para que el bundle del cluster se mantenga acotado, auditab
 
 - El chart guarda `PROJECT_ID`, `CLUSTER_ID` y `CLUSTER_TOKEN` en un Secret compartido.
 - Todos los agentes del bundle reutilizan ese Secret.
-- Las credenciales autentican al cluster frente a Moonin. No son credenciales de sesion del browser.
+- Las credenciales autentican al cluster frente a Moonin. No son credenciales de sesión del browser.
 - Los cluster tokens pueden rotarse sin re-registrar el objeto cluster.
 
-## Transporte y limite de confianza
+## Transporte y límite de confianza
 
-- La comunicacion agente-plataforma usa HTTPS.
+- La comunicación agente-plataforma usa HTTPS.
 - Las aplicaciones de usuario proxyean sus requests server-side y no exponen credenciales internas del cluster al browser.
 - El cluster autentica como cluster. Los usuarios autentican por separado en las aplicaciones de Moonin.
 
-## Sanitizacion de datos de Discovery
+## Sanitización de datos de Discovery
 
-Cuando el Discovery Agent deriva contexto de revision desde releases de Helm o manifests:
+Cuando el Discovery Agent deriva contexto de revisión desde releases de Helm o manifests:
 
 - los valores sensibles se redaccionan antes de almacenar
 - las identidades de recursos permanecen visibles
@@ -31,21 +31,21 @@ Eso permite que Moonin siga mostrando nombres de Secrets, ConfigMaps, workloads 
 
 El Scaling Rules Agent protege el ownership del HPA de varias formas:
 
-- anota los HPAs administrados con ownership de template y accion
+- anota los HPAs administrados con ownership de template y acción
 - guarda el spec original del HPA antes de sobrescribir un HPA existente
-- guarda la cantidad original de replicas del Deployment antes de cambiar el baseline de ejecucion
-- rechaza tomar control de un HPA administrado por otro template o accion activa
+- guarda la cantidad original de replicas del Deployment antes de cambiar el baseline de ejecución
+- rechaza tomar control de un HPA administrado por otro template o acción activa
 
 Estos controles son los que hacen que el scaling programado sea reversible y no solo imperativo.
 
-## Limites de mutacion
+## Límites de mutación
 
 - El Discovery Agent no muta workloads.
 - El Scaling Rules Agent solo muta Deployments y HPAs involucrados en un scaling template activo.
-- Si el Scaling Rules Agent crea un HPA solo para la ventana de ejecucion, ese HPA se elimina durante el revert despues de restaurar el baseline original del Deployment.
+- Si el Scaling Rules Agent crea un HPA solo para la ventana de ejecución, ese HPA se elimina durante el revert después de restaurar el baseline original del Deployment.
 
 ## Lo que el bundle no hace
 
 - No expone credenciales del cluster a usuarios finales.
 - No almacena valores completos de secretos en la plataforma.
-- No actua como proxy generico de trafico ni como shell privilegiada del cluster.
+- No actua como proxy genérico de trafico ni como shell privilegiada del cluster.

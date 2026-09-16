@@ -2,7 +2,7 @@
 title: "Permisos requeridos"
 ---
 
-El chart publico separa los permisos por agente de forma intencional. Discovery y Node Agent son de solo lectura desde la perspectiva de la API de Kubernetes. Scaling necesita permisos de mutacion para HPAs y para algunos cambios de replicas en Deployments.
+El chart público separa los permisos por agente de forma intencional. Discovery y Node Agent son de solo lectura desde la perspectiva de la API de Kubernetes. Scaling necesita permisos de mutación para HPAs y para algunos cambios de replicas en Deployments.
 
 ## Alcance RBAC del Discovery Agent
 
@@ -36,7 +36,7 @@ El chart actual entrega al Scaling Rules Agent:
 
 ### Por que necesita mutar Deployments
 
-El Scaling Rules Agent puede subir o restaurar replicas del Deployment mientras aplica o revierte una ventana de scaling basada en HPA. Asi mantiene el workload alineado con el minimo solicitado o con el baseline guardado.
+El Scaling Rules Agent puede subir o restaurar replicas del Deployment mientras aplica o revierte una ventana de scaling basada en HPA. Así mantiene el workload alineado con el mínimo solicitado o con el baseline guardado.
 
 ## Alcance RBAC de Node Agent
 
@@ -47,18 +47,18 @@ Node Agent lee contexto de Kubernetes para asociar la telemetria runtime observa
 - `jobs`
 - `replicasets`
 
-Node Agent tambien requiere acceso privilegiado al host para su recoleccion basada en eBPF. Revisa [Node Agent](node-agent/) para los requisitos completos de acceso al host.
+Node Agent también requiere acceso privilegiado al host para su recolección basada en eBPF. Revisa [Node Agent](node-agent/) para los requisitos completos de acceso al host.
 
-## Limites de permisos
+## Límites de permisos
 
 - Discovery no necesita permisos para mutar workloads.
 - Node Agent no muta recursos de Kubernetes.
-- Scaling no necesita permisos amplios de inventario mas alla de los recursos involucrados en la ejecucion del HPA.
-- El chart es la fuente de verdad recomendada para RBAC porque los permisos exactos dependen del comportamiento soportado por la version actual de los agentes.
+- Scaling no necesita permisos amplios de inventario más allá de los recursos involucrados en la ejecución del HPA.
+- El chart es la fuente de verdad recomendada para RBAC porque los permisos exactos dependen del comportamiento soportado por la versión actual de los agentes.
 
-## Validacion practica despues de instalar
+## Validación práctica después de instalar
 
-Despues de instalar el chart, valida ambos sets de permisos confirmando que:
+Después de instalar el chart, valida ambos sets de permisos confirmando que:
 
 - namespaces y Deployments aparezcan en Moonin
 - snapshots de nodos y ejecuciones de CronJobs se poblen correctamente

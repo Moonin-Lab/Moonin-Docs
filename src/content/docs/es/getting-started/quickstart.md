@@ -4,7 +4,7 @@ title: "Primer recorrido"
 
 Este recorrido asume que el cluster ya esta registrado y el chart instalado.
 
-## Tour rapido
+## Tour rápido
 
 ### 1. Confirmar heartbeat
 
@@ -21,7 +21,7 @@ En **Overview** revisa:
 - clusters monitoreados
 - imagenes detectadas
 - CronJobs y ejecuciones recientes
-- errores y senales de falla
+- errores y señales de falla
 
 ### 3. Revisar nodos
 
@@ -37,7 +37,7 @@ En **Nodes** valida:
 Desde **Deployments**:
 
 - abre un servicio
-- mira la ultima revision
+- mira la última revisión
 - valida imagenes y tags
 - revisa metadata de Helm si existe
 
@@ -55,8 +55,8 @@ En **CronJobs** veras:
 
 Crear o actualizar:
 
-- **Alert Policies** para las senales de error
+- **Alert Policies** para las señales de error
 - **Event Notification Policies** para eventos de despliegue o de plataforma
 
-Los canales de notificacion se crean en la **Consola de administracion** y despues se
-eligen desde la aplicacion principal.
+Los canales de notificación se crean en la **Consola de administración** y después se
+eligen desde la aplicación principal.

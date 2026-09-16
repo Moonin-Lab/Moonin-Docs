@@ -2,19 +2,19 @@
 title: "Errores e incidentes"
 ---
 
-Moonin registra fallas runtime con contexto de workload y de rollout, de modo que la investigacion parte desde una revision y no desde un log aislado.
+Moonin registra fallas runtime con contexto de workload y de rollout, de modo que la investigación parte desde una revisión y no desde un log aislado.
 
-Esta pagina documenta el comportamiento detras de:
+Esta página documenta el comportamiento detras de:
 
 - `https://app.moonin.app/errors`
 - `https://app.moonin.app/errors/history`
 
-## Vista activa versus historica
+## Vista activa versus histórica
 
-- `Errors` es la cola operativa para issues actuales o recientes que aun requieren revision.
-- `Errors History` agrega un rango de fechas mas amplio para postmortem, tendencias y auditoria.
+- `Errors` es la cola operativa para issues actuales o recientes que aun requieren revisión.
+- `Errors History` agrega un rango de fechas más amplio para postmortem, tendencias y auditoria.
 
-Ambas paginas usan los mismos filtros jerarquicos:
+Ambas páginas usan los mismos filtros jerarquicos:
 
 - proyecto
 - cluster
@@ -26,17 +26,17 @@ Ambas paginas usan los mismos filtros jerarquicos:
 ```mermaid
 flowchart LR
     A[Cambia estado de pod o job]
-    B[Moonin captura la senal de falla]
-    C[El error se vincula a revision o ejecucion CronJob]
-    D[Se evaluan politicas]
-    E[El error aparece en la vista activa o historica]
+    B[Moonin captura la señal de falla]
+    C[El error se vincula a revisión o ejecución CronJob]
+    D[Se evaluan políticas]
+    E[El error aparece en la vista activa o histórica]
 
     A --> B --> C --> D --> E
 ```
 
 ## Familias de error capturadas actualmente
 
-Moonin captura multiples condiciones de falla para revisiones de deployment, incluyendo:
+Moonin captura múltiples condiciones de falla para revisiones de deployment, incluyendo:
 
 - `CrashLoopBackOff`
 - `ImagePullBackOff`
@@ -73,9 +73,9 @@ Las fallas de CronJob se rastrean por separado mediante historial de ejecuciones
 - failure message
 - extractos de logs cuando existen
 
-## Que contiene un registro de error
+## Qué contiene un registro de error
 
-Un error de revision puede incluir:
+Un error de revisión puede incluir:
 
 - tipo de error
 - mensaje legible
@@ -87,18 +87,18 @@ Un error de revision puede incluir:
 - momento de ocurrencia
 - estado mitigado
 - timestamp de mitigacion
-- revision y alcance del workload relacionado
+- revisión y alcance del workload relacionado
 
-Por eso Moonin puede evaluar politicas por umbral y no limitarse a mandar todas las fallas iguales.
+Por eso Moonin puede evaluar políticas por umbral y no limitarse a mandar todas las fallas iguales.
 
 ## Flujo de investigacion
 
 ```mermaid
 flowchart TD
     A[Abrir error]
-    B[Revisar revision y alcance]
+    B[Revisar revisión y alcance]
     C[Revisar ratio y timestamps]
-    D[Revisar detalle de la revision]
+    D[Revisar detalle de la revisión]
     E[Revisar o crear RCA]
     F[Reconocer o mitigar]
 
@@ -112,26 +112,26 @@ Estas acciones no son equivalentes:
 - `Acknowledge` se usa cuando una alerta ya fue disparada y un operador esta tomando ownership
 - `Mitigate` se usa cuando el equipo considera que el error ya fue tratado desde la perspectiva operativa de Moonin
 
-En la practica:
+En la práctica:
 
 - el acknowledge esta ligado a workflows de alerta
-- la mitigacion afecta como se trata el issue en la revision operativa y en el seguimiento de politicas
+- la mitigación afecta como se trata el issue en la revisión operativa y en el seguimiento de políticas
 
 ## Flujo de RCA
 
-La revision de errores en Moonin es consciente de la revision:
+La revisión de errores en Moonin es consciente de la revisión:
 
-- el detalle del error puede cargar la revision relacionada
-- la revision aporta contexto de rollout, imagenes, servicio y provider
-- las notas RCA y los asistentes de analisis pueden adjuntarse cuando el permiso lo permite
+- el detalle del error puede cargar la revisión relacionada
+- la revisión aporta contexto de rollout, imagenes, servicio y provider
+- las notas RCA y los asistentes de análisis pueden adjuntarse cuando el permiso lo permite
 
-El punto importante para el usuario es que el RCA parte desde hechos runtime capturados, no desde una pagina vacia.
+El punto importante para el usuario es que el RCA parte desde hechos runtime capturados, no desde una página vacia.
 
-## Como usan los errores las politicas
+## Como usan los errores las políticas
 
 Las alert policies evalúan errores runtime usando:
 
-- organizacion
+- organización
 - path y alcance
 - tipo de error
 - ratio afectado
@@ -140,12 +140,12 @@ Las alert policies evalúan errores runtime usando:
 - estado enabled
 - ventanas horarias UTC de los canales
 
-Consulta [Politicas y gobernanza](../policies/) y [Notificaciones](../notifications/) para el comportamiento de entrega.
+Consulta [Políticas y gobernanza](../policies/) y [Notificaciones](../notifications/) para el comportamiento de entrega.
 
 ## Flujo recomendado de incidentes
 
 1. Parte por `Errors` para la respuesta operativa activa.
-2. Abre la revision relacionada antes de asumir la causa raiz.
+2. Abre la revisión relacionada antes de asumir la causa raiz.
 3. Usa el ratio afectado para separar fallas localizadas de fallas amplias.
-4. Revisa si una politica debio haber notificado al equipo correcto.
+4. Revisa si una política debio haber notificado al equipo correcto.
 5. Usa `Errors History` para retrospectivas y patrones repetidos.

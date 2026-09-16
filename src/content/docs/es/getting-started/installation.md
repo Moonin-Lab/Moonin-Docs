@@ -1,13 +1,13 @@
 ---
-title: "Instalacion"
+title: "Instalación"
 ---
 
-La instalacion de Moonin tiene dos partes:
+La instalación de Moonin tiene dos partes:
 
-1. registrar el cluster en la **Consola de administracion**
+1. registrar el cluster en la **Consola de administración**
 2. instalar el chart **Moonin Agent** en ese cluster
 
-El chart publico actual despliega ambos componentes in-cluster:
+El chart público actual despliega ambos componentes in-cluster:
 
 - `Discovery-Agent`
 - `Scaling-Rules-Agent`
@@ -15,13 +15,13 @@ El chart publico actual despliega ambos componentes in-cluster:
 Recursos publicos:
 
 - [Repositorio del chart Moonin Agent](https://github.com/Moonin-Lab/Moonin-Agent-Chart)
-- [Repositorio Helm publico](https://Moonin-Lab.github.io/Moonin-Agent-Chart)
+- [Repositorio Helm público](https://Moonin-Lab.github.io/Moonin-Agent-Chart)
 
 ## 1. Registrar el cluster
 
 Desde `app-admin.moonin.app`:
 
-1. entra a la organizacion y proyecto objetivo
+1. entra a la organización y proyecto objetivo
 2. abre **Clusters**
 3. crea un nuevo registro de cluster
 4. copia:
@@ -68,7 +68,7 @@ Scaling-Rules-Agent:
     IGNORE_RESOURCES: ""
 ```
 
-## Que hacen los agentes despues de instalar
+## Que hacen los agentes después de instalar
 
 ### Discovery Agent
 
@@ -77,7 +77,7 @@ Scaling-Rules-Agent:
 - captura snapshots de nodos
 - detecta cloud metadata del cluster
 - sincroniza CronJobs y ejecuciones de Jobs
-- guarda en la plataforma hasta las ultimas 200 lineas de logs de jobs fallidos
+- guarda en la plataforma hasta las últimas 200 líneas de logs de jobs fallidos
 
 ### Scaling Rules Agent
 
@@ -85,9 +85,9 @@ Scaling-Rules-Agent:
 - evalua ventanas manuales y programadas
 - aplica cambios temporales de HPA
 - los revierte cuando termina la ventana
-- los revierte tambien si el template se deshabilita antes de expirar
+- los revierte también si el template se deshabilita antes de expirar
 
-## Verificar una instalacion sana
+## Verificar una instalación sana
 
 ```bash
 kubectl get pods -n moonin-agent
@@ -97,12 +97,12 @@ kubectl logs deploy/moonin-agent-discovery-agent -n moonin-agent
 Busca:
 
 - exito de leader election
-- sincronizacion de namespaces y Deployments
+- sincronización de namespaces y Deployments
 - inicio del loop de snapshots de nodos
 - heartbeat de metadata del cluster
-- sincronizacion de CronJobs
+- sincronización de CronJobs
 
-## Deteccion de metadata del provider
+## Detección de metadata del provider
 
 Moonin intenta detectar el contexto del provider usando metadata del cloud y labels de Kubernetes. Hoy soporta:
 
@@ -111,4 +111,4 @@ Moonin intenta detectar el contexto del provider usando metadata del cloud y lab
 - AKS
 - entornos on-prem o desconocidos
 
-Si los endpoints de metadata estan restringidos, el agente usa labels de nodos cuando es posible.
+Si los endpoints de metadata están restringidos, el agente usa labels de nodos cuando es posible.

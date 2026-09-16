@@ -2,20 +2,20 @@
 title: "Clusters y nodos"
 ---
 
-Las pantallas `Clusters` y `Nodes` explican desde donde esta recolectando datos Moonin, como se agrupan esos datos y si la base runtime de un proyecto esta sana.
+Las pantallas `Clusters` y `Nodes` explican desde dónde está recolectando datos Moonin, cómo se agrupan esos datos y si la base runtime de un proyecto esta sana.
 
-Esta pagina documenta el comportamiento detras de:
+Esta página documenta el comportamiento detras de:
 
 - `https://app.moonin.app/clusters`
 - `https://app.moonin.app/nodes`
 - `https://app-admin.moonin.app/admin/clusters`
 
-## Que significa un cluster en Moonin
+## Qué significa un cluster en Moonin
 
 El registro de cluster es el puente entre el modelo administrativo y el descubrimiento runtime:
 
 - un cluster pertenece a un solo proyecto
-- un proyecto pertenece a una organizacion
+- un proyecto pertenece a una organización
 - namespaces, deployments, services y CronJobs se descubren bajo ese cluster
 - los snapshots de nodos se almacenan como inventario operativo del cluster
 
@@ -33,31 +33,31 @@ flowchart LR
     A --> B --> C --> D --> E --> F
 ```
 
-## Que ocurre durante el registro
+## Qué ocurre durante el registro
 
-1. En la Consola Admin, el operador selecciona la organizacion y el proyecto destino.
-2. Se crea el registro del cluster con un nombre y una descripcion opcional.
+1. En la Consola Admin, el operador selecciona la organización y el proyecto destino.
+2. Se crea el registro del cluster con un nombre y una descripción opcional.
 3. Moonin genera las credenciales de bootstrap que usara el agente.
 4. El agente se instala dentro del cluster.
-5. La primera sincronizacion envia el inventario actual de namespaces, deployments y CronJobs.
-6. Luego los informers continuos mantienen al dia revisiones, fallas de pods, cambios de HPA, services y ejecuciones de CronJobs.
+5. La primera sincronización envia el inventario actual de namespaces, deployments y CronJobs.
+6. Luego los informers continuos mantienen al día revisiones, fallas de pods, cambios de HPA, services y ejecuciones de CronJobs.
 
-## Que muestra la pagina `Clusters`
+## Que muestra la página `Clusters`
 
-La pagina principal de clusters es la capa de inventario y navegacion para operaciones a nivel cluster. Esta pensada para responder:
+La página principal de clusters es la capa de inventario y navegación para operaciones a nivel cluster. Está pensada para responder:
 
 - que clusters existen para los proyectos seleccionados
-- que provider y metadata cloud estan disponibles
-- cuantos namespaces y deployments estan siendo rastreados
+- qué provider y metadata cloud están disponibles
+- cuántos namespaces y deployments están siendo rastreados
 - si el cluster tiene contexto suficiente para construir links a la consola cloud
 
-La informacion tipica del cluster incluye:
+La información típica del cluster incluye:
 
-- nombre y descripcion
+- nombre y descripción
 - proyecto al que pertenece
 - provider cloud
-- metadata de proyecto, cuenta o suscripcion cuando existe
-- region y zona cuando existe
+- metadata de proyecto, cuenta o suscripción cuando existe
+- región y zona cuando existe
 - cantidad de namespaces
 - cantidad de deployments
 - contexto de descubrimiento Kubernetes
@@ -72,61 +72,61 @@ Moonin documenta el comportamiento resultante, no las heuristicas privadas de ca
 - si la metadata es incompleta, Moonin sigue rastreando el cluster localmente pero algunos links no aparecen
 - la metadata cloud es contexto operativo y no reemplaza el registro administrativo del cluster
 
-## Que muestra la pagina `Nodes`
+## Que muestra la página `Nodes`
 
-La pagina `Nodes` es una vista snapshot por cluster que ayuda a revisar capacidad y readiness sin abrir directamente el control plane de Kubernetes.
+La página `Nodes` es una vista snapshot por cluster que ayuda a revisar capacidad y readiness sin abrir directamente el control plane de Kubernetes.
 
-Los datos tipicos por nodo incluyen:
+Los datos típicos por nodo incluyen:
 
 - readiness del nodo
 - pertenencia a cluster y proyecto
 - labels de zona o topologia cuando existen
 - capacidad y allocatable para CPU, memoria y pods
 - tipo de instancia e identificadores de runtime cuando existen
-- version de Kubernetes y kubelet cuando existen
+- versión de Kubernetes y kubelet cuando existen
 - timestamp del bucket de captura
 
 ## Como se usa la data de nodos
 
-La pantalla de nodos es especialmente util para:
+La pantalla de nodos es especialmente útil para:
 
 - validar que un cluster nuevo ya es visible para Moonin
-- revisar si un incidente runtime esta concentrado en un cluster o node pool
-- correlacionar problemas de deployment con presion de capacidad o readiness
-- confirmar a que proyecto y cluster pertenece un nodo antes de escalar
+- revisar si un incidente runtime está concentrado en un cluster o node pool
+- correlacionar problemas de deployment con presión de capacidad o readiness
+- confirmar a qué proyecto y cluster pertenece un nodo antes de escalar
 
-## Permisos y limites administrativos
+## Permisos y límites administrativos
 
 Hay dos planos de control diferentes:
 
-- la app principal permite visibilidad de clusters y revision de nodos segun acceso organizacional y permisos de funcionalidad
-- la Consola Admin controla alta de clusters, rotacion de token y eliminacion
+- la app principal permite visibilidad de clusters y revisión de nodos según acceso organizacional y permisos de funcionalidad
+- la Consola Admin controla alta de clusters, rotación de token y eliminación
 
 En terminos operativos:
 
 - owners y organization admins pueden registrar clusters y rotar tokens
-- los limites entre organizacion, proyecto y cluster se controlan desde Admin
-- la app principal se enfoca en observacion, contexto de revision y correlacion de incidentes
+- los límites entre organización, proyecto y cluster se controlan desde Admin
+- la app principal se enfoca en observación, contexto de revisión y correlación de incidentes
 
-## Rotacion de token y expectativas de ciclo de vida
+## Rotación de token y expectativas de ciclo de vida
 
-Los tokens de cluster son credenciales operativas de conexion para el agente.
+Los tokens de cluster son credenciales operativas de conexión para el agente.
 
 - rotar un token invalida el token anterior
 - todos los agentes que usaban el token anterior deben actualizarse
-- eliminar el cluster rompe la asociacion para los agentes que usaban ese token
+- eliminar el cluster rompe la asociación para los agentes que usaban ese token
 
-Usa rotacion cuando:
+Usa rotación cuando:
 
-- sospechas exposicion de la credencial
-- tienes una politica regular de rotacion de seguridad
+- sospechas exposición de la credencial
+- tienes una política regular de rotación de seguridad
 - cambia la responsabilidad operacional del cluster
 
-## Flujo recomendado de operacion
+## Flujo recomendado de operación
 
 1. Crea primero el proyecto.
 2. Registra el cluster desde Admin.
 3. Instala el agente con las credenciales generadas.
 4. Confirma visibilidad en `Clusters`.
 5. Confirma inventario de nodos en `Nodes`.
-6. Recién despues avanza a deployments, services, CronJobs y politicas.
+6. Recién después avanza a deployments, services, CronJobs y políticas.
