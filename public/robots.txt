@@ -1,0 +1,7 @@
+# Documentacion de Moonin. Todo es publico y se quiere indexado.
+User-agent: *
+Allow: /
+
+# El sitemap ya lo genera Starlight con sus 60 URLs y sus alternates
+# hreflang; sin esta linea nada lo anunciaba, porque /robots.txt daba 404.
+Sitemap: https://docs.moonin.app/sitemap-index.xml

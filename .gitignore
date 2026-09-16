@@ -13,3 +13,13 @@ site/
 
 # macOS
 .DS_Store
+
+# Artefactos locales del renderizado de diagramas.
+# puppeteer.json lleva la ruta absoluta al navegador de ESTA máquina, así que no
+# sirve para nadie más; diagramas.json lo regenera el extractor.
+scripts/render/puppeteer.json
+scripts/diagramas.json
+
+# Cachés de Python
+__pycache__/
+*.pyc

@@ -1,44 +1,273 @@
+/* Antes este selector incluía [data-theme="dark"], así que los tres temas
+   compartían la paleta clara y el conmutador de Starlight no cambiaba nada
+   aunque su botón estuviera en la página. */
 :root,
-:root[data-theme="light"],
-:root[data-theme="dark"] {
-  --sl-color-accent-low: #e0f2fe;
-  --sl-color-accent: #0284c7;
-  --sl-color-accent-high: #0c4a6e;
+:root[data-theme="light"] {
+  /* El acento venía en #0284c7, que sobre el fondo #f8fafc da 3,91:1 y no pasa
+     WCAG AA. Copiar el del sitio (#0891b2) sería peor todavía, 3,52:1. #0369a1
+     da 5,67:1 y es el mismo valor que ya resolvimos en la presentación, así que
+     los tres soportes quedan con el mismo azul legible. */
+  --sl-color-accent-low: #e9f6fa;
+  --sl-color-accent: #0369a1;
+  --sl-color-accent-high: #0b3a56;
   --sl-color-white: #0f172a;
   --sl-color-gray-1: #334155;
   --sl-color-gray-2: #64748b;
-  --sl-color-gray-3: #cbd5e1;
-  --sl-color-gray-4: #e2e8f0;
-  --sl-color-gray-5: #f1f5f9;
-  --sl-color-gray-6: #f8fafc;
+  /* Neutros: el sitio usa papel con tinte cian y no el slate por defecto, que es
+     la tripleta de Tailwind que aparece en la mitad de la web. Estos valores son
+     los mismos tokens del sitio, así que las dos superficies se ven de la misma
+     familia en vez de parecidas. */
+  /* gray-2 y gray-3 son TEXTO atenuado en Starlight, no filetes. Tenían valores
+     de filete (#b9cbd1 daba 1,59:1 sobre blanco en el índice lateral). gray-4 en
+     adelante sí son superficies. */
+  --sl-color-gray-3: #556577;
+  --sl-color-gray-4: #b9cbd1;
+  --sl-color-gray-5: #dbe7eb;
+  --sl-color-gray-6: #f3fafb;
   --sl-color-black: #ffffff;
-  --sl-color-bg: #f8fafc;
+  --sl-color-bg: #f3fafb;
   --sl-color-bg-nav: #ffffff;
-  --sl-color-hairline: #e2e8f0;
+  --sl-color-hairline: #dbe7eb;
   --sl-content-width: 52rem;
   --sl-sidebar-width: 18rem;
   --sl-text-5xl: 3rem;
+
+  /* Geist, la misma del sitio. La documentación no declaraba ninguna fuente para
+     el cuerpo en sus 635 líneas, así que caía al stack del sistema: era la
+     diferencia más visible entre los dos soportes. */
+  --sl-font: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --sl-font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* Tokens de los diagramas. Los SVG pre-renderizados los usan con su valor
+     literal como respaldo, de modo que siguen el tema aquí y se ven correctos si
+     alguien abre el archivo suelto. */
+  --dg-fill: #ffffff;
+  --dg-surface: #f3fafb;
+  --dg-surface-2: #eef7f9;
+  --dg-hairline: #dbe7eb;
+  --dg-border: #0369a1;
+  --dg-line: #556577;
+  --dg-text: #0f172a;
+  --dg-muted: #475569;
+  --dg-accent-dk: #0b3a56;
+  --dg-accent-hi: #0a7ab8;
+  --dg-rail: #cfe0e6;
+  --dg-rail-mid: #8fc3d8;
+  --dg-wash: #e9f6fa;
+
   color-scheme: light;
+}
+
+
+/* ═══════════════ paletas ═══════════════
+   Los valores son los del sitio (front/src/App.css) para que los dos
+   soportes se vean del mismo sistema. Starlight ya persiste la elección y
+   cae a prefers-color-scheme cuando el usuario no ha elegido, así que la
+   detección automática del sistema sale de su propio conmutador.
+   ══════════════════════════════════════ */
+
+/* ── claro ── */
+:root, :root[data-theme="light"] {
+  /* Sobre fondo oscuro (el hero lo es en los dos temas) y sobre el acento. */
+  --p-on-dark-2: #cfe0e6;
+  --p-on-accent: #ffffff;
+  --p-on-accent-strong: #06222c;
+  /* El bloque de código es oscuro en los DOS temas, igual que en el sitio,
+     así que estos no cambian con el tema. */
+  --p-code-bg: #0f172a;
+  --p-code-text: #e2e8f0;
+  --p-code-surface: #22304a;
+  --p-code-muted: #9fb3cc;
+  --p-code-line: rgba(148, 163, 184, 0.28);
+  --p-on-dark: #ffffff;
+  --p-on-dark: #ffffff;
+  --p-code-text: #e2e8f0;
+  --p-code-bg: #0f172a;
+  --p-surface: #ffffff;
+  --p-surface-2: #f3fafb;
+  --p-line: #dbe7eb;
+  --p-line-strong: #b9cbd1;
+  --p-text: #0f172a;
+  --p-text-2: #334155;
+  --p-text-3: #556577;
+  --p-accent: #0369a1;
+  --p-accent-hi: #0a7ab8;
+  --p-accent-line: #a8d3e4;
+  --p-accent-wash: #e9f6fa;
+  --p-accent-deep: #0b3a56;
+  --p-bar: #ffffff;
+  --p-bar-2: #f3fafb;
+  --p-bar-3: #e9f2f4;
+  --p-bar-accent: #0369a1;
+  --p-bar-text: #0f172a;
+  --p-bar-text-2: #556577;
+  --p-bar-line: #dbe7eb;
+  --p-ok: #047857;
+  --p-ok-wash: #ecfdf5;
+  --p-warn: #b45309;
+  --p-warn-wash: #fffbeb;
+  --p-bad: #c81e1e;
+  --p-bad-wash: #fef2f2;
+  --p-shadow-sm: rgba(11, 58, 86, 0.05);
+  --p-shadow-md: rgba(11, 58, 86, 0.08);
+  --p-shadow-lg: rgba(11, 58, 86, 0.12);
+  --p-shadow-xl: rgba(11, 58, 86, 0.18);
+  --p-bar-shadow: rgba(11, 58, 86, 0.07);
+  --p-halo: rgba(3, 105, 161, 0.09);
+  --p-bar-line-soft: rgba(3, 105, 161, 0.14);
+  --p-bar-accent-strong: rgba(3, 105, 161, 0.55);
+  --p-bar-accent-soft: rgba(3, 105, 161, 0.24);
+  --p-bar-accent-faint: rgba(3, 105, 161, 0.14);
+  --p-bar-accent-wash: rgba(3, 105, 161, 0.08);
+  --p-bar-accent-wash-2: rgba(3, 105, 161, 0.12);
+  --p-accent-ring: rgba(3, 105, 161, 0.22);
+  --p-accent-ring-strong: rgba(3, 105, 161, 0.35);
+  --p-accent-line-soft: rgba(168, 211, 228, 0.4);
+  --p-surface-veil: rgba(255, 255, 255, 0.94);
+  --p-veil: rgba(11, 58, 86, 0.05);
+  --dg-fill: #ffffff;
+  --dg-surface: #f3fafb;
+  --dg-surface-2: #eef7f9;
+  --dg-hairline: #dbe7eb;
+  --dg-border: #0369a1;
+  --dg-line: #556577;
+  --dg-text: #0f172a;
+  --dg-muted: #475569;
+  --dg-faint: #64748b;
+  --dg-wash: #e9f6fa;
+  --dg-accent-hi: #0a7ab8;
+  --dg-accent-dk: #0b3a56;
+  --dg-rail: #cfe0e6;
+  --dg-rail-mid: #8fc3d8;
+}
+
+/* ── oscuro ── */
+:root[data-theme="dark"] {
+  /* Sobre fondo oscuro y sobre el acento. En oscuro el acento es cian
+     brillante, así que lo que va encima tiene que ser oscuro. */
+  --p-on-dark-2: #a9b9d1;
+  --p-on-accent: #06222c;
+  --p-on-accent-strong: #06222c;
+  /* El bloque de código es oscuro en los DOS temas, igual que en el sitio,
+     así que estos no cambian con el tema. */
+  --p-code-bg: #13203a;
+  --p-code-text: #e2e8f0;
+  --p-code-surface: #22304a;
+  --p-code-muted: #9fb3cc;
+  --p-code-line: rgba(148, 163, 184, 0.28);
+  --p-on-dark: #ffffff;
+  --p-on-dark: #e9eefb;
+  --p-code-text: #dce6f7;
+  --p-code-bg: #13203a;
+  --p-surface: #0e1a2e;
+  --p-surface-2: #13203a;
+  --p-line: rgba(148, 163, 184, 0.16);
+  --p-line-strong: rgba(148, 163, 184, 0.3);
+  --p-text: #e9eefb;
+  --p-text-2: #a9b9d1;
+  --p-text-3: #8798b2;
+  --p-accent: #22d3ee;
+  --p-accent-hi: #67e8f9;
+  --p-accent-line: rgba(34, 211, 238, 0.24);
+  --p-accent-wash: rgba(34, 211, 238, 0.10);
+  --p-accent-deep: #a5f3fc;
+  --p-bar: #0a1424;
+  --p-bar-2: #0e1a2e;
+  --p-bar-3: #13203a;
+  --p-bar-accent: #22d3ee;
+  --p-bar-text: #e9eefb;
+  --p-bar-text-2: #a9b9d1;
+  --p-bar-line: rgba(148, 163, 184, 0.16);
+  --p-ok: #34d399;
+  --p-ok-wash: rgba(52, 211, 153, 0.12);
+  --p-warn: #fbbf24;
+  --p-warn-wash: rgba(251, 191, 36, 0.12);
+  --p-bad: #fb7185;
+  --p-bad-wash: rgba(251, 113, 133, 0.14);
+  --p-shadow-sm: rgba(0, 0, 0, 0.5);
+  --p-shadow-md: rgba(0, 0, 0, 0.5);
+  --p-shadow-lg: rgba(0, 0, 0, 0.6);
+  --p-shadow-xl: rgba(0, 0, 0, 0.7);
+  --p-bar-shadow: rgba(0, 0, 0, 0.5);
+  --p-halo: rgba(34, 211, 238, 0.10);
+  --p-bar-line-soft: rgba(34, 211, 238, 0.16);
+  --p-bar-accent-strong: rgba(103, 232, 249, 0.55);
+  --p-bar-accent-soft: rgba(103, 232, 249, 0.28);
+  --p-bar-accent-faint: rgba(103, 232, 249, 0.18);
+  --p-bar-accent-wash: rgba(34, 211, 238, 0.10);
+  --p-bar-accent-wash-2: rgba(34, 211, 238, 0.14);
+  --p-accent-ring: rgba(34, 211, 238, 0.24);
+  --p-accent-ring-strong: rgba(34, 211, 238, 0.4);
+  --p-accent-line-soft: rgba(34, 211, 238, 0.2);
+  --p-surface-veil: rgba(14, 26, 46, 0.94);
+  --p-veil: rgba(255, 255, 255, 0.06);
+  --dg-fill: #13203a;
+  --dg-surface: #0e1a2e;
+  --dg-surface-2: #182a49;
+  --dg-hairline: rgba(148, 163, 184, 0.22);
+  --dg-border: #22d3ee;
+  --dg-line: #8798b2;
+  --dg-text: #e9eefb;
+  --dg-muted: #a9b9d1;
+  --dg-faint: #8798b2;
+  --dg-wash: rgba(34, 211, 238, 0.12);
+  --dg-accent-hi: #67e8f9;
+  --dg-accent-dk: #0a1424;
+  --dg-rail: rgba(148, 163, 184, 0.28);
+  --dg-rail-mid: rgba(34, 211, 238, 0.5);
+}
+
+/* ── los tokens de Starlight en oscuro ──
+   Starlight nombra --sl-color-white al texto más brillante y --sl-color-black al
+   fondo, así que en oscuro se invierten respecto del bloque claro. */
+:root[data-theme="dark"] {
+  --sl-color-accent-low: rgba(34, 211, 238, 0.14);
+  --sl-color-accent: #22d3ee;
+  --sl-color-accent-high: #a5f3fc;
+  --sl-color-white: #e9eefb;
+  --sl-color-gray-1: #d3dcef;
+  --sl-color-gray-2: #a9b9d1;
+  --sl-color-gray-3: #8798b2;
+  --sl-color-gray-4: #4a5a75;
+  --sl-color-gray-5: #22304a;
+  --sl-color-gray-6: #13203a;
+  --sl-color-gray-7: #0e1a2e;
+  --sl-color-black: #060d1a;
+  --sl-color-bg: #060d1a;
+  --sl-color-bg-nav: #0a1424;
+  --sl-color-bg-sidebar: #0a1424;
+  --sl-color-hairline: rgba(148, 163, 184, 0.16);
+  --sl-color-hairline-light: rgba(148, 163, 184, 0.1);
+  --sl-color-hairline-shade: rgba(148, 163, 184, 0.16);
+  --sl-color-text: #a9b9d1;
+  --sl-color-text-accent: #22d3ee;
+  --sl-color-text-invert: #060d1a;
+  --sl-color-bg-inline-code: #13203a;
+  --sl-color-bg-accent: #22d3ee;
+  --sl-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --sl-shadow-md: 0 10px 34px rgba(0, 0, 0, 0.5);
+  --sl-shadow-lg: 0 30px 70px rgba(0, 0, 0, 0.6);
+  color-scheme: dark;
 }
 
 html {
   background:
-    radial-gradient(circle at 82% 0%, rgba(56, 189, 248, 0.12), transparent 30rem),
-    #f8fafc;
+    radial-gradient(circle at 82% 0%, var(--p-halo), transparent 30rem),
+    var(--sl-color-bg);
 }
 
 body {
-  color: #334155;
+  color: var(--sl-color-text);
 }
 
 header.header {
-  background: #0b1118;
-  border-bottom: 1px solid rgba(103, 232, 249, 0.16);
-  box-shadow: 0 12px 30px rgba(2, 8, 23, 0.24);
+  background: var(--p-bar);
+  border-bottom: 1px solid var(--p-bar-line-soft);
+  box-shadow: 0 12px 30px var(--p-bar-shadow);
 }
 
 .site-title {
-  color: #eaf0f6;
+  color: var(--p-bar-text);
   font-weight: 700;
 }
 
@@ -49,12 +278,12 @@ header.header {
 
 .header a,
 .header button {
-  color: #cbd5e1;
+  color: var(--p-bar-text-2);
 }
 
 .header a:hover,
 .header button:hover {
-  color: #67e8f9;
+  color: var(--p-bar-accent);
 }
 
 starlight-theme-select {
@@ -66,10 +295,10 @@ starlight-theme-select {
 }
 
 .header starlight-lang-select label {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(186, 230, 253, 0.28);
+  background: var(--p-veil);
+  border: 1px solid var(--p-accent-line-soft);
   border-radius: 0.65rem;
-  color: #e0f2fe;
+  color: var(--p-bar-text);
   cursor: pointer;
   padding: 0.32rem 0.62rem 0.32rem 0.85rem;
   transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
@@ -77,47 +306,47 @@ starlight-theme-select {
 
 .header starlight-lang-select label:hover,
 .header starlight-lang-select:focus-within {
-  background: rgba(34, 211, 238, 0.1);
-  border-color: rgba(103, 232, 249, 0.55);
-  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.14);
+  background: var(--p-bar-accent-wash);
+  border-color: var(--p-bar-accent-strong);
+  box-shadow: 0 0 0 3px var(--p-bar-accent-wash-2);
 }
 
 .header starlight-lang-select label .label-icon {
-  color: #67e8f9;
+  color: var(--p-bar-accent);
   inset-inline-start: 0.28rem;
 }
 
 .header starlight-lang-select select {
-  color: #f0f4f8;
+  color: var(--p-bar-text);
   font-size: 0.82rem;
   font-weight: 600;
   padding-block: 0.25rem;
 }
 
 .header starlight-lang-select label .caret {
-  color: #9fb3cc;
+  color: var(--p-bar-text-2);
 }
 
 .header starlight-lang-select option {
-  background-color: #0f172a;
-  color: #dbe6f3;
+  background-color: var(--p-bar);
+  color: var(--p-bar-text);
   font-size: 0.82rem;
   font-weight: 500;
   padding: 0.35rem 0.6rem;
 }
 
 .header starlight-lang-select option:checked {
-  background: #0ea5e9;
-  color: #ffffff;
+  background: var(--p-accent);
+  color: var(--p-on-accent);
 }
 
 .sidebar {
-  background: #0b1118;
-  border-right: 1px solid #24303d;
+  background: var(--p-bar);
+  border-right: 1px solid var(--p-bar-3);
 }
 
 .sidebar-pane {
-  background: #0b1118;
+  background: var(--p-bar);
 }
 
 .sidebar-content {
@@ -132,7 +361,7 @@ starlight-theme-select {
   align-items: center;
   border: 1px solid transparent;
   border-radius: 0.75rem;
-  color: #e2e8f0 !important;
+  color: var(--sl-color-gray-1) !important;
   display: flex;
   font-size: 0.8rem;
   font-weight: 700;
@@ -146,23 +375,23 @@ starlight-theme-select {
 .sidebar details > summary .group-label,
 .sidebar details > summary .large,
 .sidebar > sl-sidebar-state-persist > .top-level > li > a.large {
-  color: #e2e8f0 !important;
+  color: var(--sl-color-gray-1) !important;
 }
 
 .sidebar .top-level > li > details > summary:hover {
-  background: #132131;
-  border-color: #243b52;
+  background: var(--p-bar-2);
+  border-color: var(--p-bar-3);
 }
 
 .sidebar .top-level > li > details > ul {
-  border-left: 1px solid #24303d;
+  border-left: 1px solid var(--p-bar-3);
   margin: 0.35rem 0 0.45rem 0.92rem;
   padding-left: 0.45rem;
 }
 
 .sidebar a {
   border-radius: 0.7rem;
-  color: #a7b4c2 !important;
+  color: var(--sl-color-gray-2) !important;
   font-size: 0.78rem;
   line-height: 1.35;
   margin: 0.08rem 0.15rem;
@@ -175,15 +404,15 @@ starlight-theme-select {
 }
 
 .sidebar a:hover {
-  background: #132131;
-  color: #eaf0f6;
+  background: var(--p-bar-2);
+  color: var(--sl-color-white);
   transform: translateX(2px);
 }
 
 .sidebar a[aria-current="page"] {
-  background: rgba(14, 165, 233, 0.22);
+  background: var(--p-accent-ring);
   box-shadow: none;
-  color: #ffffff;
+  color: var(--sl-color-text-invert);
   font-weight: 700;
 }
 
@@ -192,16 +421,16 @@ starlight-theme-select {
 }
 
 .content-panel {
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid #e2e8f0;
+  background: var(--p-surface-veil);
+  border: 1px solid var(--p-line);
   border-radius: 1.4rem;
-  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 20px 60px var(--p-shadow-md);
   margin: 1.5rem 1.75rem 2rem;
   padding: 2.25rem 2.5rem;
 }
 
 .sl-markdown-content {
-  color: #334155;
+  color: var(--p-text-2);
   font-size: 1.025rem;
   line-height: 1.75;
 }
@@ -218,7 +447,10 @@ starlight-theme-select {
 .sl-markdown-content h2,
 .sl-markdown-content h3,
 .sl-markdown-content h4 {
-  color: #0b1118;
+  /* Texto, no el fondo de la barra: el mismo negro servía para las dos
+     cosas, y al tokenizar por valor los títulos quedaron blancos sobre
+     blanco en tema claro. */
+  color: var(--p-text);
   font-weight: 800;
   letter-spacing: -0.028em;
 }
@@ -230,7 +462,7 @@ starlight-theme-select {
 }
 
 .sl-markdown-content h1::after {
-  background: linear-gradient(90deg, #22d3ee, #0ea5e9 40%, #38bdf8);
+  background: linear-gradient(90deg, var(--p-bar-accent), var(--p-accent) 40%, var(--p-accent-hi));
   border-radius: 99px;
   content: "";
   display: block;
@@ -240,14 +472,14 @@ starlight-theme-select {
 }
 
 .sl-markdown-content h2 {
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--p-line);
   margin-top: 2.75rem;
   padding-top: 1.7rem;
   position: relative;
 }
 
 .sl-markdown-content h2::before {
-  background: #0ea5e9;
+  background: var(--p-accent);
   border-radius: 99px;
   content: "";
   display: block;
@@ -263,27 +495,27 @@ starlight-theme-select {
 }
 
 .sl-markdown-content h4 {
-  color: #0c4a6e;
+  color: var(--p-accent-deep);
   font-size: 1.05rem;
   letter-spacing: -0.01em;
 }
 
 .sl-markdown-content a {
-  color: #0284c7;
+  color: var(--p-accent);
   font-weight: 600;
-  text-decoration-color: rgba(2, 132, 199, 0.35);
+  text-decoration-color: var(--p-accent-ring-strong);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   transition: color 140ms ease, text-decoration-color 140ms ease;
 }
 
 .sl-markdown-content a:hover {
-  color: #0369a1;
-  text-decoration-color: #0369a1;
+  color: var(--p-accent);
+  text-decoration-color: var(--p-accent);
 }
 
 .sl-markdown-content strong {
-  color: #1e293b;
+  color: var(--p-text-2);
   font-weight: 700;
 }
 
@@ -299,10 +531,10 @@ starlight-theme-select {
       h5,
       h6
     ) {
-  background: linear-gradient(180deg, #eff6ff, #e0f2fe);
-  border: 1px solid #dbeafe;
+  background: linear-gradient(180deg, var(--p-accent-wash), var(--p-accent-wash));
+  border: 1px solid var(--p-accent-wash);
   border-radius: 0.4rem;
-  color: #075985;
+  color: var(--p-accent-deep);
   font-size: 0.86em;
   padding: 0.15rem 0.4rem;
 }
@@ -312,7 +544,7 @@ starlight-theme-select {
 }
 
 .sl-markdown-content ul:not(.isMobile) li::marker {
-  color: #0ea5e9;
+  color: var(--p-accent);
 }
 
 .sl-markdown-content ol:not(.isMobile) {
@@ -320,22 +552,22 @@ starlight-theme-select {
 }
 
 .sl-markdown-content li::marker {
-  color: #0ea5e9;
+  color: var(--p-accent);
   font-weight: 700;
 }
 
 .sl-markdown-content hr {
   border: 0;
-  border-top: 1px solid #e2e8f0;
+  border-top: 1px solid var(--p-line);
   margin: 2rem 0;
 }
 
 .sl-markdown-content blockquote {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-left: 4px solid #7dd3fc;
+  background: var(--p-surface-2);
+  border: 1px solid var(--p-line);
+  border-left: 4px solid var(--p-accent-line);
   border-radius: 0.75rem;
-  color: #475569;
+  color: var(--p-text-2);
   margin: 1.5rem 0;
   padding: 1rem 1.25rem;
 }
@@ -347,22 +579,22 @@ starlight-theme-select {
 .sl-markdown-content table:not([class]) {
   border-collapse: separate;
   border-spacing: 0;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--p-line);
   border-radius: 0.9rem;
-  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 10px 28px var(--p-shadow-sm);
   overflow: hidden;
   table-layout: fixed;
   width: 100% !important;
 }
 
 .sl-markdown-content table:not([class]) thead {
-  background: linear-gradient(180deg, #f0f9ff, #e7f5ff);
+  background: linear-gradient(180deg, var(--p-surface-2), var(--p-surface-2));
 }
 
 .sl-markdown-content thead th {
   background: transparent;
-  border-bottom: 1px solid #e2e8f0;
-  color: #0c4a6e;
+  border-bottom: 1px solid var(--p-line);
+  color: var(--p-accent-deep);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.05em;
@@ -379,11 +611,11 @@ starlight-theme-select {
 }
 
 .sl-markdown-content tbody tr:hover {
-  background: #f8fdff;
+  background: var(--p-surface-2);
 }
 
 .sl-markdown-content tbody tr + tr td {
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid var(--p-surface-2);
 }
 
 .sl-markdown-content pre code {
@@ -391,21 +623,21 @@ starlight-theme-select {
 }
 
 .sl-markdown-content .expressive-code {
-  border: 1px solid #22375a;
+  border: 1px solid var(--p-bar-3);
   border-radius: 0.9rem;
-  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 14px 36px var(--p-shadow-lg);
   margin: 1.5rem 0;
   overflow: hidden;
 }
 
 .sl-markdown-content .expressive-code pre {
-  background: #0e1d33 !important;
+  background: var(--p-code-bg) !important;
   margin: 0;
   overscroll-behavior-x: contain;
 }
 
 .sl-markdown-content .expressive-code .code {
-  color: #e5e7eb !important;
+  color: var(--p-code-text) !important;
 }
 
 .sl-markdown-content .expressive-code figcaption.header,
@@ -415,15 +647,15 @@ starlight-theme-select {
 
 .sl-markdown-content .expressive-code .moonin-codebar {
   align-items: center;
-  background: #12213a;
-  border-bottom: 1px solid #22375a;
+  background: var(--p-code-bg);
+  border-bottom: 1px solid var(--p-code-line);
   display: flex;
   justify-content: space-between;
   padding: 0.55rem 0.9rem;
 }
 
 .sl-markdown-content .expressive-code .moonin-codebar-title {
-  color: #9fb3cc;
+  color: var(--p-code-muted);
   font-family: var(--sl-font-mono, ui-monospace, monospace);
   font-size: 0.72rem;
   font-weight: 600;
@@ -431,10 +663,10 @@ starlight-theme-select {
 }
 
 .sl-markdown-content .expressive-code .moonin-codebar-copy {
-  background: #1b2a44;
-  border: 1px solid #3b4f6e;
+  background: var(--p-code-surface);
+  border: 1px solid var(--p-code-line);
   border-radius: 0.5rem;
-  color: #e6eefb;
+  color: var(--p-code-text);
   cursor: pointer;
   font-size: 0.75rem;
   font-weight: 600;
@@ -444,15 +676,15 @@ starlight-theme-select {
 }
 
 .sl-markdown-content .expressive-code .moonin-codebar-copy:hover {
-  background: #1f3251;
-  border-color: #4d6890;
-  color: #ffffff;
+  background: var(--p-code-surface);
+  border-color: var(--p-code-line);
+  color: var(--p-on-dark);
 }
 
 .sl-markdown-content .starlight-aside {
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--p-line);
   border-radius: 0.9rem;
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 8px 24px var(--p-shadow-sm);
   margin: 1.5rem 0;
   overflow: hidden;
 }
@@ -465,31 +697,31 @@ starlight-theme-select {
 }
 
 .sl-markdown-content .starlight-aside--note {
-  background: #f8fdff;
-  border-left: 4px solid #38bdf8;
+  background: var(--p-surface-2);
+  border-left: 4px solid var(--p-accent-hi);
 }
 
 .sl-markdown-content .starlight-aside--tip {
-  background: #f0fdf4;
-  border-left: 4px solid #34d399;
+  background: var(--p-ok-wash);
+  border-left: 4px solid var(--p-ok);
 }
 
 .sl-markdown-content .starlight-aside--caution,
 .sl-markdown-content .starlight-aside--warning {
-  background: #fffbeb;
-  border-left: 4px solid #fbbf24;
+  background: var(--p-warn-wash);
+  border-left: 4px solid var(--p-warn);
 }
 
 .sl-markdown-content .starlight-aside--danger {
-  background: #fff1f2;
-  border-left: 4px solid #fb7185;
+  background: var(--p-bad-wash);
+  border-left: 4px solid var(--p-bad);
 }
 
 .moonin-mermaid {
-  background: linear-gradient(180deg, #ffffff 0%, #f8fcff 100%);
-  border: 1px solid #e0f2fe;
+  background: linear-gradient(180deg, var(--p-surface) 0%, var(--p-surface-2) 100%);
+  border: 1px solid var(--p-accent-wash);
   border-radius: 0.9rem;
-  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 10px 28px var(--p-shadow-sm);
   margin: 1.5rem 0;
   overflow-x: auto;
   padding: 1.25rem;
@@ -514,7 +746,7 @@ starlight-theme-select {
 .moonin-mermaid svg .node path.elipse,
 .moonin-mermaid svg .clusters rect,
 .moonin-mermaid svg .cluster rect {
-  filter: drop-shadow(0 2px 3px rgba(15, 23, 42, 0.08));
+  filter: drop-shadow(0 2px 3px var(--p-shadow-md));
 }
 
 .moonin-mermaid svg .edgePath .path {
@@ -522,35 +754,35 @@ starlight-theme-select {
 }
 
 .moonin-mermaid svg .edgeLabel {
-  background: #ffffff;
+  background: var(--p-surface);
   border-radius: 0.4rem;
   padding: 0.2rem 0.45rem;
 }
 
 .right-sidebar {
-  color: #64748b;
+  color: var(--p-text-3);
 }
 
 .right-sidebar a:hover,
 .right-sidebar a[aria-current="true"] {
-  color: #0284c7;
+  color: var(--p-accent);
 }
 
 .moonin-docs-hero {
   background:
-    radial-gradient(circle at 88% 12%, rgba(103, 232, 249, 0.28), transparent 18rem),
-    linear-gradient(135deg, #0b1118, #132131 58%, #163752);
-  border: 1px solid rgba(103, 232, 249, 0.18);
+    radial-gradient(circle at 88% 12%, var(--p-bar-accent-soft), transparent 18rem),
+    linear-gradient(135deg, var(--p-bar), var(--p-bar-2) 58%, var(--p-bar-3));
+  border: 1px solid var(--p-bar-accent-faint);
   border-radius: 1.25rem;
-  box-shadow: 0 24px 56px rgba(15, 23, 42, 0.2);
-  color: #eaf0f6;
+  box-shadow: 0 24px 56px var(--p-shadow-xl);
+  color: var(--p-on-dark-2);
   margin: -0.55rem -0.4rem 2.25rem;
   overflow: hidden;
   padding: 2.75rem;
 }
 
 .moonin-docs-hero h1 {
-  color: #ffffff;
+  color: var(--p-on-dark);
   font-size: clamp(2.3rem, 5vw, 3.5rem);
   line-height: 1.04;
   margin: 0.7rem 0 1rem;
@@ -558,7 +790,7 @@ starlight-theme-select {
 }
 
 .moonin-docs-hero p {
-  color: #cbd5e1;
+  color: var(--p-on-dark-2);
   font-size: 1.05rem;
   margin: 0;
   max-width: 43rem;
@@ -566,7 +798,7 @@ starlight-theme-select {
 
 .moonin-eyebrow {
   align-items: center;
-  color: #67e8f9;
+  color: var(--p-bar-accent);
   display: flex;
   font-size: 0.72rem;
   font-weight: 800;
@@ -576,7 +808,7 @@ starlight-theme-select {
 }
 
 .moonin-eyebrow::before {
-  background: #67e8f9;
+  background: var(--p-bar-accent);
   border-radius: 99px;
   content: "";
   height: 0.45rem;
@@ -598,13 +830,13 @@ starlight-theme-select {
 }
 
 .moonin-hero-actions a:first-child {
-  background: linear-gradient(90deg, #22d3ee, #0ea5e9);
-  color: #082f49;
+  background: linear-gradient(90deg, var(--p-bar-accent), var(--p-accent));
+  color: var(--p-on-accent-strong);
 }
 
 .moonin-hero-actions a:last-child {
-  border: 1px solid rgba(186, 230, 253, 0.3);
-  color: #e0f2fe;
+  border: 1px solid var(--p-accent-line-soft);
+  color: var(--p-on-dark);
 }
 
 @media (max-width: 72rem) {
@@ -633,3 +865,39 @@ starlight-theme-select {
     padding: 0.8rem;
   }
 }
+
+/* ================= diagramas incrustados ================= */
+/* Los 52 diagramas entran como SVG en el build. Se les da el mismo lenguaje de
+   tarjeta que el resto de la documentación: superficie blanca, filete fino y
+   radio. El SVG escala con el contenedor porque el renderizador emite
+   useMaxWidth y se le quitaron los width/height fijos. */
+.dg {
+  margin: 1.75rem 0;
+  scrollbar-width: thin;
+  padding: 1.25rem 1rem;
+  background: var(--sl-color-bg-nav);
+  border: 1px solid var(--sl-color-hairline);
+  border-radius: 12px;
+  overflow-x: auto;
+}
+/* Tamano natural, no width:100%. Medido sobre los 52: encajarlos en la columna
+   de 652px deja a 31 de 47 con el texto bajo 9px, porque son flowcharts
+   horizontales de hasta 2596px. Un diagrama no se reescala: se dibuja a su
+   tamano y, si no cabe, la figura desplaza. El que si cabe se centra. */
+.dg svg {
+  display: block;
+  max-width: none;
+  height: auto;
+  margin: 0 auto;
+}
+/* Sin cursiva ni tamaño heredado del texto del cuerpo: dentro de un SVG las
+   etiquetas son datos, no prosa. */
+.dg svg text {
+  font-family: var(--sl-font);
+}
+@media (max-width: 50rem) {
+  .dg { padding: 0.875rem 0.5rem; }
+}
+
+
+
