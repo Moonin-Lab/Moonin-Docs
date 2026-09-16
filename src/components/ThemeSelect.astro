@@ -39,10 +39,25 @@ const t = etiquetas[lang];
 </button>
 
 <script is:inline>
+  /*
+   * Starlight renderiza este componente DOS veces: una en el encabezado de
+   * escritorio y otra en el menu movil. Con ello el script tambien sale dos veces,
+   * asi que hace falta cuidar dos cosas:
+   *
+   *   1. enlazar TODOS los botones y no solo el primero, o el del menu movil queda
+   *      muerto
+   *   2. no enlazar dos veces el mismo boton: la primera version usaba
+   *      querySelector y las dos copias del script cargaban el mismo elemento, de
+   *      modo que cada clic alternaba dos veces y volvia al punto de partida. Se
+   *      veia como que el boton no hacia nada.
+   *
+   * De ahi el centinela en window y la marca por elemento.
+   */
   (function () {
+    if (window.__mooninTema) return;
+    window.__mooninTema = true;
+
     var CLAVE = 'starlight-theme';
-    var b = document.querySelector('[data-moonin-tema]');
-    if (!b) return;
 
     function actual() {
       var g = null;
@@ -55,22 +70,36 @@ const t = etiquetas[lang];
 
     function pintar(tema) {
       document.documentElement.dataset.theme = tema;
-      b.setAttribute(
-        'aria-label',
-        tema === 'dark' ? b.dataset.labelClaro : b.dataset.labelOscuro,
-      );
-      b.setAttribute('title', b.getAttribute('aria-label'));
+      var todos = document.querySelectorAll('[data-moonin-tema]');
+      for (var i = 0; i < todos.length; i++) {
+        var b = todos[i];
+        var l = tema === 'dark' ? b.dataset.labelClaro : b.dataset.labelOscuro;
+        b.setAttribute('aria-label', l);
+        b.setAttribute('title', l);
+      }
     }
 
-    pintar(actual());
+    function enlazar() {
+      var todos = document.querySelectorAll('[data-moonin-tema]');
+      for (var i = 0; i < todos.length; i++) {
+        var b = todos[i];
+        if (b.dataset.mooninEnlazado) continue;
+        b.dataset.mooninEnlazado = '1';
+        b.addEventListener('click', function () {
+          var nuevo = actual() === 'dark' ? 'light' : 'dark';
+          try {
+            localStorage.setItem(CLAVE, nuevo);
+          } catch (e) {}
+          pintar(nuevo);
+        });
+      }
+      pintar(actual());
+    }
 
-    b.addEventListener('click', function () {
-      var nuevo = actual() === 'dark' ? 'light' : 'dark';
-      try {
-        localStorage.setItem(CLAVE, nuevo);
-      } catch (e) {}
-      pintar(nuevo);
-    });
+    enlazar();
+    document.addEventListener('DOMContentLoaded', enlazar);
+    /* Starlight puede navegar sin recargar. */
+    document.addEventListener('astro:page-load', enlazar);
 
     /* Si el usuario no ha elegido, seguir al sistema cuando cambie. */
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {

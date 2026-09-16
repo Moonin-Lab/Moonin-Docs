@@ -27,15 +27,29 @@ const etiqueta = enEspanol ? 'View documentation in English' : 'Ver documentaci�
 >
 
 <script is:inline>
+  /* Igual que el de tema: Starlight renderiza esto dos veces, en el encabezado y en
+     el menu movil, asi que hay que enlazar todos y una sola vez cada uno. */
   (function () {
-    /* Recordar la elección explícita, para que la detección de idioma de la raíz no
-       vuelva a pelear con lo que el usuario eligió. */
-    var a = document.querySelector('[data-moonin-idioma]');
-    if (!a) return;
-    a.addEventListener('click', function () {
-      try {
-        localStorage.setItem('moonin-docs-lang', a.getAttribute('lang') === 'es' ? 'es' : 'en');
-      } catch (e) {}
-    });
+    if (window.__mooninIdioma) return;
+    window.__mooninIdioma = true;
+    function enlazar() {
+      var todos = document.querySelectorAll('[data-moonin-idioma]');
+      for (var i = 0; i < todos.length; i++) {
+        var a = todos[i];
+        if (a.dataset.mooninEnlazado) continue;
+        a.dataset.mooninEnlazado = '1';
+        a.addEventListener('click', function (ev) {
+          try {
+            localStorage.setItem(
+              'moonin-docs-lang',
+              ev.currentTarget.getAttribute('lang') === 'es' ? 'es' : 'en',
+            );
+          } catch (e) {}
+        });
+      }
+    }
+    enlazar();
+    document.addEventListener('DOMContentLoaded', enlazar);
+    document.addEventListener('astro:page-load', enlazar);
   })();
 </script>
