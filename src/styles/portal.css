@@ -43,7 +43,12 @@
   --dg-border: #0369a1;
   --dg-line: #556577;
   --dg-text: #0f172a;
-  --dg-muted: #334155;
+  --dg-muted: #475569;
+  --dg-accent-dk: #0b3a56;
+  --dg-accent-hi: #0a7ab8;
+  --dg-rail: #cfe0e6;
+  --dg-rail-mid: #8fc3d8;
+  --dg-wash: #e9f6fa;
 
   color-scheme: light;
 }

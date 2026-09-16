@@ -19,3 +19,7 @@ site/
 # sirve para nadie más; diagramas.json lo regenera el extractor.
 scripts/render/puppeteer.json
 scripts/diagramas.json
+
+# Cachés de Python
+__pycache__/
+*.pyc
