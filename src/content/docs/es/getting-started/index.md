@@ -17,16 +17,16 @@ Esta sección es la ruta más rápida para dejar Moonin utilizable. Cubre onboar
 - el chart `moonin-agent` instalado con el secreto compartido de credenciales
 - heartbeats del Discovery Agent reportando cluster, namespaces, deployments, CronJobs y nodos
 - el Scaling Rules Agent habilitado si lo deseas
-- acceso a overview, errores, revisiones, clusters, nodos, imagenes y CronJobs
+- acceso a overview, errores, revisiones, clusters, nodos, imágenes y CronJobs
 
 ## Áreas actuales del producto
 
 | Área | Qué entrega |
 |---|---|
-| Tablero de overview | Vista ejecutiva de revisiones, imagenes, clusters, CronJobs y señales de falla |
+| Tablero de overview | Vista ejecutiva de revisiones, imágenes, clusters, CronJobs y señales de falla |
 | Clusters | Conectividad, cloud metadata, enlaces directos al proveedor e inventario de namespaces |
 | Nodos | Snapshots de capacidad y asignable, condiciones y topologia del cluster |
-| Deployments | Historial de rollouts, imagenes, contexto de Helm e incidentes vinculados |
+| Deployments | Historial de rollouts, imágenes, contexto de Helm e incidentes vinculados |
 | CronJobs | Horarios legibles, ejecuciones en vivo y logs de los jobs que fallaron |
 | Policies | Alert policies, event notifications, silencios y gobierno de las scaling rules |
 

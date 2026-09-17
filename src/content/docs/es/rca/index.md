@@ -6,7 +6,7 @@ Moonin RCA combina historial de deployments, contexto runtime y señales de pol�
 
 ## Entradas usadas por RCA
 
-- revisiones e imagenes
+- revisiones e imágenes
 - alcance por cluster y namespace
 - incidentes recientes
 - contexto de nodos y workloads

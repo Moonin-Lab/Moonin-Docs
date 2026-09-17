@@ -73,7 +73,7 @@ Scaling-Rules-Agent:
 ### Discovery Agent
 
 - envia heartbeats
-- sincroniza namespaces, Deployments, imagenes y revisiones
+- sincroniza namespaces, Deployments, imágenes y revisiones
 - captura snapshots de nodos
 - detecta cloud metadata del cluster
 - sincroniza CronJobs y ejecuciones de Jobs

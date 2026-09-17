@@ -10,11 +10,11 @@ Esta página documenta el comportamiento detras de:
 
 ## Por que existen las revisiones
 
-Las revisiones permiten responder rápido la pregunta más dificil de la operación diaria:
+Las revisiones permiten responder rápido la pregunta más difícil de la operación diaria:
 
 > Este problema comenzo porque el workload cambio, o comenzo mientras el workload seguia igual?
 
-Moonin resuelve eso adjuntando fallas, imagenes, contexto cloud y estado HPA a un registro concreto de rollout.
+Moonin resuelve eso adjuntando fallas, imágenes, contexto cloud y estado HPA a un registro concreto de rollout.
 
 ## Ciclo de vida de una revisión
 
@@ -22,7 +22,7 @@ Moonin resuelve eso adjuntando fallas, imagenes, contexto cloud y estado HPA a u
 flowchart LR
     A[Rollout de deployment]
     B[Se crea revisión]
-    C[Se capturan imagenes]
+    C[Se capturan imágenes]
     D[Se capturan servicios y annotations]
     E[Se adjunta contexto provider y HPA]
     F[Más tarde los errores pueden vincularse]
@@ -65,7 +65,7 @@ Cuando un operador abre una revisión, la idea es pasar de un rollout genérico 
 flowchart TD
     A[Abrir revisión]
     B[Revisar metadata y tiempo del rollout]
-    C[Inspeccionar imagenes y servicios]
+    C[Inspeccionar imágenes y servicios]
     D[Inspeccionar links provider y comando de login si existen]
     E[Revisar errores vinculados]
     F[Decidir mitigar, notificar, revertir o escalar]
@@ -85,11 +85,11 @@ Si existe metadata cloud para el cluster, el detalle de revisión puede exponer:
 
 Estas son ayudas operativas. La revisión sigue siendo valida aunque falten links cloud.
 
-## Contexto de imagenes y servicios dentro de una revisión
+## Contexto de imágenes y servicios dentro de una revisión
 
 El detalle de revisión es donde el contexto de cambio se vuelve explicito:
 
-- el set actual de imagenes muestra exactamente qué se desplego
+- el set actual de imágenes muestra exactamente qué se desplego
 - los sets anteriores permiten identificar qué contenedor cambio
 - los servicios detectados muestran que objetos de trafico están amarrados a la revisión
 
@@ -100,9 +100,9 @@ Por eso las revisiones son el mejor puente entre `Deployments`, `Images`, `Servi
 Los errores no se guardan aislados. Cuando Moonin captura una falla runtime para un deployment, la vincula con la revisión correspondiente para responder:
 
 - que rollout abrio la ventana del problema
-- que set de imagenes estaba activo
+- que set de imágenes estaba activo
 - que fracción de pods fue afectada
-- si una política deberia haber notificado
+- si una política debería haber notificado
 
 Consulta [Errores e incidentes](../incidents/) para el modelo detallado de fallas.
 
@@ -113,12 +113,12 @@ Consulta [Errores e incidentes](../incidents/) para el modelo detallado de falla
 1. Abre `Releases`.
 2. Filtra por proyecto, cluster, namespace o deployment.
 3. Abre la última revisión.
-4. Confirma tiempo de rollout, imagenes y estado.
+4. Confirma tiempo de rollout, imágenes y estado.
 
 ### Correlacionar una falla con un cambio
 
 1. Abre una revisión desde `Releases` o desde un error.
-2. Revisa el tiempo del rollout y el cambio de imagenes.
+2. Revisa el tiempo del rollout y el cambio de imágenes.
 3. Abre los errores vinculados.
 4. Compara con el último estado sano conocido.
 
@@ -126,7 +126,7 @@ Consulta [Errores e incidentes](../incidents/) para el modelo detallado de falla
 
 1. Abre la revisión afectada.
 2. Confirma el alcance exacto del workload.
-3. Revisa el contexto HPA y el set de imagenes.
+3. Revisa el contexto HPA y el set de imágenes.
 4. Continua hacia scaling rules, mitigación de errores o tu tooling de despliegue.
 
 ## Expectativas de acceso

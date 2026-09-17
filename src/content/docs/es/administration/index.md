@@ -111,7 +111,7 @@ flowchart LR
 
 ### Rotación de token
 
-Solo acceso organizacional elevado deberia rotar tokens porque:
+Solo acceso organizacional elevado debería rotar tokens porque:
 
 - el token anterior deja de ser valido
 - todos los agentes en ejecución deben actualizarse

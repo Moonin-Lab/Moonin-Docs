@@ -11,8 +11,8 @@ Moonin se integra con control de código fuente, flujos de despliegue y proveedo
 - autenticación con Google
 - Azure AD
 
-## Por que importan las integraciones
+## Por qué importan las integraciones
 
 - enriquecen el historial de rollouts con contexto de entrega
 - alinean los cambios del cluster con Git y con los sistemas de despliegue
-- estandarizan la gestión de acceso de los equipos de ingenieria
+- estandarizan la gestión de acceso de los equipos de ingeniería

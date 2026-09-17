@@ -14,7 +14,7 @@ Para cada Deployment seguido, Moonin puede recolectar:
 - replicas deseadas, actuales y disponibles
 - estrategia de rollout
 - labels y annotations
-- imagenes de contenedor y tags
+- imágenes de contenedor y tags
 - relación con services
 - número y tipo de revisión
 - timestamps asociados al cambio detectado

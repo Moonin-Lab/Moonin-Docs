@@ -122,7 +122,7 @@ En la práctica:
 La revisión de errores en Moonin es consciente de la revisión:
 
 - el detalle del error puede cargar la revisión relacionada
-- la revisión aporta contexto de rollout, imagenes, servicio y provider
+- la revisión aporta contexto de rollout, imágenes, servicio y provider
 - las notas RCA y los asistentes de análisis pueden adjuntarse cuando el permiso lo permite
 
 El punto importante para el usuario es que el RCA parte desde hechos runtime capturados, no desde una página vacia.

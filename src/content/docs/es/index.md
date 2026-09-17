@@ -100,7 +100,7 @@ flowchart LR
 flowchart LR
     A[Cambio en deployment]
     B[Se crea revisión]
-    C[Se adjuntan imagenes y servicios]
+    C[Se adjuntan imágenes y servicios]
     D[Se adjunta contexto cloud y HPA]
     E[La release queda visible]
 
@@ -153,7 +153,7 @@ El modelo completo está documentado en [Administración](administration/) y [Az
 | Necesidad | Página |
 |---|---|
 | Entender releases, revisiones y contexto de rollout | [Revisiones](revisions/) |
-| Operar deployments e inventario de imagenes | [Deployments e imagenes](deployments/) |
+| Operar deployments e inventario de imágenes | [Deployments e imágenes](deployments/) |
 | Operar clusters y nodos | [Clusters y nodos](clusters/) |
 | Entender servicios, CronJobs e historial de ejecuciones | [Workloads, servicios y CronJobs](workloads/) |
 | Investigar fallas activas e historicas | [Errores e incidentes](incidents/) |

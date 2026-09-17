@@ -18,7 +18,7 @@ El cluster token se envia en los requests agente-a-plataforma a traves del heade
 
 | Flujo | Destino | Usado por | Objetivo |
 |---|---|---|---|
-| Sync de inventario | `api-discover.moonin.app` | Discovery Agent | namespaces, Deployments, revisiones, errores, imagenes, HPAs, CronJobs y nodos |
+| Sync de inventario | `api-discover.moonin.app` | Discovery Agent | namespaces, Deployments, revisiones, errores, imágenes, HPAs, CronJobs y nodos |
 | Heartbeat del cluster | `api-discover.moonin.app` | Discovery Agent | disponibilidad del cluster y cloud metadata |
 | Polling de templates | `api-scaling-rules.moonin.app` | Scaling Rules Agent | listar templates del cluster |
 | Polling de acciones | `api-scaling-rules.moonin.app` | Scaling Rules Agent | cargar acciones para un template activo |
