@@ -6,8 +6,8 @@ The `Clusters` and `Nodes` screens explain where Moonin is collecting data from,
 
 This page documents the behavior behind:
 
-- `https://app.moonin.app/clusters`
-- `https://app.moonin.app/nodes`
+- `https://portal.moonin.app/clusters`
+- `https://portal.moonin.app/nodes`
 - `https://admin.moonin.app/admin/clusters`
 
 ## What a cluster means in Moonin

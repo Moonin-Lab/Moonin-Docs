@@ -6,7 +6,7 @@ The `Releases` experience in Moonin is built on revisions. A revision is the imm
 
 This page documents the behavior behind:
 
-- `https://app.moonin.app/releases`
+- `https://portal.moonin.app/releases`
 
 ## Why revisions exist
 

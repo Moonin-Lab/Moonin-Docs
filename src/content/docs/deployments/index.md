@@ -6,8 +6,8 @@ Deployments are the change unit that powers Moonin correlation. Every rollout ca
 
 This page documents the behavior behind:
 
-- `https://app.moonin.app/deployments`
-- `https://app.moonin.app/images`
+- `https://portal.moonin.app/deployments`
+- `https://portal.moonin.app/images`
 
 For release history and revision detail, continue with [Revision History](../revisions/).
 

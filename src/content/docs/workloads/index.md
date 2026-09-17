@@ -4,9 +4,9 @@ title: "Workloads, Services & CronJobs"
 
 This page documents the runtime-centric views that operators use after cluster onboarding:
 
-- `https://app.moonin.app/services`
-- `https://app.moonin.app/images`
-- `https://app.moonin.app/cronjobs`
+- `https://portal.moonin.app/services`
+- `https://portal.moonin.app/images`
+- `https://portal.moonin.app/cronjobs`
 
 It complements the rollout-centric view documented in [Deployments & Images](../deployments/).
 

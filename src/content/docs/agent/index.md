@@ -36,7 +36,7 @@ graph TD
     D --> G[Discovery API]
     E --> H[Scaling Rules API]
     F --> J[Ingestion API]
-    G --> I[app.moonin.app]
+    G --> I[portal.moonin.app]
     H --> I
     J --> I
 ```
@@ -50,7 +50,7 @@ graph TD
 5. The Scaling Rules Agent reconciles every 30 seconds, fetches the templates that belong to the cluster, evaluates whether they should run now, then loads their actions.
 6. Active scaling actions are applied in `priority_up` order. If a target Deployment has no HPA, the agent can create a provisional managed HPA first.
 7. Managed HPAs are reverted in `priority_down` order when the execution window ends or when the template is disabled before its window expires.
-8. Node Agent runs on selected Linux worker nodes and sends observed runtime telemetry to Moonin, where it is available through the observability workflows in `app.moonin.app`.
+8. Node Agent runs on selected Linux worker nodes and sends observed runtime telemetry to Moonin, where it is available through the observability workflows in `portal.moonin.app`.
 
 ## Operational model
 
@@ -66,7 +66,7 @@ graph TD
 |---|---|
 | [Agent Overview](overview/) | Runtime lifecycle and decision model for Discovery Agent and Scaling Rules Agent |
 | [Data Collection](data-collection/) | What leaves the cluster, how it is derived and what is stored as execution evidence |
-| [Node Agent](node-agent/) | Runtime telemetry capture, host requirements and how to explore it in `app.moonin.app` |
+| [Node Agent](node-agent/) | Runtime telemetry capture, host requirements and how to explore it in `portal.moonin.app` |
 | [Communication Protocols](protocols/) | Credentials, API flows, polling cadence and request patterns |
 | [Required Permissions](permissions/) | RBAC scope required by each agent |
 | [Security Model](security/) | Secret handling, sanitization, ownership boundaries and rollback safety |

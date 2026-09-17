@@ -65,4 +65,4 @@ Antes de enviar metadata del cluster, el Discovery Agent puede consultar endpoin
 
 ## Límite entre browser y API
 
-Los usuarios no llaman directamente a las APIs orientadas al cluster desde el browser. `app.moonin.app` y `admin.moonin.app` quedan detras de límites server-side y aplican el scope del usuario ahi, mientras los agentes autentican como clusters.
+Los usuarios no llaman directamente a las APIs orientadas al cluster desde el browser. `portal.moonin.app` y `admin.moonin.app` quedan detras de límites server-side y aplican el scope del usuario ahi, mientras los agentes autentican como clusters.

@@ -36,7 +36,7 @@ graph TD
     D --> G[Discovery API]
     E --> H[Scaling Rules API]
     F --> J[Ingestion API]
-    G --> I[app.moonin.app]
+    G --> I[portal.moonin.app]
     H --> I
     J --> I
 ```
@@ -50,7 +50,7 @@ graph TD
 5. El Scaling Rules Agent reconcilia cada 30 segundos, obtiene los templates del cluster, evalua cuáles deben correr y luego carga sus acciones.
 6. Las acciones activas se aplican en orden `priority_up`. Si el Deployment objetivo no tiene HPA, el agente puede crear primero un HPA provisional administrado.
 7. Los HPAs administrados se revierten en orden `priority_down` cuando termina la ventana de ejecución o cuando el template se deshabilita antes de terminarla.
-8. Node Agent corre en nodos worker Linux seleccionados y envia telemetria runtime observada a Moonin, donde está disponible en los flujos de observabilidad de `app.moonin.app`.
+8. Node Agent corre en nodos worker Linux seleccionados y envia telemetria runtime observada a Moonin, donde está disponible en los flujos de observabilidad de `portal.moonin.app`.
 
 ## Modelo operativo
 
@@ -66,7 +66,7 @@ graph TD
 |---|---|
 | [Resumen de agentes](overview/) | Ciclo de vida y modelo de decisión de Discovery Agent y Scaling Rules Agent |
 | [Recolección de datos](data-collection/) | Que sale del cluster, como se deriva y que evidencia de ejecución se guarda |
-| [Node Agent](node-agent/) | Captura de telemetria runtime, requisitos de host y como explorarla en `app.moonin.app` |
+| [Node Agent](node-agent/) | Captura de telemetria runtime, requisitos de host y como explorarla en `portal.moonin.app` |
 | [Protocolos de comunicación](protocols/) | Credenciales, flujos API, polling y patrones de request |
 | [Permisos requeridos](permissions/) | Alcance RBAC necesario por agente |
 | [Modelo de seguridad](security/) | Manejo de secretos, sanitización, ownership y seguridad del rollback |
