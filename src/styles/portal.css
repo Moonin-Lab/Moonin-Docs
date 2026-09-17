@@ -920,3 +920,27 @@ header.header {
   .moonin-toggle { height: 34px; width: 34px; }
   .moonin-lang { height: 34px; min-width: 34px; padding: 0 8px; }
 }
+
+/* ═══════════ diagramas mas anchos que la columna ═══════════
+   Un diagrama de arquitectura de 1239px reducido a la columna de 652 deja su tipo en
+   7,4px: ilegible. Y no se puede hacer mas compacto — medido con los tres motores de
+   d2, agrupar en contenedores lo lleva a 1504px y dagre a 2836.
+
+   Asi que en pantallas anchas sale de la columna y usa el ancho del articulo, que es
+   lo que hace la documentacion buena con una figura grande. Debajo de eso desplaza,
+   que sigue siendo mejor que un texto de 7px.
+   ═════════════════════════════════════════════════════════ */
+@media (min-width: 88rem) {
+  .dg-ancho {
+    margin-inline: calc((100% - min(78rem, 100vw - 4rem)) / 2);
+    width: min(78rem, 100vw - 4rem);
+    max-width: none;
+  }
+}
+
+@media (min-width: 72rem) and (max-width: 87.99rem) {
+  .dg-ancho {
+    margin-inline: -2.5rem;
+    width: calc(100% + 5rem);
+  }
+}

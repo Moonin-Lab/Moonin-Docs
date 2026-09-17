@@ -37,6 +37,44 @@ def papeles(aristas, nodos):
     return r
 
 
+def subgrafos(codigo: str):
+    """Devuelve {nodo: titulo del subgrafo} y el orden de los subgrafos.
+
+    mermaid agrupa con `subgraph "Titulo" ... end` y d2 tiene contenedores nativos,
+    pero el convertidor los ignoraba: por eso el grafo salia plano y medía 1239px de
+    ancho, desbordando la columna. Con los nodos dentro de su contenedor, d2 apila las
+    zonas y el dibujo cabe.
+    """
+    de, orden, actual = {}, [], None
+    for linea in codigo.splitlines():
+        m = re.match(r'\s*subgraph\s+"?([^"\n]+?)"?\s*$', linea)
+        if m:
+            actual = m.group(1).strip()
+            if actual not in orden:
+                orden.append(actual)
+            continue
+        if re.match(r'\s*end\s*$', linea):
+            actual = None
+            continue
+        if actual:
+            for mm in re.finditer(r'\b([A-Za-z0-9_]+)\s*[\[\(\{]', linea):
+                de.setdefault(mm.group(1), actual)
+            # tambien los nodos que solo aparecen en una arista dentro del subgrafo
+            limpia = re.sub(r'\|[^|]*\|', ' ', linea)
+            if re.search(r'-{2,3}>|-\.->', limpia):
+                for t in re.split(r'-{2,3}>|-\.->', limpia):
+                    mm = re.match(r'\s*([A-Za-z0-9_]+)', t)
+                    if mm:
+                        de.setdefault(mm.group(1), actual)
+    return de, orden
+
+
+def _slug(t: str) -> str:
+    """Un identificador de contenedor que d2 acepte."""
+    s = re.sub(r'[^A-Za-z0-9]+', '_', t).strip('_').lower()
+    return s or 'zona'
+
+
 CLASES = f"""classes: {{
   entrada: {{
     style: {{
@@ -84,21 +122,41 @@ CLASES = f"""classes: {{
 }}"""
 
 
-def a_d2(etq, aristas, direccion='down', motor='elk') -> str:
+def a_d2(etq, aristas, direccion='down', motor='elk', codigo='') -> str:
     nodos = list(etq) or sorted({x for a, b, _ in aristas for x in (a, b)})
     rol = papeles(aristas, nodos)
+    grupo, orden_grupos = subgrafos(codigo) if codigo else ({}, [])
+    ruta = {}
     L = [f'vars: {{ d2-config: {{ layout-engine: {motor} }} }}',
          f'direction: {direccion}', '',
          CLASES, '']
+    if orden_grupos:
+        L.append('classes.zona: { style: { fill: "' + P['surface'] +
+                 '"; stroke: "' + P['hairline'] + '"; stroke-width: 1; border-radius: 12 } }')
+        L.append('')
+    for z in orden_grupos:
+        sl = _slug(z)
+        L.append(f'{sl}: "{z}" {{')
+        L.append('  class: zona')
+        for n in nodos:
+            if grupo.get(n) == z:
+                texto = re.sub(r'<br\s*/?>', r'\\n', etq.get(n, n)).replace('"', "'")
+                L.append(f'  {n}: "{texto}" {{ class: {rol.get(n, "paso")} }}')
+                ruta[n] = f'{sl}.{n}'
+        L.append('}')
     for n in nodos:
+        if n in ruta:
+            continue
         texto = re.sub(r'<br\s*/?>', r'\\n', etq.get(n, n)).replace('"', "'")
         L.append(f'{n}: "{texto}" {{ class: {rol.get(n, "paso")} }}')
+        ruta[n] = n
     L.append('')
     for a, b, et in aristas:
+        ra, rb = ruta.get(a, a), ruta.get(b, b)
         if et:
-            L.append(f'{a} -> {b}: "{et}"')
+            L.append(f'{ra} -> {rb}: "{et}"')
         else:
-            L.append(f'{a} -> {b}')
+            L.append(f'{ra} -> {rb}')
     L.append('')
     L.append(f'''*.style.font-size: 14
 (* -> *)[*].style.stroke: "{P['line']}"
