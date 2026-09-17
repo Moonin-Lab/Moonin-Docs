@@ -2,6 +2,7 @@
 User-agent: *
 Allow: /
 
-# El sitemap ya lo genera Starlight con sus 60 URLs y sus alternates
-# hreflang; sin esta linea nada lo anunciaba, porque /robots.txt daba 404.
-Sitemap: https://docs.moonin.app/sitemap-index.xml
+# /sitemap.xml es el listado COMPLETO de las 60 URLs con sus 120 alternates
+# hreflang, no un indice: un indice se reporta con «0 paginas descubiertas» hasta
+# que el rastreador procesa su hijo, y eso parece un fallo sin serlo.
+Sitemap: https://docs.moonin.app/sitemap.xml
