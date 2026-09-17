@@ -26,39 +26,64 @@ export default defineConfig({
       head: [
         /* El icono de iOS, tambien el del sitio. */
         { tag: "link", attrs: { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" } },
-        /* Deteccion de idioma. Solo redirige desde la RAIZ y solo la primera vez:
-           las URLs profundas quedan intactas porque Google recomienda no redirigir
-           por idioma detectado, y la indexabilidad es justo lo que acabamos de
-           arreglar. El sitemap ya declara los 120 alternates hreflang, que es la
-           senal correcta para un rastreador. ?nolang lo desactiva.
-
-           Tambien recuerda la eleccion explicita del selector de idioma, para que
-           la deteccion no vuelva a pelear con lo que el usuario eligio. */
+        /* Deteccion de idioma del navegador.
+           
+           Actua en CUALQUIER pagina y no solo en la raiz, porque un enlace compartido
+           tambien merece abrirse en el idioma del lector.
+           
+           Y NO guarda nada cuando no redirige. La version anterior escribia 'en' en la
+           primera visita aunque no hubiera redirigido, y con eso la deteccion quedaba
+           apagada para siempre: bastaba una visita con el navegador en ingles para que
+           un navegador en espanol nunca mas fuera atendido. Solo se guarda cuando el
+           lector ELIGE con el boton de idioma.
+           
+           Sobre indexabilidad: los 60 alternates hreflang del sitemap y las etiquetas
+           <link rel="alternate"> son la senal que Google usa para entender el par de
+           idiomas, y siguen intactas. Este redirigir es de cliente, ocurre una vez,
+           usa location.replace para no dejar rastro en el historial y se omite para los
+           rastreadores conocidos. ?nolang lo desactiva. */
         {
           tag: "script",
           content: `(function(){try{
-  var K='moonin-docs-lang', p=location.pathname;
-  var raiz = (p==='/' || p==='/index.html');
+  var K='moonin-docs-lang';
+  if (location.search.indexOf('nolang') >= 0) return;
+
+  /* Nada de esto aplica a un rastreador: que vea la pagina que pidio. */
+  var ua = (navigator.userAgent || '').toLowerCase();
+  if (/bot|crawl|spider|slurp|bingpreview|headlesschrome|lighthouse|pagespeed/.test(ua)) return;
+
   var guardado = localStorage.getItem(K);
-  if (raiz && !guardado && location.search.indexOf('nolang')<0) {
-    var tags = (navigator.languages && navigator.languages.length)
+  var esEs = (function(){
+    var t = (navigator.languages && navigator.languages.length)
       ? navigator.languages : [navigator.language || 'en'];
-    for (var i=0;i<tags.length;i++) {
-      var base = String(tags[i]).toLowerCase().split('-')[0];
-      if (base==='es') { localStorage.setItem(K,'es'); location.replace('/es/'); return; }
-      if (base==='en') { break; }
+    for (var i = 0; i < t.length; i++) {
+      var b = String(t[i]).toLowerCase().split('-')[0];
+      if (b === 'es') return true;
+      if (b === 'en') return false;
     }
-    localStorage.setItem(K,'en');
+    return false;
+  })();
+
+  var quiere = guardado === 'es' ? 'es' : guardado === 'en' ? 'en' : (esEs ? 'es' : 'en');
+  var p = location.pathname;
+  var estoyEn = (p === '/es' || p.indexOf('/es/') === 0) ? 'es' : 'en';
+
+  if (quiere !== estoyEn) {
+    var destino = quiere === 'es'
+      ? '/es' + (p === '/' ? '/' : p)
+      /* Doble backslash a proposito: esto vive dentro de un literal de plantilla,
+         que consume \\/ y dejaria la expresion regular invalida. */
+      : (p.replace(/^\\/es(?=\\/|$)/, '') || '/');
+    if (destino !== p) { location.replace(destino + location.search + location.hash); return; }
   }
-  document.addEventListener('change', function(e){
-    var el = e.target;
-    if (el && el.closest && el.closest('starlight-lang-select')) {
-      try { localStorage.setItem(K, String(el.value||'').indexOf('es')>=0 ? 'es' : 'en'); } catch(_) {}
-    }
+
+  /* La eleccion explicita del lector, que manda sobre la deteccion. */
+  document.addEventListener('click', function(e){
+    var a = e.target && e.target.closest && e.target.closest('[data-moonin-idioma]');
+    if (a) { try { localStorage.setItem(K, a.getAttribute('lang') === 'es' ? 'es' : 'en'); } catch(_) {} }
   }, true);
 }catch(e){}})();`,
-        },
-        { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.googleapis.com" } },
+        },        { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.googleapis.com" } },
         { tag: "link", attrs: { rel: "preconnect", href: "https://fonts.gstatic.com", crossorigin: true } },
         {
           tag: "link",
