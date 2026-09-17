@@ -161,6 +161,8 @@ def main() -> int:
                 if svg:
                     cuenta['secuencia_propia'] += 1
             if svg is None and aristas:
+                # Sin contenedores a proposito: medido, agruparlos lleva el ancho de 1239 a
+                # 1504px con elk y a 2836 con dagre. El plano es el mas compacto.
                 fuente = a_d2.a_d2(etq, aristas, direccion='down', motor='elk')
                 if a_d2.dibujar(fuente, '/tmp/g.svg', pad=12):
                     svg = Path('/tmp/g.svg').read_text(encoding='utf8')

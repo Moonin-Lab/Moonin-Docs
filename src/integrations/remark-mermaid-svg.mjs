@@ -27,6 +27,9 @@ import { dirname, join } from "node:path";
  */
 
 const AQUI = dirname(fileURLToPath(import.meta.url));
+/* El ancho de la columna de contenido de Starlight, 52rem. */
+const ANCHO_COLUMNA = 652;
+
 const DIR_SVG = join(AQUI, "..", "assets", "diagramas");
 
 function idDe(codigo) {
@@ -63,10 +66,19 @@ export function remarkMermaidSvg() {
       /* role="img" con la primera línea del código como descripción: da un
          nombre accesible sin inventar texto que no esté en la fuente. */
       const tipo = nodo.value.trim().split("\n")[0].trim();
+
+      /* Los diagramas mas anchos que la columna de contenido se marcan con dg-ancho,
+         para que el CSS los deje salirse de ella y usar el ancho del articulo. Encoger
+         un diagrama de arquitectura hasta la columna deja su texto ilegible: medido,
+         1239px reducidos a 652 dejan el tipo en 7,4px. */
+      const mAncho = /<svg[^>]*[ ]width="([0-9]+)"/.exec(svg);
+      const anchoSvg = mAncho ? Number(mAncho[1]) : 0;
+      const clases = anchoSvg > ANCHO_COLUMNA ? "dg dg-ancho" : "dg";
+
       padre.children[indice] = {
         type: "html",
         value:
-          `<figure class="dg" role="img" aria-label="${tipo.replace(/"/g, "&quot;")}">` +
+          `<figure class="${clases}" role="img" aria-label="${tipo.replace(/"/g, "&quot;")}">` +
           svg +
           `</figure>`,
       };
