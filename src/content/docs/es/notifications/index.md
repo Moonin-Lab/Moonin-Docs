@@ -10,7 +10,7 @@ Moonin separa la entrega de notificaciones en dos capas:
 Esta página documenta el comportamiento detras de:
 
 - `https://app.moonin.app/event-notification-policies`
-- la gestión de canales en `https://app-admin.moonin.app/admin/organizations/<organization-id>/notification-channels`
+- la gestión de canales en `https://admin.moonin.app/admin/organizations/<organization-id>/notification-channels`
 
 El matching específico de alertas se describe en [Políticas y gobernanza](../policies/).
 

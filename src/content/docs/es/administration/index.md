@@ -6,11 +6,11 @@ La Consola Admin es el lugar donde Moonin define tenant, acceso y recursos compa
 
 Esta página documenta el comportamiento detras de:
 
-- `https://app-admin.moonin.app/admin/organizations`
-- `https://app-admin.moonin.app/admin/organizations/<organization-id>/users`
-- `https://app-admin.moonin.app/admin/organizations/<organization-id>/groups`
-- `https://app-admin.moonin.app/admin/projects`
-- `https://app-admin.moonin.app/admin/clusters`
+- `https://admin.moonin.app/admin/organizations`
+- `https://admin.moonin.app/admin/organizations/<organization-id>/users`
+- `https://admin.moonin.app/admin/organizations/<organization-id>/groups`
+- `https://admin.moonin.app/admin/projects`
+- `https://admin.moonin.app/admin/clusters`
 
 ## Jerarquía administrativa
 

@@ -19,7 +19,7 @@ Public resources:
 
 ## 1. Register the cluster
 
-From `app-admin.moonin.app`:
+From `admin.moonin.app`:
 
 1. Open the target organization and project
 2. Go to **Clusters**
