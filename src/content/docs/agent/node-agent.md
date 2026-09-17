@@ -30,22 +30,22 @@ flowchart LR
     A[Workloads on Linux nodes] --> B[Moonin Node Agent]
     C[Kubernetes API] --> B
     B --> D[Moonin Ingestion API]
-    D --> E[app.moonin.app]
+    D --> E[portal.moonin.app]
 ```
 
 The agent batches event data before sending it. By default, it aggregates events for up to 180 seconds and dispatches batches every 60 seconds. Metrics are sent every 60 seconds. Data may therefore take a few minutes to appear after activity occurs.
 
 The platform controls collection through a remote ingestion policy. Until Node Agent obtains a valid policy, it does not send telemetry. The policy can enable or disable collection, limit it to namespaces or services, exclude scopes, and apply sampling.
 
-## View captured data in `app.moonin.app`
+## View captured data in `portal.moonin.app`
 
 Select one cluster in the top-bar cluster selector before using the observability explorers. Availability also depends on the permissions assigned to the signed-in user.
 
 | Where | What to use it for |
 |---|---|
-| [`/events`](https://app.moonin.app/events) | Inspect raw HTTP, database, cache, and supported Google Cloud event families. Filter by time range, cluster, and available attributes, then expand an event for its captured context. |
-| [`/traces`](https://app.moonin.app/traces) | Find a request by time, service, namespace, operation, duration, or error state. Open a trace to inspect its timeline, spans, workload context, and downstream calls. |
-| [`/dependencies`](https://app.moonin.app/dependencies) | Explore observed outbound resources and identify services that consume a resource, URL, topic, bucket, or other dependency. |
+| [`/events`](https://portal.moonin.app/events) | Inspect raw HTTP, database, cache, and supported Google Cloud event families. Filter by time range, cluster, and available attributes, then expand an event for its captured context. |
+| [`/traces`](https://portal.moonin.app/traces) | Find a request by time, service, namespace, operation, duration, or error state. Open a trace to inspect its timeline, spans, workload context, and downstream calls. |
+| [`/dependencies`](https://portal.moonin.app/dependencies) | Explore observed outbound resources and identify services that consume a resource, URL, topic, bucket, or other dependency. |
 | Service 360 | Open a service from the service catalog to review its `Events`, `Dependencies`, and `Metrics` tabs in the workload context. |
 
 Typical permissions are `observability.events.view`, `observability.traces.view`, `observability.dependencies.view`, and `observability.metrics.view`.

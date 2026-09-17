@@ -10,9 +10,9 @@ Moonin governance is built around three operational policy families:
 
 This page documents the behavior behind:
 
-- `https://app.moonin.app/alert-policies`
-- `https://app.moonin.app/event-notification-policies`
-- `https://app.moonin.app/scaling-rules`
+- `https://portal.moonin.app/alert-policies`
+- `https://portal.moonin.app/event-notification-policies`
+- `https://portal.moonin.app/scaling-rules`
 
 ## Policy hierarchy
 

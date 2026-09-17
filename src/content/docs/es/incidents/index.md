@@ -6,8 +6,8 @@ Moonin registra fallas runtime con contexto de workload y de rollout, de modo qu
 
 Esta página documenta el comportamiento detras de:
 
-- `https://app.moonin.app/errors`
-- `https://app.moonin.app/errors/history`
+- `https://portal.moonin.app/errors`
+- `https://portal.moonin.app/errors/history`
 
 ## Vista activa versus histórica
 

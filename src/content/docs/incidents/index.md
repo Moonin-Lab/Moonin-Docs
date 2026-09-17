@@ -6,8 +6,8 @@ Moonin records runtime failures with workload and rollout context so incident re
 
 This page documents the behavior behind:
 
-- `https://app.moonin.app/errors`
-- `https://app.moonin.app/errors/history`
+- `https://portal.moonin.app/errors`
+- `https://portal.moonin.app/errors/history`
 
 ## Active versus historical views
 

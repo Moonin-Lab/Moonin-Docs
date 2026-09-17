@@ -10,9 +10,9 @@ La gobernanza en Moonin se construye sobre tres familias de políticas operativa
 
 Esta página documenta el comportamiento detras de:
 
-- `https://app.moonin.app/alert-policies`
-- `https://app.moonin.app/event-notification-policies`
-- `https://app.moonin.app/scaling-rules`
+- `https://portal.moonin.app/alert-policies`
+- `https://portal.moonin.app/event-notification-policies`
+- `https://portal.moonin.app/scaling-rules`
 
 ## Jerarquía de políticas
 

@@ -4,9 +4,9 @@ title: "Workloads, servicios y CronJobs"
 
 Esta página documenta las vistas runtime que más se usan después del onboarding del cluster:
 
-- `https://app.moonin.app/services`
-- `https://app.moonin.app/images`
-- `https://app.moonin.app/cronjobs`
+- `https://portal.moonin.app/services`
+- `https://portal.moonin.app/images`
+- `https://portal.moonin.app/cronjobs`
 
 Complementa la vista orientada a cambios documentada en [Deployments e imágenes](../deployments/).
 

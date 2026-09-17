@@ -6,7 +6,7 @@ La experiencia de `Releases` en Moonin esta construida sobre revisiones. Una rev
 
 Esta página documenta el comportamiento detras de:
 
-- `https://app.moonin.app/releases`
+- `https://portal.moonin.app/releases`
 
 ## Por que existen las revisiones
 

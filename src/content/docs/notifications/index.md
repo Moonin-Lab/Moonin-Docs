@@ -9,7 +9,7 @@ Moonin separates notification delivery into two layers:
 
 This page documents the behavior behind:
 
-- `https://app.moonin.app/event-notification-policies`
+- `https://portal.moonin.app/event-notification-policies`
 - channel management in `https://admin.moonin.app/admin/organizations/<organization-id>/notification-channels`
 
 Alert-specific matching is described in [Policies & Governance](../policies/).

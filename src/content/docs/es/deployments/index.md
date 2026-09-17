@@ -6,8 +6,8 @@ Los deployments son la unidad de cambio que alimenta la correlación de Moonin. 
 
 Esta página documenta el comportamiento detras de:
 
-- `https://app.moonin.app/deployments`
-- `https://app.moonin.app/images`
+- `https://portal.moonin.app/deployments`
+- `https://portal.moonin.app/images`
 
 Para historial de releases y detalle de revisiones, continua con [Revisiones](../revisions/).
 

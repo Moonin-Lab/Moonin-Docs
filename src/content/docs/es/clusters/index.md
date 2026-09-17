@@ -6,8 +6,8 @@ Las pantallas `Clusters` y `Nodes` explican desde dónde está recolectando dato
 
 Esta página documenta el comportamiento detras de:
 
-- `https://app.moonin.app/clusters`
-- `https://app.moonin.app/nodes`
+- `https://portal.moonin.app/clusters`
+- `https://portal.moonin.app/nodes`
 - `https://admin.moonin.app/admin/clusters`
 
 ## Qué significa un cluster en Moonin
