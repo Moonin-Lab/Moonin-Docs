@@ -8,7 +8,7 @@ This page documents the behavior behind:
 
 - `https://app.moonin.app/clusters`
 - `https://app.moonin.app/nodes`
-- `https://app-admin.moonin.app/admin/clusters`
+- `https://admin.moonin.app/admin/clusters`
 
 ## What a cluster means in Moonin
 

@@ -65,4 +65,4 @@ Before sending cluster metadata, the Discovery Agent may query cloud metadata en
 
 ## Browser and API boundary
 
-Users do not call the cluster-facing APIs directly from the browser. `app.moonin.app` and `app-admin.moonin.app` sit behind server-side application boundaries and enforce user scope there, while the agents authenticate as clusters.
+Users do not call the cluster-facing APIs directly from the browser. `app.moonin.app` and `admin.moonin.app` sit behind server-side application boundaries and enforce user scope there, while the agents authenticate as clusters.
