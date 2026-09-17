@@ -111,7 +111,7 @@ Según el canal y el tipo de política, la entrega puede incluir:
 - path del evento en notificaciones de revisión creada
 - links de retorno a Moonin para RCA o revisión
 
-## Patron practico de operación
+## Patron práctico de operación
 
 1. Crea los canales una sola vez en Admin.
 2. Nombralos por equipo o por propósito de escalamiento.

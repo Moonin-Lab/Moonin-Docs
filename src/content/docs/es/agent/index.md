@@ -46,7 +46,7 @@ graph TD
 1. El cluster se registra en la Consola de administración y recibe `PROJECT_ID`, `CLUSTER_ID` y `CLUSTER_TOKEN`.
 2. El chart guarda esos valores en un Secret compartido y despliega los agentes en el namespace `moonin-agent`.
 3. El Discovery Agent hace una sincronización inicial de namespaces, Deployments y CronJobs antes de pasar a monitoreo por informers y heartbeats periodicos.
-4. El Discovery Agent mantiene actualizado a Moonin con revisiones, imagenes, snapshots de HPA, historial de CronJobs, snapshots de nodos y metadata del cluster.
+4. El Discovery Agent mantiene actualizado a Moonin con revisiones, imágenes, snapshots de HPA, historial de CronJobs, snapshots de nodos y metadata del cluster.
 5. El Scaling Rules Agent reconcilia cada 30 segundos, obtiene los templates del cluster, evalua cuáles deben correr y luego carga sus acciones.
 6. Las acciones activas se aplican en orden `priority_up`. Si el Deployment objetivo no tiene HPA, el agente puede crear primero un HPA provisional administrado.
 7. Los HPAs administrados se revierten en orden `priority_down` cuando termina la ventana de ejecución o cuando el template se deshabilita antes de terminarla.

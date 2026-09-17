@@ -2,54 +2,58 @@
 title: "Primer recorrido"
 ---
 
-Este recorrido asume que el cluster ya esta registrado y el chart instalado.
+Este recorrido asume que el cluster ya está registrado y que el chart de Helm está
+instalado.
 
 ## Tour rápido
 
-### 1. Confirmar heartbeat
+### 1. Confirmar el heartbeat del cluster
 
-En **Clusters** valida:
+Abre **Clusters** y verifica:
 
-- estado saludable
-- metadata de provider
-- namespaces y deployments visibles
+- que el estado sea saludable
+- que la metadata del provider esté poblada
+- que los namespaces y los deployments empiecen a aparecer
 
-### 2. Abrir overview
+### 2. Abrir el tablero de overview
 
-En **Overview** revisa:
+Usa la pantalla **Overview** para validar:
 
-- clusters monitoreados
-- imagenes detectadas
-- CronJobs y ejecuciones recientes
-- errores y señales de falla
+- los clusters monitoreados
+- las imágenes encontradas en el alcance actual
+- los CronJobs y sus ejecuciones recientes
+- las señales activas de error y de tasa de falla
 
-### 3. Revisar nodos
+### 3. Revisar un snapshot de nodo
 
-En **Nodes** valida:
+Ve a **Nodes** y verifica el inventario:
 
-- readiness
-- CPU y memoria capacidad vs asignable
+- el readiness del nodo
+- capacidad contra asignable, en CPU y memoria
 - instance type, zona y runtime
-- timestamp de captura
+- el timestamp de la captura
 
-### 4. Revisar revisiones e imagenes
+Los snapshots de nodos son registros de inventario, no uso en vivo como el de
+`kubectl top`.
+
+### 4. Revisar revisiones e imágenes
 
 Desde **Deployments**:
 
 - abre un servicio
-- mira la última revisión
-- valida imagenes y tags
-- revisa metadata de Helm si existe
+- revisa su última revisión
+- valida los nombres de imagen y sus tags
+- revisa la metadata de Helm si el workload está gestionado por Helm
 
 ### 5. Validar CronJobs
 
-En **CronJobs** veras:
+Abre **CronJobs** para ver:
 
-- cron raw
-- horario legible
-- alcance por namespace y cluster
-- ejecuciones recientes
-- logs de falla cuando corresponde
+- la expresión cron en crudo
+- el horario legible
+- el alcance por namespace y por cluster
+- las ejecuciones recientes
+- los logs de falla cuando la ejecución de un Job falla
 
 ### 6. Configurar las policies de respuesta
 

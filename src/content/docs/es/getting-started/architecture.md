@@ -109,7 +109,7 @@ sequenceDiagram
     participant Front as Aplicación web
 
     Agent->>API: Detecta cambio de Deployment
-    API->>DB: Guarda revisión e imagenes
+    API->>DB: Guarda revisión e imágenes
     API->>API: Vincula incidentes y contexto del rollout
     Front->>API: Pide datos del deployment
     API->>Front: Devuelve revisiones y estado vinculado

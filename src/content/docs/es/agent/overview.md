@@ -22,7 +22,7 @@ El Discovery Agent es un controlador de Kubernetes de larga duración enfocado e
 | Loop de heartbeat | Marca el cluster como conectado y refresca salud basica |
 | Loop de metadata del cluster | Refresca provider, región, zona, nombre del cluster y versión de Kubernetes |
 | Loop de snapshots de nodos | Captura capacidad, asignable, runtime y condiciones |
-| Sync de Deployments y revisiones | Sigue Deployments, imagenes, revisiones y relaciones con HPA |
+| Sync de Deployments y revisiones | Sigue Deployments, imágenes, revisiones y relaciones con HPA |
 | Sync de CronJobs | Sigue definiciones de CronJob e historial de ejecución de Jobs |
 | Informers | Reaccionan a cambios en Deployments, Pods, Jobs, CronJobs, HPAs, Services, Helm Secrets, Ingresses, NetworkPolicies y algunos objetos RBAC |
 
@@ -30,7 +30,7 @@ El Discovery Agent es un controlador de Kubernetes de larga duración enfocado e
 
 - inventario de namespaces
 - inventario de Deployments
-- inventario de imagenes
+- inventario de imágenes
 - historial de revisiones
 - señales de error de deployments
 - snapshots de HPA asociados a workloads

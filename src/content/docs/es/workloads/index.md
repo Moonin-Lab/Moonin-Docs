@@ -8,7 +8,7 @@ Esta página documenta las vistas runtime que más se usan después del onboardi
 - `https://app.moonin.app/images`
 - `https://app.moonin.app/cronjobs`
 
-Complementa la vista orientada a cambios documentada en [Deployments e imagenes](../deployments/).
+Complementa la vista orientada a cambios documentada en [Deployments e imágenes](../deployments/).
 
 ## Modelo de navegación de workloads
 
@@ -16,7 +16,7 @@ Moonin expone el mismo estate runtime a traves de lentes operacionales diferente
 
 - `Deployments` está centrado en rollouts y revisiones
 - `Services` está centrado en trafico, logs, dependencias y observabilidad
-- `Images` está centrado en blast radius de imagenes
+- `Images` está centrado en blast radius de imágenes
 - `CronJobs` está centrado en comportamiento de ejecución programada
 
 ## Página de services
@@ -54,7 +54,7 @@ En terminos operativos, cada pestana responde preguntas distintas:
 
 El detalle de service devuelve la investigación profunda de revisiones y errores a sus vistas especializadas, porque esos flujos tienen mejor contexto de cambio.
 
-## Página de imagenes
+## Página de imágenes
 
 La pantalla `Images` es compartida con operaciones de deployment, pero muchas veces se usa desde una mirada de servicio o seguridad:
 

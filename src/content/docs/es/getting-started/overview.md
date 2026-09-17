@@ -6,14 +6,14 @@ Moonin combina seguimiento de cambios, inventario de clusters y gobernanza opera
 
 1. que cambio
 2. que esta afectado ahora
-3. que política o automatización deberia actuar después
+3. que política o automatización debería actuar después
 
 ## Capacidades principales
 
 ### Inteligencia de cambios
 
 - historial de deployments y revisiones
-- trazabilidad de imagenes entre clusters
+- trazabilidad de imágenes entre clusters
 - metadata de Helm cuando aplica
 - correlación entre revisiones y errores
 
@@ -35,7 +35,7 @@ Moonin combina seguimiento de cambios, inventario de clusters y gobernanza opera
 
 | Aplicación | Para qué sirve |
 |---|---|
-| `app.moonin.app` | Espacio principal de ingenieria: tableros, workloads, revisiones, errores y policies |
+| `app.moonin.app` | Espacio principal de ingeniería: tableros, workloads, revisiones, errores y policies |
 | `app-admin.moonin.app` | Consola de administración de organizaciones, proyectos, clusters y canales de notificación |
 | `api-discover.moonin.app` | API de control que usan los agentes y las aplicaciones web |
 | `api-scaling-rules.moonin.app` | Plano de control de las scaling rules |
@@ -52,7 +52,7 @@ Moonin combina seguimiento de cambios, inventario de clusters y gobernanza opera
 
 ## Quien usa Moonin
 
-- ingenieria de plataforma que administra entornos multi-cluster
+- ingeniería de plataforma que administra entornos multi-cluster
 - equipos de SRE que revisan el impacto de un rollout y los incidentes activos
 - equipos de DevOps que estandarizan notificaciones y comportamiento de scaling
-- equipos de aplicación que validan imagenes, CronJobs e historial de despliegue
+- equipos de aplicación que validan imágenes, CronJobs e historial de despliegue

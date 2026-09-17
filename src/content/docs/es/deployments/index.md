@@ -1,5 +1,5 @@
 ---
-title: "Deployments e imagenes"
+title: "Deployments e imágenes"
 ---
 
 Los deployments son la unidad de cambio que alimenta la correlación de Moonin. Cada rollout puede convertirse en una revisión, cada revisión trae contexto de imagen y cada imagen puede buscarse a nivel de organización.
@@ -23,7 +23,7 @@ flowchart TD
     N[Namespace]
     D[Deployment]
     R[Revisión]
-    I[Imagenes]
+    I[Imágenes]
 
     O --> P --> C --> N --> D --> R
     R --> I
@@ -59,7 +59,7 @@ flowchart LR
     A[Alta o update de deployment]
     B[El agente detecta cambio de revisión]
     C[Se guarda la revisión]
-    D[Se adjuntan imagenes y servicios]
+    D[Se adjuntan imágenes y servicios]
     E[Se actualiza la vista de deployments]
 
     A --> B --> C --> D --> E
@@ -79,7 +79,7 @@ La documentación se enfoca en lo que ve el operador:
 
 - un nuevo número de revisión
 - timestamps del rollout
-- imagenes relacionadas
+- imágenes relacionadas
 - errores asociados si las fallas comienzan después del cambio
 
 ## Visibilidad de HPA
@@ -96,14 +96,14 @@ Por eso la página de deployments es una buena entrada antes de trabajar con [Sc
 
 ## Para qué sirve la página `Images`
 
-La pantalla de imagenes es un índice inverso sobre el estado más reciente de los workloads. Responde preguntas como:
+La pantalla de imágenes es un índice inverso sobre el estado más reciente de los workloads. Responde preguntas como:
 
 - donde está corriendo este tag de imagen
 - que servicios siguen usando un build antiguo
 - que registry sirve la imagen
 - cual es el blast radius de una imagen vulnerable
 
-## Campos típicos en la página de imagenes
+## Campos típicos en la página de imágenes
 
 - referencia completa de imagen
 - nombre corto de imagen
@@ -121,7 +121,7 @@ La pantalla de imagenes es un índice inverso sobre el estado más reciente de l
 
 1. Abre `Deployments`.
 2. Filtra por proyecto, cluster, namespace o deployment.
-3. Confirma timestamp e imagenes de la última revisión.
+3. Confirma timestamp e imágenes de la última revisión.
 4. Abre el detalle de revisión si necesitas más profundidad.
 
 ### Medir el blast radius de una imagen
@@ -134,7 +134,7 @@ La pantalla de imagenes es un índice inverso sobre el estado más reciente de l
 ### Preparar una decisión de scaling o rollback
 
 1. Abre el deployment afectado.
-2. Valida el contexto HPA y el set de imagenes.
+2. Valida el contexto HPA y el set de imágenes.
 3. Compara con el historial de revisiones.
 4. Continua hacia scaling rules o investigación de incidentes según corresponda.
 
