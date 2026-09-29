@@ -37,7 +37,7 @@ Moonin combina seguimiento de cambios, inventario de clusters y gobernanza opera
 |---|---|
 | `portal.moonin.app` | Espacio principal de ingeniería: tableros, workloads, revisiones, errores y policies |
 | `admin.moonin.app` | Consola de administración de organizaciones, proyectos, clusters y canales de notificación |
-| `api-discover.moonin.app` | API de control que usan los agentes y las aplicaciones web |
+| `api-discovery.moonin.app` | API de control que usan los agentes y las aplicaciones web |
 | `api-scaling-rules.moonin.app` | Plano de control de las scaling rules |
 | `mcp.moonin.app` | Superficie MCP de solo lectura para herramientas y asistentes de IA |
 
