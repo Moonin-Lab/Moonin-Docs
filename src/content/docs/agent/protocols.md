@@ -18,8 +18,8 @@ The cluster token is sent on agent-to-platform requests through the `X-Cluster-T
 
 | Flow | Destination | Used by | Purpose |
 |---|---|---|---|
-| Inventory sync | `api-discover.moonin.app` | Discovery Agent | namespaces, Deployments, revisions, errors, images, HPAs, CronJobs and nodes |
-| Cluster heartbeat | `api-discover.moonin.app` | Discovery Agent | cluster availability and cloud metadata |
+| Inventory sync | `api-discovery.moonin.app` | Discovery Agent | namespaces, Deployments, revisions, errors, images, HPAs, CronJobs and nodes |
+| Cluster heartbeat | `api-discovery.moonin.app` | Discovery Agent | cluster availability and cloud metadata |
 | Template polling | `api-scaling-rules.moonin.app` | Scaling Rules Agent | list templates for the cluster |
 | Action polling | `api-scaling-rules.moonin.app` | Scaling Rules Agent | load the actions for an active template |
 | Execution events | `api-scaling-rules.moonin.app` | Scaling Rules Agent | notify apply and revert results |
