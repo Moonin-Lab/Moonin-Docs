@@ -179,7 +179,7 @@ OVERVIEW_COLA = '''
 |---|---|
 | `app.moonin.app` | Espacio principal de ingenieria: tableros, workloads, revisiones, errores y policies |
 | `app-admin.moonin.app` | Consola de administracion de organizaciones, proyectos, clusters y canales de notificacion |
-| `api-discovery.moonin.app` | API de control que usan los agentes y las aplicaciones web |
+| `api-discover.moonin.app` | API de control que usan los agentes y las aplicaciones web |
 | `api-scaling-rules.moonin.app` | Plano de control de las scaling rules |
 | `mcp.moonin.app` | Superficie MCP de solo lectura para herramientas y asistentes de IA |
 
