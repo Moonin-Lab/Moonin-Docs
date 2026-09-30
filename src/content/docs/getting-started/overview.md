@@ -35,9 +35,9 @@ Moonin combines change tracking, cluster inventory and operational governance fo
 
 | Application | Purpose |
 |---|---|
-| `app.moonin.app` | Main engineering workspace for dashboards, workloads, revisions, errors and policies |
-| `app-admin.moonin.app` | Administration console for organizations, projects, clusters and notification channels |
-| `api-discovery.moonin.app` | Control-plane API used by agents and the web apps |
+| `portal.moonin.app` | Main engineering workspace for dashboards, workloads, revisions, errors and policies |
+| `admin.moonin.app` | Administration console for organizations, projects, clusters and notification channels |
+| `api-discover.moonin.app` | Control-plane API used by agents and the web apps |
 | `api-scaling-rules.moonin.app` | Scaling rules control plane |
 | `mcp.moonin.app` | Read-only MCP surface for AI tools and assistants |
 
