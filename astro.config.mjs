@@ -116,6 +116,12 @@ export default defineConfig({
             items: [{ autogenerate: { directory: "agent" } }],
           },
           {
+            label: "Enterprise Installation",
+            translations: { es: "Instalación Enterprise" },
+            collapsed: true,
+            items: [{ autogenerate: { directory: "enterprise" } }],
+          },
+          {
             label: "Deployments & Images",
             translations: { es: "Deployments e imágenes" },
             collapsed: true,
