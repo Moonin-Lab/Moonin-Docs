@@ -9,49 +9,71 @@ Moonin Enterprise Installer guides your operator through deploying the Moonin pl
 
 ## Get the latest installer
 
-[Open the Moonin Installer package on GitHub Packages](https://github.com/Moonin-Lab/Moonin-Installer/pkgs/container/moonin-installer).
+[Open Moonin Installer public releases](https://github.com/Moonin-Lab/Moonin-Installer-Releases/releases).
 
-This permanent link lists published versions without requiring documentation updates. The package contains Linux, macOS and Windows archives for `amd64` and `arm64`, plus `SHA256SUMS`. It is an OCI file package, not an application container.
+This is the only public distribution channel. The source repository remains private. Each release contains Linux, macOS and Windows archives for `amd64` and `arm64`, plus `SHA256SUMS` and `RELEASE.txt`.
 
 ### Download for your operating system
 
-Install [ORAS CLI](https://oras.land/docs/installation/), then run the command for your system. Each option downloads only its archive and `SHA256SUMS`, not the other platforms. These are OCI downloads, not direct browser links to executable files.
+Download directly in your browser, without authentication or access to the private source repository:
 
-| Operating system | Architecture | Download command |
+| Operating system | Intel / AMD x86-64 | ARM64 |
 | --- | --- | --- |
-| Linux | Intel / AMD x86-64 | `oras pull ghcr.io/moonin-lab/moonin-installer:latest-linux-amd64 --output installer-download` |
-| Linux | ARM64 | `oras pull ghcr.io/moonin-lab/moonin-installer:latest-linux-arm64 --output installer-download` |
-| macOS | Intel | `oras pull ghcr.io/moonin-lab/moonin-installer:latest-darwin-amd64 --output installer-download` |
-| macOS | Apple Silicon | `oras pull ghcr.io/moonin-lab/moonin-installer:latest-darwin-arm64 --output installer-download` |
-| Windows | Intel / AMD x86-64 | `oras pull ghcr.io/moonin-lab/moonin-installer:latest-windows-amd64 --output installer-download` |
-| Windows | ARM64 | `oras pull ghcr.io/moonin-lab/moonin-installer:latest-windows-arm64 --output installer-download` |
+| Linux | [Download Linux x86-64](https://github.com/Moonin-Lab/Moonin-Installer-Releases/releases/download/preview/moonin-installer_linux_amd64.tar.gz) | [Download Linux ARM64](https://github.com/Moonin-Lab/Moonin-Installer-Releases/releases/download/preview/moonin-installer_linux_arm64.tar.gz) |
+| macOS | [Download macOS Intel](https://github.com/Moonin-Lab/Moonin-Installer-Releases/releases/download/preview/moonin-installer_darwin_amd64.tar.gz) | [Download macOS Apple Silicon](https://github.com/Moonin-Lab/Moonin-Installer-Releases/releases/download/preview/moonin-installer_darwin_arm64.tar.gz) |
+| Windows | [Download Windows x86-64](https://github.com/Moonin-Lab/Moonin-Installer-Releases/releases/download/preview/moonin-installer_windows_amd64.zip) | [Download Windows ARM64](https://github.com/Moonin-Lab/Moonin-Installer-Releases/releases/download/preview/moonin-installer_windows_arm64.zip) |
 
-After downloading, verify the archive on macOS/Linux:
+These permanent URLs follow **preview**, including release candidates, not certified stable releases. [View the channel version](https://github.com/Moonin-Lab/Moonin-Installer-Releases/releases/tag/preview) and download [SHA256SUMS](https://github.com/Moonin-Lab/Moonin-Installer-Releases/releases/download/preview/SHA256SUMS). Compare your archive's SHA-256 with its exact entry before extracting it: use `shasum -a 256 ARCHIVE` on macOS, `sha256sum ARCHIVE` on Linux or `Get-FileHash -Algorithm SHA256 ARCHIVE` on Windows, replacing `ARCHIVE` with its filename. If it differs, discard the file and download both archive and manifest from the same versioned release.
+
+For reproducible production downloads, choose an approved version from [all releases](https://github.com/Moonin-Lab/Moonin-Installer-Releases/releases). The separate `stable` channel is populated only by non-prerelease versions. Links become available after the first successful public-distribution pipeline run; creating the repository alone does not publish binaries.
+
+### Verify, extract and add to PATH
+
+Save your archive and `SHA256SUMS` in an `installer-download` directory. The manifest has six entries: verify only the exact filename you downloaded, not the entire manifest or its first line. On Linux/macOS, replace `ASSET` below with your archive's filename:
 
 ```bash
+set -eu
 cd installer-download
-shasum -a 256 -c SHA256SUMS
+ASSET='moonin-installer_darwin_arm64.tar.gz'
+CHECKSUM=$(awk -v asset="$ASSET" '$2 == asset { entry = $0; count++ } END { if (count != 1) exit 1; print entry }' SHA256SUMS)
+printf '%s\n' "$CHECKSUM" | shasum -a 256 -c -
+tar -xzf "$ASSET" moonin-installer
+./moonin-installer version
+mkdir -p "$HOME/.local/bin"
+install -m 0755 moonin-installer "$HOME/.local/bin/moonin-installer"
+export PATH="$HOME/.local/bin:$PATH"
+moonin-installer version
 ```
 
-The release pipeline updates the six `latest-OS-ARCH` aliases after verifying all platform packages, including prereleases such as `rc`. These aliases become available with the first release using that pipeline update; until then, select a published version tag on the package page. The combined `latest` package remains available for downloading all six archives. On Linux, you can also use `sha256sum --check SHA256SUMS`.
+On Linux, you can replace `shasum -a 256 -c -` with `sha256sum -c -`. Stop if the entry is missing, duplicated or fails verification. Add `export PATH="$HOME/.local/bin:$PATH"` to your shell startup file (such as `~/.zshrc` or `~/.bashrc`) to persist it in new sessions.
 
-On Windows, verify and extract using PowerShell:
+On Windows, select your ZIP filename and run in PowerShell:
 
 ```powershell
+$ErrorActionPreference = 'Stop'
 Set-Location installer-download
-$checksum = (Get-Content SHA256SUMS -Raw).Trim() -split '\s+', 2
-if ((Get-FileHash -LiteralPath $checksum[1] -Algorithm SHA256).Hash -ne $checksum[0]) {
+$asset = 'moonin-installer_windows_amd64.zip'
+$pattern = '^[0-9a-fA-F]{64}\s+\*?' + [regex]::Escape($asset) + '$'
+$entries = @(Get-Content -LiteralPath SHA256SUMS | Where-Object { $_ -match $pattern })
+if ($entries.Count -ne 1) { throw 'Expected exactly one checksum entry' }
+$expected = ($entries[0] -split '\s+', 2)[0]
+if ((Get-FileHash -LiteralPath $asset -Algorithm SHA256).Hash -ne $expected) {
   throw 'Checksum mismatch'
 }
-Expand-Archive -LiteralPath $checksum[1] -DestinationPath .\bin
-.\bin\moonin-installer.exe version
+$binDir = Join-Path $env:LOCALAPPDATA 'Moonin\bin'
+Expand-Archive -LiteralPath $asset -DestinationPath $binDir -Force
+& (Join-Path $binDir 'moonin-installer.exe') version
+$userPath = [Environment]::GetEnvironmentVariable('Path', 'User')
+if ($binDir -notin ($userPath -split ';')) {
+  [Environment]::SetEnvironmentVariable('Path', "$binDir;$userPath", 'User')
+}
+$env:Path = "$binDir;$env:Path"
+moonin-installer version
 ```
 
-On Linux/macOS, after a successful checksum verification, extract the downloaded archive with `tar -xzf ARCHIVE.tar.gz`, replacing `ARCHIVE.tar.gz` with its actual filename. Run `./moonin-installer version` before installing it in your `PATH`.
+The Windows user `PATH` persists for new terminals; the last assignment also updates the current session. Extract only the archive for your operating system and architecture. No Docker or source repository access is required.
 
-Extract only the archive matching your operating system and architecture, and place its executable in your `PATH`. No Docker or source repository access is required. Public packages allow anonymous downloads; private packages require an authorized GitHub account and ORAS login. Do not place access tokens in this documentation or command arguments.
-
-`latest` can change and does not mean the latest stable release. For production, use an approved version tag or digest instead, record it, and verify the extracted binary with `moonin-installer version`. Checksums verify integrity against the manifest, not independent authenticity of the publisher.
+Both `preview` and `stable` can change. For production, record an approved versioned release tag and verify the extracted binary with `moonin-installer version`. Checksums verify integrity against the manifest, not independent authenticity of the publisher. After completing preparation, start the wizard with `moonin-installer platform install`.
 
 ## Installation journey
 
@@ -111,6 +133,6 @@ The complete installation is **not one transaction**. Earlier stages can modify 
 
 - [Product architecture](../getting-started/architecture/)
 - [Agent installation in monitored clusters](../getting-started/installation/)
-- [Spanish Enterprise Installer documentation](../es/enterprise/)
+- [Spanish Enterprise Installer documentation](https://docs.moonin.app/es/enterprise/)
 
 The agent guide describes a different installation scope. Use endpoints and credentials approved for your Enterprise deployment rather than copying hosted-service settings into it.
