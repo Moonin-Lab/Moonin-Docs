@@ -8,6 +8,14 @@ Moonin combines change tracking, cluster inventory and operational governance fo
 2. What is affected right now?
 3. Which automated policy or response should happen next?
 
+## SaaS and Enterprise
+
+**SaaS** is the Moonin-hosted service: Moonin operates the platform and your team connects its monitored clusters under your subscription. The public application URLs below refer to this hosted service.
+
+**Enterprise** runs in your organization's Kubernetes environment, with infrastructure, security, backups and upgrades operated by your team. It requires a **commercial, signed Enterprise customer license**. Contact Moonin Sales through your account representative or the official Moonin website to agree on capacity, features, validity and support and obtain your license before installation. Downloading the CLI does not grant an Enterprise license.
+
+See [Enterprise deployment and licensing](../../enterprise/) for the comparison, license lifecycle and installation guide. Enterprise uses your own approved application endpoints rather than the hosted URLs below.
+
 ## Core capabilities
 
 ### Change intelligence

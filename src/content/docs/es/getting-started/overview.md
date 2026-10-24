@@ -8,6 +8,14 @@ Moonin combina seguimiento de cambios, inventario de clusters y gobernanza opera
 2. que esta afectado ahora
 3. que política o automatización debería actuar después
 
+## SaaS y Enterprise
+
+**SaaS** es el servicio alojado por Moonin: Moonin opera la plataforma y su equipo conecta los clústeres monitorizados según su suscripción. Las URL públicas de aplicaciones que figuran más abajo corresponden a ese servicio alojado.
+
+**Enterprise** se ejecuta en el entorno Kubernetes de su organización, que opera infraestructura, seguridad, backups y actualizaciones. Requiere una **licencia comercial de cliente Enterprise firmada**. Contacte a Ventas de Moonin mediante su representante de cuenta o el sitio web oficial para acordar capacidad, funcionalidades, vigencia y soporte y obtener la licencia antes de instalar. Descargar la CLI no concede una licencia Enterprise.
+
+Consulte [despliegue y licenciamiento Enterprise](../../enterprise/) para la comparación, el ciclo de la licencia y la guía de instalación. Enterprise utiliza sus propios endpoints aprobados, no las URL del servicio alojado que aparecen más abajo.
+
 ## Capacidades principales
 
 ### Inteligencia de cambios

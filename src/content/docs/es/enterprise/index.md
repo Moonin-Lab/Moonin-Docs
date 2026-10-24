@@ -7,6 +7,26 @@ sidebar:
 
 Moonin Enterprise Installer guía al operador para desplegar la plataforma Moonin en su entorno Kubernetes. Necesita `moonin-installer` en el `PATH` de su estación y una licencia de cliente firmada proporcionada mediante onboarding Enterprise. Esta sección cubre la plataforma, no solamente los agentes instalados en clústeres monitorizados.
 
+## ¿SaaS o Enterprise?
+
+| Modalidad | Alojamiento y operación | Cómo comenzar |
+| --- | --- | --- |
+| SaaS | Moonin aloja y opera la plataforma; su equipo conecta los clústeres que desea monitorizar | Utilice el servicio alojado de Moonin según su suscripción. No instala la plataforma Enterprise con esta CLI |
+| Enterprise | Su organización despliega y opera la plataforma en su propio entorno Kubernetes, incluida infraestructura, seguridad, backups y actualizaciones | Contacte a Ventas de Moonin para obtener una licencia Enterprise y acordar el alcance antes de instalar |
+
+:::caution[Enterprise requiere una licencia comercial]
+Descargar la CLI no constituye una licencia Enterprise ni concede el derecho de desplegar o utilizar la plataforma Enterprise. **Debe contactar a Ventas de Moonin para obtener una licencia de cliente Enterprise firmada antes de instalar.** Si aún no tiene un contacto comercial, solicítelo mediante su representante de cuenta o el sitio web oficial de Moonin. Descargar o ejecutar el instalador no genera una licencia.
+:::
+
+### Cómo funciona la licencia Enterprise
+
+1. Contacte a Ventas indicando el despliegue previsto, la capacidad monitorizada y las funcionalidades necesarias. Acuerde alcance, vigencia, soporte y condiciones comerciales; esta guía no fija precios ni implica una prueba gratuita.
+2. Moonin proporciona una licencia firmada de tipo `customer` mediante onboarding Enterprise. Sus campos firmados definen cliente, vigencia, funcionalidades habilitadas y capacidad contratada. No edite los campos: cualquier modificación invalida la firma.
+3. Introduzca el JWS firmado completo durante la instalación o use `moonin-installer license install`. Se almacena por defecto en el Secret Kubernetes `moonin/moonin-license`, clave `MOONIN_LICENSE`. El instalador comprueba firma y caducidad antes de aceptarla; el binario descargado no es una credencial de activación.
+4. Gestione la renovación con Ventas antes del vencimiento y solicite una licencia nueva para cambios acordados de capacidad o funcionalidades. Instale la sustitución con el mismo comando de licencia y compruebe el estado resultante. No presuponga un período de gracia ni que una licencia caducada, ausente o inválida permita continuar operando.
+
+La capacidad se expresa en Compute Units (CU): el mayor entre las vCPU declaradas agregadas y la mitad de la RAM declarada en GB decimales, redondeado hacia arriba. La validación actual de licencias de cliente también espera almacenamiento incluido de `10 GB × CU`; ese derecho no aprovisiona discos ni garantiza retención. Consulte la [preparación de la licencia](preparation/) para la fórmula exacta, el alcance y el manejo seguro. La disponibilidad de descarga, la vigencia de la licencia y la versión del chart Platform son cuestiones independientes.
+
 ## Obtener el instalador más reciente
 
 [Abrir las releases públicas de Moonin Installer](https://github.com/Moonin-Lab/Moonin-Installer-Releases/releases).
